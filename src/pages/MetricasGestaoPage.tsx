@@ -13,7 +13,7 @@ const MetricasGestaoPage = () => {
 
       <div className="space-y-4 max-w-4xl">
         <ContentBlock title="Forecast (Lei)">
-          <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 space-y-2">
+          <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20 space-y-2">
             <p className="text-foreground font-medium">
               Forecast mensal = soma (Valor × Probabilidade)
             </p>
@@ -32,9 +32,9 @@ const MetricasGestaoPage = () => {
               { etapa: "Negociação ativa", prob: "70–80%" },
               { etapa: "Contrato", prob: "85–95%" }
             ].map((item) => (
-              <div key={item.etapa} className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+              <div key={item.etapa} className="flex items-center justify-between p-3 bg-muted/50 rounded-xl border border-border">
                 <span className="font-medium text-foreground">{item.etapa}</span>
-                <span className="px-3 py-1 bg-primary text-primary-foreground rounded-full text-sm font-medium">
+                <span className="px-3 py-1 bg-primary text-primary-foreground rounded-lg text-sm font-medium">
                   {item.prob}
                 </span>
               </div>
@@ -44,11 +44,11 @@ const MetricasGestaoPage = () => {
 
         <ContentBlock title="Conversões Oficiais">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-card rounded-lg border border-border">
+            <div className="p-4 bg-card rounded-xl border border-border">
               <p className="text-sm text-muted-foreground mb-1">Closer</p>
               <p className="font-semibold text-foreground">Realizada → Ganho</p>
             </div>
-            <div className="p-4 bg-card rounded-lg border border-border">
+            <div className="p-4 bg-card rounded-xl border border-border">
               <p className="text-sm text-muted-foreground mb-1">SDR/BDR</p>
               <p className="font-semibold text-foreground">MQL → Realizada</p>
             </div>
@@ -64,7 +64,7 @@ const MetricasGestaoPage = () => {
               { kpi: "Tempo até agendar", mede: "Velocidade de conversão", corrige: "Reduzir toques, aumentar urgência" },
               { kpi: "Conversão MQL→Realizada", mede: "Efetividade do SDR", corrige: "Treinar qualificação e objeções" }
             ].map((item, index) => (
-              <div key={index} className="p-4 bg-secondary/50 rounded-lg">
+              <div key={index} className="p-4 bg-muted/50 rounded-xl border border-border">
                 <p className="font-semibold text-foreground mb-2">{item.kpi}</p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
@@ -90,7 +90,7 @@ const MetricasGestaoPage = () => {
               { kpi: "Precisão forecast", mede: "Previsibilidade", corrige: "Disciplina de probabilidade e data" },
               { kpi: "Lost reasons", mede: "Padrão de perda", corrige: "Ações corretivas por motivo" }
             ].map((item, index) => (
-              <div key={index} className="p-4 bg-secondary/50 rounded-lg">
+              <div key={index} className="p-4 bg-muted/50 rounded-xl border border-border">
                 <p className="font-semibold text-foreground mb-2">{item.kpi}</p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
@@ -114,9 +114,9 @@ const MetricasGestaoPage = () => {
               { label: "% negociação sem data", meta: "= 0" },
               { label: "% negociação sem prob", meta: "= 0" }
             ].map((item) => (
-              <div key={item.label} className="p-4 bg-green-50 rounded-lg border border-green-200 text-center">
-                <p className="text-sm text-green-800 mb-1">{item.label}</p>
-                <p className="text-2xl font-bold text-green-600">{item.meta}</p>
+              <div key={item.label} className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20 text-center">
+                <p className="text-sm text-foreground mb-1">{item.label}</p>
+                <p className="text-2xl font-bold text-foreground">{item.meta}</p>
               </div>
             ))}
           </div>
@@ -124,11 +124,11 @@ const MetricasGestaoPage = () => {
 
         <ContentBlock title="Rotinas">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-card rounded-lg border border-border">
+            <div className="p-4 bg-card rounded-xl border border-border">
               <p className="font-semibold text-foreground mb-2">Diário (15 min)</p>
               <p className="text-sm text-muted-foreground">Revisão de tarefas do dia, cards críticos</p>
             </div>
-            <div className="p-4 bg-card rounded-lg border border-border">
+            <div className="p-4 bg-card rounded-xl border border-border">
               <p className="font-semibold text-foreground mb-2">Semanal (60 min)</p>
               <p className="text-sm text-muted-foreground">Top 10 deals, forecast, lost, funil inverso</p>
             </div>

@@ -6,112 +6,100 @@
 
 @layer base {
   :root {
-    /* Freedom AI Playbook - Premium Corporate Design */
-    --background: 215 30% 96%;
-    --foreground: 222 47% 11%;
+    /* Freedom AI Brand - Premium Executive Design */
+    --background: 220 14% 97%; /* #F7F8FA */
+    --foreground: 222 54% 7%; /* #0B0F1A */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 54% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222 54% 7%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: Freedom Yellow */
+    --primary: 47 95% 49%; /* #F7C600 */
+    --primary-foreground: 222 54% 7%; /* Dark text on yellow */
+    --primary-weak: 47 100% 90%; /* #FFF4CC - light yellow for backgrounds */
+    --primary-hover: 45 92% 47%; /* #EAB308 */
 
-    --secondary: 215 25% 93%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 222 54% 7%;
 
-    --muted: 215 20% 94%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 9% 94%;
+    --muted-foreground: 220 9% 46%; /* #6B7280 */
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 95% 49%;
+    --accent-foreground: 222 54% 7%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 91%; /* #E7E9EE */
+    --input: 220 13% 91%;
+    --ring: 47 95% 49%;
 
-    --radius: 1rem;
+    --radius: 1.125rem;
 
-    /* Sidebar */
+    /* Sidebar - Freedom Style */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 25% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-foreground: 222 54% 7%;
+    --sidebar-primary: 47 95% 49%;
+    --sidebar-primary-foreground: 222 54% 7%;
+    --sidebar-accent: 47 100% 90%;
+    --sidebar-accent-foreground: 222 54% 7%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 47 95% 49%;
 
-    /* Custom Icon Colors - Pastel */
-    --icon-blue: 217 91% 95%;
-    --icon-blue-fg: 217 91% 50%;
-    --icon-purple: 270 80% 95%;
-    --icon-purple-fg: 270 80% 55%;
-    --icon-green: 152 76% 93%;
-    --icon-green-fg: 152 76% 40%;
-    --icon-orange: 32 95% 93%;
-    --icon-orange-fg: 32 95% 50%;
-    --icon-yellow: 45 93% 93%;
-    --icon-yellow-fg: 45 93% 45%;
-    --icon-red: 0 84% 94%;
-    --icon-red-fg: 0 84% 55%;
-    --icon-teal: 180 70% 93%;
-    --icon-teal-fg: 180 70% 40%;
-    --icon-pink: 330 80% 94%;
-    --icon-pink-fg: 330 80% 55%;
+    /* Shadows - Subtle and Premium */
+    --shadow-xs: 0 1px 2px 0 rgba(11, 15, 26, 0.03);
+    --shadow-sm: 0 1px 3px 0 rgba(11, 15, 26, 0.04), 0 1px 2px -1px rgba(11, 15, 26, 0.04);
+    --shadow-card: 0 2px 8px -2px rgba(11, 15, 26, 0.05), 0 4px 16px -4px rgba(11, 15, 26, 0.06);
+    --shadow-card-hover: 0 8px 24px -4px rgba(11, 15, 26, 0.08), 0 12px 32px -8px rgba(11, 15, 26, 0.06);
+    --shadow-sidebar: 1px 0 0 0 hsl(var(--border));
 
-    /* Gradients */
-    --gradient-bg: linear-gradient(135deg, hsl(215 30% 97%) 0%, hsl(220 25% 94%) 50%, hsl(215 35% 96%) 100%);
-    --gradient-card-hover: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(215 30% 99%) 100%);
-    
-    /* Shadows */
-    --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
-    --shadow-card-hover: 0 8px 25px -5px rgba(0, 0, 0, 0.08), 0 20px 40px -10px rgba(0, 0, 0, 0.06);
-    --shadow-sidebar: 2px 0 8px -2px rgba(0, 0, 0, 0.05);
+    /* Glow effect for hover */
+    --glow-primary: 0 0 20px rgba(247, 198, 0, 0.15);
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 210 40% 98%;
+    --background: 222 47% 6%;
+    --foreground: 220 14% 96%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 220 14% 96%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 220 14% 96%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 47 95% 49%;
+    --primary-foreground: 222 54% 7%;
+    --primary-weak: 47 50% 15%;
+    --primary-hover: 45 92% 47%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 220 14% 96%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 222 47% 14%;
+    --muted-foreground: 220 9% 60%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 47 95% 49%;
+    --accent-foreground: 222 54% 7%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 220 14% 96%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 212 27% 84%;
-    
-    --sidebar-background: 222 47% 10%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --border: 222 47% 16%;
+    --input: 222 47% 16%;
+    --ring: 47 95% 49%;
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 47 95% 49%;
+    --sidebar-primary-foreground: 222 54% 7%;
+    --sidebar-accent: 47 50% 15%;
+    --sidebar-accent-foreground: 220 14% 96%;
+    --sidebar-border: 222 47% 16%;
+    --sidebar-ring: 47 95% 49%;
   }
 }
 
@@ -127,128 +115,169 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, sans-serif;
-    background: var(--gradient-bg);
     min-height: 100vh;
+  }
+
+  /* Subtle glow at top */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    background: radial-gradient(ellipse at center top, hsl(var(--primary-weak) / 0.4) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
   }
 }
 
 @layer components {
-  /* Playbook Card Styles */
+  /* Freedom Card Styles - Premium */
   .playbook-card {
-    @apply bg-card rounded-2xl p-6 transition-all duration-300 cursor-pointer border border-border/50;
+    @apply bg-card rounded-[22px] p-6 transition-all duration-300 cursor-pointer;
+    border: 1px solid hsl(var(--border));
     box-shadow: var(--shadow-card);
   }
 
   .playbook-card:hover {
-    @apply -translate-y-1 border-primary/20;
-    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-card-hover), var(--glow-primary);
   }
 
-  /* Icon Box Variants */
+  /* Icon Box - Freedom Yellow or Gray */
   .icon-box {
-    @apply w-12 h-12 rounded-xl flex items-center justify-center mb-4;
+    @apply w-10 h-10 rounded-xl flex items-center justify-center mb-4;
+    background: hsl(var(--primary-weak));
   }
 
-  .icon-box-blue {
-    background: hsl(var(--icon-blue));
-    color: hsl(var(--icon-blue-fg));
+  .icon-box svg {
+    @apply w-5 h-5;
+    color: hsl(var(--foreground));
   }
 
-  .icon-box-purple {
-    background: hsl(var(--icon-purple));
-    color: hsl(var(--icon-purple-fg));
+  .icon-box-muted {
+    background: hsl(var(--muted));
   }
 
-  .icon-box-green {
-    background: hsl(var(--icon-green));
-    color: hsl(var(--icon-green-fg));
-  }
-
-  .icon-box-orange {
-    background: hsl(var(--icon-orange));
-    color: hsl(var(--icon-orange-fg));
-  }
-
-  .icon-box-yellow {
-    background: hsl(var(--icon-yellow));
-    color: hsl(var(--icon-yellow-fg));
-  }
-
-  .icon-box-red {
-    background: hsl(var(--icon-red));
-    color: hsl(var(--icon-red-fg));
-  }
-
-  .icon-box-teal {
-    background: hsl(var(--icon-teal));
-    color: hsl(var(--icon-teal-fg));
-  }
-
-  .icon-box-pink {
-    background: hsl(var(--icon-pink));
-    color: hsl(var(--icon-pink-fg));
-  }
-
-  /* Hero Section */
+  /* Hero Section - Clean */
   .page-hero {
-    @apply py-8 px-6 mb-8 rounded-2xl;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.03) 100%);
-    border: 1px solid hsl(var(--primary) / 0.1);
+    @apply py-8 px-6 mb-8 rounded-[22px] border;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-sm);
   }
 
   .page-hero h1 {
-    @apply text-3xl font-bold text-foreground mb-3;
+    @apply text-3xl font-bold text-foreground mb-3 tracking-tight;
   }
 
   .page-hero .impact-phrase {
     @apply text-lg text-muted-foreground font-medium leading-relaxed;
   }
 
-  /* Content Blocks */
+  /* Content Blocks - Clean White */
   .content-block {
-    @apply bg-card rounded-xl p-6 mb-4 border border-border/50;
-    box-shadow: var(--shadow-card);
+    @apply bg-card rounded-xl p-6 mb-4 border;
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-xs);
+  }
+
+  .content-block:hover {
+    background: hsl(var(--primary-weak) / 0.3);
   }
 
   .content-block h3 {
-    @apply text-lg font-semibold text-foreground mb-3;
+    @apply text-lg font-semibold text-foreground mb-3 tracking-tight;
   }
 
-  /* Copy Button */
+  /* Copy Button - Freedom Style */
   .copy-btn {
     @apply inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200;
-    @apply bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground;
+    background: hsl(var(--primary-weak));
+    color: hsl(var(--foreground));
   }
 
-  /* Template Card */
+  .copy-btn:hover {
+    background: hsl(var(--primary));
+    color: hsl(var(--foreground));
+  }
+
+  /* Template Card - Premium */
   .template-card {
-    @apply bg-card rounded-xl p-5 border border-border/50 transition-all duration-200;
-    box-shadow: var(--shadow-card);
+    @apply bg-card rounded-xl p-5 transition-all duration-200;
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-sm);
   }
 
   .template-card:hover {
-    @apply border-primary/30;
-    box-shadow: var(--shadow-card-hover);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-card), var(--glow-primary);
   }
 
-  /* Filter Chip */
+  /* Filter Chip - Freedom */
   .filter-chip {
     @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer;
-    @apply bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+  }
+
+  .filter-chip:hover {
+    background: hsl(var(--primary-weak));
+    border-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
   }
 
   .filter-chip.active {
-    @apply bg-primary text-primary-foreground;
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+    color: hsl(var(--foreground));
   }
 
-  /* Breadcrumb */
-  .breadcrumb-link {
-    @apply text-muted-foreground hover:text-primary transition-colors duration-200;
+  /* Badge - Freedom Style */
+  .badge-primary {
+    @apply px-2 py-1 text-xs font-medium rounded;
+    background: hsl(var(--primary-weak));
+    color: hsl(var(--foreground));
+  }
+
+  .badge-muted {
+    @apply px-2 py-1 text-xs font-medium rounded;
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
   }
 
   /* Skeleton Loading */
   .skeleton {
-    @apply animate-pulse bg-muted rounded;
+    @apply animate-pulse rounded;
+    background: hsl(var(--muted));
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
   }
 }
 

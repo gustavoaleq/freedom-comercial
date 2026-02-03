@@ -25,6 +25,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          weak: "hsl(var(--primary-weak))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -60,52 +62,22 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        icon: {
-          blue: {
-            DEFAULT: "hsl(var(--icon-blue))",
-            foreground: "hsl(var(--icon-blue-fg))",
-          },
-          purple: {
-            DEFAULT: "hsl(var(--icon-purple))",
-            foreground: "hsl(var(--icon-purple-fg))",
-          },
-          green: {
-            DEFAULT: "hsl(var(--icon-green))",
-            foreground: "hsl(var(--icon-green-fg))",
-          },
-          orange: {
-            DEFAULT: "hsl(var(--icon-orange))",
-            foreground: "hsl(var(--icon-orange-fg))",
-          },
-          yellow: {
-            DEFAULT: "hsl(var(--icon-yellow))",
-            foreground: "hsl(var(--icon-yellow-fg))",
-          },
-          red: {
-            DEFAULT: "hsl(var(--icon-red))",
-            foreground: "hsl(var(--icon-red-fg))",
-          },
-          teal: {
-            DEFAULT: "hsl(var(--icon-teal))",
-            foreground: "hsl(var(--icon-teal-fg))",
-          },
-          pink: {
-            DEFAULT: "hsl(var(--icon-pink))",
-            foreground: "hsl(var(--icon-pink-fg))",
-          },
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
         xl: "1.25rem",
-        "2xl": "1.5rem",
+        "2xl": "1.375rem",
+        "3xl": "1.5rem",
       },
       boxShadow: {
+        xs: "var(--shadow-xs)",
+        sm: "var(--shadow-sm)",
         card: "var(--shadow-card)",
         "card-hover": "var(--shadow-card-hover)",
         sidebar: "var(--shadow-sidebar)",
+        glow: "var(--glow-primary)",
       },
       keyframes: {
         "accordion-down": {
@@ -117,11 +89,11 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(10px)" },
+          from: { opacity: "0", transform: "translateY(8px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in": {
-          from: { opacity: "0", transform: "translateX(-10px)" },
+          from: { opacity: "0", transform: "translateX(-8px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
       },

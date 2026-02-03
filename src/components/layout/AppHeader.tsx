@@ -22,20 +22,20 @@ export function AppHeader({ onSearch, searchQuery = "" }: AppHeaderProps) {
   const currentSection = getCurrentSection();
 
   return (
-    <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border">
+    <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="flex items-center justify-between h-16 px-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm">
           <Link 
             to="/" 
-            className="breadcrumb-link flex items-center gap-1.5 hover:text-primary"
+            className="text-muted-foreground hover:text-primary transition-colors duration-200 flex items-center gap-1.5"
           >
             <Home className="w-4 h-4" />
             <span>Home</span>
           </Link>
           {currentSection && (
             <>
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              <ChevronRight className="w-4 h-4 text-muted-foreground/50" />
               <span className="text-foreground font-medium">{currentSection}</span>
             </>
           )}
@@ -51,19 +51,20 @@ export function AppHeader({ onSearch, searchQuery = "" }: AppHeaderProps) {
               placeholder="Buscar no playbook…"
               value={searchQuery}
               onChange={(e) => onSearch?.(e.target.value)}
-              className="pl-9 h-9 bg-secondary/50 border-0 focus-visible:ring-1"
+              className="pl-9 h-9 bg-muted/50 border-border focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary"
             />
           </div>
 
-          {/* Quick Actions */}
-          <Button variant="outline" size="sm" asChild>
+          {/* Templates Button */}
+          <Button variant="outline" size="sm" asChild className="border-border hover:bg-primary-weak hover:border-primary/30">
             <Link to="/templates" className="flex items-center gap-2">
               <Wrench className="w-4 h-4" />
               Templates
             </Link>
           </Button>
 
-          <Button variant="ghost" size="sm" asChild>
+          {/* Home Button */}
+          <Button variant="ghost" size="sm" asChild className="hover:bg-muted">
             <Link to="/" className="flex items-center gap-2">
               <Home className="w-4 h-4" />
               Home
