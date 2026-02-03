@@ -725,6 +725,5 @@ export const quickFilters = [
   { label: "Só Closer", filter: { tipo: "Closer" } },
   { label: "Só WhatsApp", filter: { canal: "WhatsApp" } },
   { label: "Só Pós-proposta", filter: { etapa: "Negociação/Proposta" } },
-  { label: "Só Objeções", filter: { tipo: "Objeção" } },
   { label: "Encerramento elegante", filter: { objetivo: "Encerrar elegante" } }
 ];
