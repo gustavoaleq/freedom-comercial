@@ -57,10 +57,10 @@ const TemplatesPage = () => {
 
   const getTypeColor = (tipo: string) => {
     switch (tipo) {
-      case "SDR": return "bg-blue-100 text-blue-700";
-      case "BDR": return "bg-purple-100 text-purple-700";
-      case "Closer": return "bg-green-100 text-green-700";
-      default: return "bg-gray-100 text-gray-700";
+      case "SDR": return "bg-primary-weak text-foreground";
+      case "BDR": return "bg-primary-weak text-foreground";
+      case "Closer": return "bg-primary text-primary-foreground";
+      default: return "bg-muted text-muted-foreground";
     }
   };
 
@@ -77,13 +77,13 @@ const TemplatesPage = () => {
         <div className="mb-6 space-y-4">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Buscar templates por nome, texto, pergunta..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-12 text-base"
+              className="pl-12 h-12 text-base bg-card border-border focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-xl"
             />
           </div>
 
@@ -111,7 +111,7 @@ const TemplatesPage = () => {
             {(Object.keys(activeFilters).length > 0 || searchQuery) && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-full transition-colors"
               >
                 <X className="w-4 h-4" />
                 Limpar
@@ -141,14 +141,14 @@ const TemplatesPage = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">{template.nome}</h3>
                   <div className="flex flex-wrap gap-1.5">
-                    <span className={cn("px-2 py-0.5 text-xs font-medium rounded", getTypeColor(template.tipo))}>
+                    <span className={cn("px-2 py-0.5 text-xs font-medium rounded-lg", getTypeColor(template.tipo))}>
                       {template.tipo}
                     </span>
-                    <span className="px-2 py-0.5 text-xs bg-secondary text-secondary-foreground rounded">
+                    <span className="badge-muted">
                       {template.etapa}
                     </span>
                     {template.canal.map((c) => (
-                      <span key={c} className="px-2 py-0.5 text-xs bg-secondary/50 text-muted-foreground rounded">
+                      <span key={c} className="px-2 py-0.5 text-xs bg-muted/50 text-muted-foreground rounded-lg">
                         {c}
                       </span>
                     ))}
@@ -161,7 +161,7 @@ const TemplatesPage = () => {
 
               {/* Quick info */}
               <p className="text-sm text-muted-foreground mb-2">
-                <strong>Quando usar:</strong> {template.quandoUsar}
+                <strong className="text-foreground">Quando usar:</strong> {template.quandoUsar}
               </p>
 
               {/* Expanded content */}
@@ -179,22 +179,22 @@ const TemplatesPage = () => {
 
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Template</p>
-                    <div className="bg-secondary/50 rounded-lg p-3 font-mono text-sm">
+                    <div className="bg-muted/50 rounded-xl p-3 font-mono text-sm border border-border">
                       <pre className="whitespace-pre-wrap text-foreground">{template.template}</pre>
                     </div>
                   </div>
 
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Próximo passo</p>
-                    <p className="text-green-700 bg-green-50 px-3 py-2 rounded-lg text-sm">{template.proximoPasso}</p>
+                    <p className="bg-primary-weak/50 px-3 py-2 rounded-xl text-sm text-foreground border border-primary/20">{template.proximoPasso}</p>
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-2">
                     <span className="text-xs text-muted-foreground">
-                      <strong>Tom:</strong> {template.tom}
+                      <strong className="text-foreground">Tom:</strong> {template.tom}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      <strong>Objetivo:</strong> {template.objetivo}
+                      <strong className="text-foreground">Objetivo:</strong> {template.objetivo}
                     </span>
                   </div>
                 </div>

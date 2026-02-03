@@ -21,7 +21,7 @@ const ICPQualificacaoPage = () => {
 
       <div className="space-y-4 max-w-4xl">
         <ContentBlock title="MQL (Lei)">
-          <div className="p-4 bg-primary/5 rounded-lg border border-primary/10">
+          <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
             <p className="text-lg font-semibold text-foreground">
               Faturamento &gt; R$ 20M <span className="text-muted-foreground mx-2">e</span> &gt; 100 funcionários
             </p>
@@ -29,7 +29,7 @@ const ICPQualificacaoPage = () => {
         </ContentBlock>
 
         <ContentBlock title="SQL (Lei Prática)">
-          <div className="p-4 bg-secondary/50 rounded-lg">
+          <div className="p-4 bg-muted/50 rounded-xl border border-border">
             <p className="text-foreground font-medium">
               MQL + <strong>dor clara</strong> + <strong>viabilidade</strong> + <strong>sponsor</strong> + <strong>próximo passo</strong>
             </p>
@@ -41,7 +41,7 @@ const ICPQualificacaoPage = () => {
           copyable 
           copyText={checklist}
         >
-          <div className="bg-card border border-border rounded-lg p-4 font-mono text-sm">
+          <div className="bg-card border border-border rounded-xl p-4 font-mono text-sm">
             <pre className="whitespace-pre-wrap text-foreground">{checklist}</pre>
           </div>
         </ContentBlock>
@@ -54,9 +54,9 @@ const ICPQualificacaoPage = () => {
               { trava: "Sem dados", pergunta: "Os dados existem em algum sistema ou estão em planilhas/cabeças?" },
               { trava: "Sem sponsor", pergunta: "Quem assina esse tipo de contrato? Você ou precisa de alguém acima?" }
             ].map((item, index) => (
-              <div key={index} className="p-4 bg-secondary/50 rounded-lg">
+              <div key={index} className="p-4 bg-muted/50 rounded-xl border border-border">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded">
+                  <span className="badge-muted">
                     {item.trava}
                   </span>
                 </div>

@@ -92,10 +92,10 @@ const ProdutosPage = () => {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={cn(
-              "px-6 py-3 rounded-lg font-medium transition-all duration-200",
+              "px-6 py-3 rounded-xl font-medium transition-all duration-200 border",
               activeTab === tab
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-card text-foreground border-border hover:bg-primary-weak hover:border-primary/30"
             )}
           >
             {products[tab].name}
@@ -112,15 +112,15 @@ const ProdutosPage = () => {
           <ul className="space-y-2">
             {activeProduct.dores.map((dor, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-red-500 mt-2 flex-shrink-0" />
-                <span>{dor}</span>
+                <span className="w-2 h-2 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                <span className="text-foreground">{dor}</span>
               </li>
             ))}
           </ul>
         </ContentBlock>
 
         <ContentBlock title="C) Pitch de 1 frase">
-          <div className="p-4 bg-primary/5 rounded-lg border border-primary/10">
+          <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
             <p className="text-lg font-semibold text-foreground italic">"{activeProduct.pitch}"</p>
           </div>
         </ContentBlock>
@@ -129,10 +129,10 @@ const ProdutosPage = () => {
           <ul className="space-y-2">
             {activeProduct.perguntas.map((pergunta, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="w-6 h-6 rounded-full bg-primary/10 text-primary text-sm font-medium flex items-center justify-center flex-shrink-0">
+                <span className="w-6 h-6 rounded-lg bg-primary-weak text-foreground text-sm font-medium flex items-center justify-center flex-shrink-0">
                   {index + 1}
                 </span>
-                <span>{pergunta}</span>
+                <span className="text-foreground">{pergunta}</span>
               </li>
             ))}
           </ul>
@@ -145,17 +145,17 @@ const ProdutosPage = () => {
         <ContentBlock title="F) Erros comuns ao vender">
           <ul className="space-y-2">
             {activeProduct.erros.map((erro, index) => (
-              <li key={index} className="flex items-start gap-3 p-3 bg-red-50 rounded-lg">
-                <span className="text-red-500 font-bold">✗</span>
-                <span className="text-red-800">{erro}</span>
+              <li key={index} className="flex items-start gap-3 p-3 bg-muted/50 rounded-xl border border-border">
+                <span className="text-muted-foreground font-bold">✗</span>
+                <span className="text-foreground">{erro}</span>
               </li>
             ))}
           </ul>
         </ContentBlock>
 
         <ContentBlock title="G) Próximo passo padrão">
-          <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-            <p className="text-green-800 font-medium">{activeProduct.proximoPasso}</p>
+          <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
+            <p className="text-foreground font-medium">{activeProduct.proximoPasso}</p>
           </div>
         </ContentBlock>
       </div>

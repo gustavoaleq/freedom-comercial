@@ -31,8 +31,8 @@ const LeiComercialPage = () => {
               { num: 6, question: "Quem é sponsor?", desc: "Mapear decisor" },
               { num: 7, question: "Próximo passo com data e dono?", desc: "Travar ação" }
             ].map((item) => (
-              <div key={item.num} className="flex items-center gap-4 p-4 bg-secondary/50 rounded-lg">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+              <div key={item.num} className="flex items-center gap-4 p-4 bg-muted/50 rounded-xl border border-border hover:bg-primary-weak/30 hover:border-primary/20 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
                   <span className="text-primary-foreground font-bold">{item.num}</span>
                 </div>
                 <div>
@@ -47,7 +47,7 @@ const LeiComercialPage = () => {
         <ContentBlock title="Impacto de não ter (frases prontas)">
           <div className="space-y-3">
             {impactoPhrases.map((phrase, index) => (
-              <div key={index} className="flex items-start justify-between gap-4 p-4 bg-primary/5 rounded-lg border border-primary/10">
+              <div key={index} className="flex items-start justify-between gap-4 p-4 bg-primary-weak/40 rounded-xl border border-primary/10">
                 <p className="text-foreground font-medium italic">"{phrase}"</p>
                 <CopyButton text={phrase} className="flex-shrink-0" />
               </div>
@@ -59,7 +59,7 @@ const LeiComercialPage = () => {
           <div className="flex flex-wrap items-center gap-3">
             {["Diagnóstico", "Impacto de não ter", "Viabilidade", "Próximo passo"].map((step, index, arr) => (
               <div key={step} className="flex items-center gap-3">
-                <div className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium">
+                <div className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium">
                   {step}
                 </div>
                 {index < arr.length - 1 && (
@@ -73,7 +73,7 @@ const LeiComercialPage = () => {
         <ContentBlock title="Padrão Freedom de postura">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {["Direto", "Consultivo", "Adulto", "Sem hype"].map((item) => (
-              <div key={item} className="text-center p-4 bg-secondary/50 rounded-lg">
+              <div key={item} className="text-center p-4 bg-muted/50 rounded-xl border border-border">
                 <span className="font-semibold text-foreground">{item}</span>
               </div>
             ))}

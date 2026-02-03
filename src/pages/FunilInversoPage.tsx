@@ -35,10 +35,10 @@ const FunilInversoPage = () => {
 
     const ganhos = Math.ceil(metaNum / ticketNum);
     const propostas = Math.ceil(ganhos / winRateNum);
-    const reunioes = propostas; // 1:1 assumption
+    const reunioes = propostas;
     const agendadas = Math.ceil(reunioes / showRateNum);
     const mqls = Math.ceil(agendadas / mqlRateNum);
-    const leads = Math.ceil(mqls / 0.1); // assuming 10% lead to MQL
+    const leads = Math.ceil(mqls / 0.1);
 
     setResultado({
       ganhos,
@@ -67,7 +67,7 @@ const FunilInversoPage = () => {
           <div className="flex flex-wrap items-center gap-2 text-sm">
             {["Meta", "Ganhos", "Pipeline", "Reuniões", "MQL", "Leads"].map((step, index, arr) => (
               <div key={step} className="flex items-center gap-2">
-                <div className="px-3 py-1.5 bg-secondary rounded-lg font-medium text-foreground">
+                <div className="px-3 py-1.5 bg-muted/50 rounded-xl font-medium text-foreground border border-border">
                   {step}
                 </div>
                 {index < arr.length - 1 && <span className="text-muted-foreground">←</span>}
@@ -89,6 +89,7 @@ const FunilInversoPage = () => {
                   placeholder="Ex: 500000"
                   value={meta}
                   onChange={(e) => setMeta(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
               <div>
@@ -98,6 +99,7 @@ const FunilInversoPage = () => {
                   placeholder="Ex: 50000"
                   value={ticketMedio}
                   onChange={(e) => setTicketMedio(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
               <div>
@@ -107,6 +109,7 @@ const FunilInversoPage = () => {
                   placeholder="Ex: 30"
                   value={winRate}
                   onChange={(e) => setWinRate(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
               <div>
@@ -116,6 +119,7 @@ const FunilInversoPage = () => {
                   placeholder="Ex: 80"
                   value={showRate}
                   onChange={(e) => setShowRate(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
               <div>
@@ -125,48 +129,49 @@ const FunilInversoPage = () => {
                   placeholder="Ex: 20"
                   value={mqlRate}
                   onChange={(e) => setMqlRate(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
             </div>
 
-            <Button onClick={calcular} className="w-full md:w-auto">
+            <Button onClick={calcular} className="w-full md:w-auto bg-primary hover:bg-primary-hover text-primary-foreground">
               <Calculator className="w-4 h-4 mr-2" />
               Calcular Funil
             </Button>
 
             {resultado && (
-              <div className="mt-6 p-6 bg-primary/5 rounded-xl border border-primary/10">
+              <div className="mt-6 p-6 bg-primary-weak/30 rounded-2xl border border-primary/20">
                 <h4 className="text-lg font-bold text-foreground mb-4">Resultado do Funil</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.ganhos}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.ganhos}</p>
                     <p className="text-sm text-muted-foreground">Deals ganhos</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.propostas}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.propostas}</p>
                     <p className="text-sm text-muted-foreground">Propostas</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.reunioes}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.reunioes}</p>
                     <p className="text-sm text-muted-foreground">Reuniões realizadas</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.agendadas}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.agendadas}</p>
                     <p className="text-sm text-muted-foreground">Reuniões agendadas</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.mqls}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.mqls}</p>
                     <p className="text-sm text-muted-foreground">MQLs</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-lg border border-border">
-                    <p className="text-2xl font-bold text-primary">{resultado.leads}</p>
+                  <div className="text-center p-4 bg-card rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-foreground">{resultado.leads}</p>
                     <p className="text-sm text-muted-foreground">Leads</p>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                  <h5 className="font-semibold text-green-800 mb-2">📅 Meta Semanal</h5>
-                  <p className="text-green-700">
+                <div className="mt-6 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
+                  <h5 className="font-semibold text-foreground mb-2">📅 Meta Semanal</h5>
+                  <p className="text-foreground">
                     <strong>{resultado.semana.mqls} MQLs</strong> e <strong>{resultado.semana.agendamentos} agendamentos</strong> por semana
                   </p>
                 </div>
@@ -176,7 +181,7 @@ const FunilInversoPage = () => {
         </ContentBlock>
 
         <ContentBlock title="Plano Semanal">
-          <div className="p-4 bg-secondary/50 rounded-lg">
+          <div className="p-4 bg-muted/50 rounded-xl border border-border">
             <p className="text-foreground mb-3">
               Divida a meta mensal por 4 semanas e acompanhe:
             </p>
