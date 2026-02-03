@@ -13,7 +13,7 @@ const DNAPage = () => {
       />
 
       <div className="space-y-4 max-w-4xl">
-        <ContentBlock title="Quem somos em 20 segundos">
+        <ContentBlock title="Quem somos">
           <p className="text-lg">
             A Freedom coloca <strong className="text-foreground">agentes de IA que executam processos reais</strong> e geram resultado mensurável.
           </p>
