@@ -4,6 +4,7 @@ import { playbookSections } from "@/data/playbookData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import freedomLogo from "@/assets/freedom-logo.jpeg";
 
 export function AppSidebar() {
   const location = useLocation();
@@ -21,10 +22,12 @@ export function AppSidebar() {
       {/* Header - Freedom AI Brand */}
       <div className={cn("p-4 border-b border-sidebar-border", collapsed && "px-3")}>
         <Link to="/" className="flex items-center gap-3">
-          {/* Yellow square mark */}
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-            <span className="text-primary-foreground font-bold text-base">F</span>
-          </div>
+          {/* Freedom Logo */}
+          <img 
+            src={freedomLogo} 
+            alt="Freedom AI" 
+            className="w-9 h-9 rounded-lg flex-shrink-0 object-cover"
+          />
           {!collapsed && (
             <div className="overflow-hidden">
               <h1 className="font-bold text-foreground text-sm leading-tight tracking-tight">Freedom AI</h1>
