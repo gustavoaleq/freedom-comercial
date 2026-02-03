@@ -5,6 +5,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import DNAPage from "./pages/DNAPage";
+import LeiComercialPage from "./pages/LeiComercialPage";
+import ICPQualificacaoPage from "./pages/ICPQualificacaoPage";
+import ProdutosPage from "./pages/ProdutosPage";
+import CRMGovernancaPage from "./pages/CRMGovernancaPage";
+import MetricasGestaoPage from "./pages/MetricasGestaoPage";
+import ChecklistsPage from "./pages/ChecklistsPage";
+import ObjecoesPage from "./pages/ObjecoesPage";
+import FollowUpPage from "./pages/FollowUpPage";
+import FunilInversoPage from "./pages/FunilInversoPage";
+import MotivosPerdaPage from "./pages/MotivosPerdaPage";
+import OnboardingPage from "./pages/OnboardingPage";
+import TemplatesPage from "./pages/TemplatesPage";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +29,19 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/dna" element={<DNAPage />} />
+          <Route path="/lei-comercial" element={<LeiComercialPage />} />
+          <Route path="/icp-qualificacao" element={<ICPQualificacaoPage />} />
+          <Route path="/produtos" element={<ProdutosPage />} />
+          <Route path="/crm-governanca" element={<CRMGovernancaPage />} />
+          <Route path="/metricas-gestao" element={<MetricasGestaoPage />} />
+          <Route path="/checklists" element={<ChecklistsPage />} />
+          <Route path="/objecoes" element={<ObjecoesPage />} />
+          <Route path="/follow-up" element={<FollowUpPage />} />
+          <Route path="/funil-inverso" element={<FunilInversoPage />} />
+          <Route path="/motivos-perda" element={<MotivosPerdaPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/templates" element={<TemplatesPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
