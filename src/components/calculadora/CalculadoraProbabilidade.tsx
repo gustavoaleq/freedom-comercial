@@ -21,9 +21,6 @@ interface EvidenceState {
   criteriosDecisao: boolean;
   processoCompra: boolean;
   proximoPasso: boolean;
-  coDecisorExiste: boolean;
-  coDecisorNome: string;
-  coDecisorDataMarcada: boolean;
   bloqueadorNaoEnvolvido: boolean;
   concorrenciaSemCriterio: boolean;
   clienteFavorita: boolean;
@@ -47,9 +44,6 @@ const initialEvidence: EvidenceState = {
   criteriosDecisao: false,
   processoCompra: false,
   proximoPasso: false,
-  coDecisorExiste: false,
-  coDecisorNome: "",
-  coDecisorDataMarcada: false,
   bloqueadorNaoEnvolvido: false,
   concorrenciaSemCriterio: false,
   clienteFavorita: false,
@@ -135,16 +129,6 @@ export function CalculadoraProbabilidade() {
       prob += 10;
     }
 
-    // Ajustes negativos
-    const coDecisorIncompleto = evidence.coDecisorExiste && 
-      (!evidence.coDecisorNome.trim() || !evidence.coDecisorDataMarcada);
-    
-    if (coDecisorIncompleto) {
-      ajustes.push({ label: "Co-decisor sem nome ou data", value: -15 });
-      prob -= 15;
-      missing.push("Marcar call com co-decisor e registrar nome");
-    }
-
     if (evidence.bloqueadorNaoEnvolvido) {
       ajustes.push({ label: "Bloqueador não envolvido", value: -10 });
       prob -= 10;
@@ -181,23 +165,14 @@ export function CalculadoraProbabilidade() {
       }
     }
 
-    // Regra 2: Co-decisor sem nome e sem data
-    if (coDecisorIncompleto) {
-      const tetosCoDecisor = { realizada: 10, proposta: 40, contrato: 70 };
-      if (etapa in tetosCoDecisor) {
-        tetoFinal = Math.min(tetoFinal, tetosCoDecisor[etapa as keyof typeof tetosCoDecisor]);
-        regrasAplicadas.push("Co-decisor incompleto: teto travado");
-      }
-    }
-
-    // Regra 3: >85% só com data de assinatura
+    // Regra 2: >85% só com data de assinatura
     if (etapa === "contrato" && prob > 85 && !evidence.dataAssinatura) {
       tetoFinal = Math.min(tetoFinal, 85);
       regrasAplicadas.push(">85% requer data de assinatura/PO");
       missing.push("Confirmar data de assinatura/PO para ultrapassar 85%");
     }
 
-    // Regra 4: Budget congelado
+    // Regra 3: Budget congelado
     if (evidence.budgetCongelado) {
       prob = pisoFinal;
       missing.push("Mover negócio para nurturing/pausa (fora do forecast)");
@@ -224,7 +199,7 @@ export function CalculadoraProbabilidade() {
     if (!etapa) return;
     
     const texto = `Probabilidade sugerida: ${calculation.probabilidade}%
-Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(${evidence.proximoPasso ? "S" : "N"}), champion(${evidence.championConfirmado ? "S" : "N"}), co-decisor(${evidence.coDecisorExiste ? evidence.coDecisorNome || "sem nome" : "N"}/${evidence.coDecisorDataMarcada ? "S" : "N"}), jurídico(${evidence.procurementEmAndamento ? "S" : "N"})`;
+Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(${evidence.proximoPasso ? "S" : "N"}), champion(${evidence.championConfirmado ? "S" : "N"}), jurídico(${evidence.procurementEmAndamento ? "S" : "N"})`;
     
     await navigator.clipboard.writeText(texto);
     setCopied(true);
@@ -341,42 +316,6 @@ Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(
                         onChange={(v) => updateEvidence("procurementEmAndamento", v)}
                         points="+10"
                       />
-                    </div>
-
-                    {/* Co-Decisor */}
-                    <div className="bg-white rounded-xl border border-border p-4 space-y-3">
-                      <EvidenceRow
-                        label="Co-decisor existe?"
-                        checked={evidence.coDecisorExiste}
-                        onChange={(v) => updateEvidence("coDecisorExiste", v)}
-                      />
-                      
-                      {evidence.coDecisorExiste && (
-                        <div className="ml-6 pl-4 border-l-2 border-primary/30 space-y-3">
-                          <div>
-                            <Label className="text-sm text-muted-foreground mb-1 block">
-                              Nome do co-decisor *
-                            </Label>
-                            <Input
-                              value={evidence.coDecisorNome}
-                              onChange={(e) => updateEvidence("coDecisorNome", e.target.value)}
-                              placeholder="Nome completo"
-                              className="max-w-xs"
-                            />
-                          </div>
-                          <EvidenceRow
-                            label="Data da conversa marcada?"
-                            checked={evidence.coDecisorDataMarcada}
-                            onChange={(v) => updateEvidence("coDecisorDataMarcada", v)}
-                          />
-                          {(!evidence.coDecisorNome.trim() || !evidence.coDecisorDataMarcada) && (
-                            <p className="text-xs text-destructive flex items-center gap-1">
-                              <AlertTriangle className="w-3 h-3" />
-                              Co-decisor incompleto: -15 pontos e teto travado
-                            </p>
-                          )}
-                        </div>
-                      )}
                     </div>
 
                     {/* Evidências Negativas */}
