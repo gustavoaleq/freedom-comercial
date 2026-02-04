@@ -25,16 +25,16 @@ const CRMGovernancaPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="Cores dos Cards (Gestão Visual)">
+        <ContentBlock title="Alertas de Tarefa (Gestão Visual)">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { color: "bg-primary", label: "Verde", desc: "Tarefa para hoje" },
+              { color: "bg-success", label: "Verde", desc: "Tarefa para hoje" },
               { color: "bg-muted", label: "Cinza", desc: "Tarefa futura" },
-              { color: "bg-primary-weak", label: "Amarelo", desc: "Sem tarefa" },
-              { color: "bg-muted-foreground", label: "Vermelho", desc: "Tarefa atrasada" }
+              { color: "bg-primary", label: "Amarelo", desc: "Sem tarefa" },
+              { color: "bg-destructive", label: "Vermelho", desc: "Tarefa atrasada" }
             ].map((item) => (
               <div key={item.label} className="p-4 bg-card rounded-xl border border-border text-center">
-                <div className={`w-8 h-8 ${item.color} rounded-lg mx-auto mb-2`} />
+                <div className={`w-8 h-8 ${item.color} rounded-full mx-auto mb-2`} />
                 <p className="font-semibold text-foreground">{item.label}</p>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
               </div>
