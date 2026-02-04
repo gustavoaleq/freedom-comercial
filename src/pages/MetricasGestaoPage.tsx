@@ -24,7 +24,7 @@ const MetricasGestaoPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="Régua de Probabilidade" collapsible={false}>
+        <ContentBlock title="🧮 Calculadora de Probabilidade" collapsible={false}>
           <CalculadoraProbabilidade />
         </ContentBlock>
 

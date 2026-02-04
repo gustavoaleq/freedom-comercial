@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, TrendingUp, AlertTriangle, Target, Lightbulb, Info } from "lucide-react";
 
 type Produto = "vision" | "finance" | "legal" | "nalk";
-type Etapa = "realizada" | "proposta" | "contrato" | "ganho";
+type Etapa = "realizada" | "proposta" | "contrato";
 
 interface EvidenceState {
   // A) COMPRA
@@ -99,9 +99,8 @@ const initialEvidence: EvidenceState = {
 
 const ETAPA_CONFIG = {
   realizada: { base: 12, min: 5, max: 25, label: "Reunião Realizada" },
-  proposta: { base: 40, min: 30, max: 60, label: "Proposta" },
+  proposta: { base: 40, min: 30, max: 60, label: "Negociação/Proposta" },
   contrato: { base: 78, min: 70, max: 90, label: "Contrato" },
-  ganho: { base: 100, min: 100, max: 100, label: "Ganho" },
 };
 
 const PRODUTO_LABELS: Record<Produto, string> = {
@@ -121,18 +120,6 @@ export function CalculadoraProbabilidade() {
   };
 
   const calculation = useMemo(() => {
-    if (etapa === "ganho") {
-      return {
-        probabilidade: 100,
-        base: 100,
-        positivos: 0,
-        negativos: 0,
-        travasAplicadas: [],
-        recomendacoes: [],
-        breakdown: { compra: 0, impacto: 0, viabilidade: 0, execucao: 0, riscos: 0 },
-      };
-    }
-
     const config = ETAPA_CONFIG[etapa];
     let prob = config.base;
     const travasAplicadas: string[] = [];
@@ -465,9 +452,8 @@ export function CalculadoraProbabilidade() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="realizada">Reunião Realizada</SelectItem>
-                  <SelectItem value="proposta">Proposta</SelectItem>
+                  <SelectItem value="proposta">Negociação/Proposta</SelectItem>
                   <SelectItem value="contrato">Contrato</SelectItem>
-                  <SelectItem value="ganho">Ganho</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -475,8 +461,7 @@ export function CalculadoraProbabilidade() {
         </CardContent>
       </Card>
 
-      {etapa !== "ganho" && (
-        <>
+      <>
           {/* Card 2 - Evidências Positivas */}
           <Card className="border-border bg-card">
             <CardHeader className="pb-4">
@@ -618,7 +603,6 @@ export function CalculadoraProbabilidade() {
             </CardContent>
           </Card>
         </>
-      )}
 
       {/* Card 4 - Resultado */}
       <Card className="border-primary/30 bg-primary-weak/30">
@@ -649,56 +633,54 @@ export function CalculadoraProbabilidade() {
             </div>
           </div>
 
-          {etapa !== "ganho" && (
-            <div className="pt-4 border-t border-border space-y-3">
-              <h4 className="text-sm font-semibold text-foreground">Breakdown</h4>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
-                <div className="bg-background rounded-lg p-3 text-center">
-                  <p className="text-muted-foreground text-xs">Base</p>
-                  <p className="font-semibold text-foreground">{calculation.base}%</p>
-                </div>
-                <div className="bg-background rounded-lg p-3 text-center">
-                  <p className="text-muted-foreground text-xs">Compra</p>
-                  <p className="font-semibold text-success">+{calculation.breakdown.compra}</p>
-                </div>
-                <div className="bg-background rounded-lg p-3 text-center">
-                  <p className="text-muted-foreground text-xs">Impacto</p>
-                  <p className="font-semibold text-success">+{calculation.breakdown.impacto}</p>
-                </div>
-                <div className="bg-background rounded-lg p-3 text-center">
-                  <p className="text-muted-foreground text-xs">Viabilidade</p>
-                  <p className="font-semibold text-success">+{calculation.breakdown.viabilidade}</p>
-                </div>
-                <div className="bg-background rounded-lg p-3 text-center">
-                  <p className="text-muted-foreground text-xs">Execução</p>
-                  <p className="font-semibold text-success">+{calculation.breakdown.execucao}</p>
-                </div>
+          <div className="pt-4 border-t border-border space-y-3">
+            <h4 className="text-sm font-semibold text-foreground">Breakdown</h4>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+              <div className="bg-background rounded-lg p-3 text-center">
+                <p className="text-muted-foreground text-xs">Base</p>
+                <p className="font-semibold text-foreground">{calculation.base}%</p>
               </div>
-              <div className="bg-destructive/10 rounded-lg p-3 text-center">
-                <p className="text-muted-foreground text-xs">Riscos</p>
-                <p className="font-semibold text-destructive">-{calculation.breakdown.riscos}</p>
+              <div className="bg-background rounded-lg p-3 text-center">
+                <p className="text-muted-foreground text-xs">Compra</p>
+                <p className="font-semibold text-success">+{calculation.breakdown.compra}</p>
               </div>
-
-              {calculation.travasAplicadas.length > 0 && (
-                <div className="bg-muted/50 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-muted-foreground mb-2">Travas aplicadas:</p>
-                  <ul className="text-sm text-foreground space-y-1">
-                    {calculation.travasAplicadas.map((trava, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-destructive" />
-                        {trava}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="bg-background rounded-lg p-3 text-center">
+                <p className="text-muted-foreground text-xs">Impacto</p>
+                <p className="font-semibold text-success">+{calculation.breakdown.impacto}</p>
+              </div>
+              <div className="bg-background rounded-lg p-3 text-center">
+                <p className="text-muted-foreground text-xs">Viabilidade</p>
+                <p className="font-semibold text-success">+{calculation.breakdown.viabilidade}</p>
+              </div>
+              <div className="bg-background rounded-lg p-3 text-center">
+                <p className="text-muted-foreground text-xs">Execução</p>
+                <p className="font-semibold text-success">+{calculation.breakdown.execucao}</p>
+              </div>
             </div>
-          )}
+            <div className="bg-destructive/10 rounded-lg p-3 text-center">
+              <p className="text-muted-foreground text-xs">Riscos</p>
+              <p className="font-semibold text-destructive">-{calculation.breakdown.riscos}</p>
+            </div>
+
+            {calculation.travasAplicadas.length > 0 && (
+              <div className="bg-muted/50 rounded-lg p-3">
+                <p className="text-xs font-semibold text-muted-foreground mb-2">Travas aplicadas:</p>
+                <ul className="text-sm text-foreground space-y-1">
+                  {calculation.travasAplicadas.map((trava, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-destructive" />
+                      {trava}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
 
       {/* Card 5 - Para subir de patamar */}
-      {etapa !== "ganho" && calculation.recomendacoes.length > 0 && (
+      {calculation.recomendacoes.length > 0 && (
         <Card className="border-success/30 bg-success-weak/30">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg text-foreground">
