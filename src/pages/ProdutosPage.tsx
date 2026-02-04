@@ -5,7 +5,7 @@ import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { cn } from "@/lib/utils";
 
-type ProductTab = "vision" | "finance" | "legal" | "nalk";
+type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents";
 
 interface ProductData {
   name: string;
@@ -284,6 +284,84 @@ const products: Record<ProductTab, ProductData> = {
       }
     ],
     proximoPasso: "\"Me diga quais ferramentas vocês usam (CRM, mídia, automação). Eu devolvo um mapa de integração + quais 5 métricas mudam o jogo na primeira semana.\""
+  },
+  agents: {
+    name: "Freedom Agents",
+    oQueE: "Freedom Agents é a oferta onde a Freedom atua como fornecedor central de agentes de média e alta complexidade para múltiplas áreas da empresa — vendas, financeiro, dados, jurídico, operações e o que mais fizer sentido.\n\nA tese é simples: o cliente enterprise não quer criar a plataforma e nem quer \"aprender a construir agente\". Ele quer os agentes prontos, rodando em produção, com dono do fluxo e governança.\n\nA Freedom desenha o escopo, constrói na plataforma no-code, entrega o agente em operação (com canal, integrações, regras, guardrails) e vira o dono do fluxo com manutenção evolutiva.",
+    paraQuemE: [
+      "Empresas que querem escalar IA internamente sem depender de time técnico grande",
+      "Múltiplos processos e áreas precisando de automação e decisão",
+      "Necessidade de padronizar 'como se faz agente' com governança",
+      "Dados e sistemas espalhados (CRM/ERP/BI/Docs/WhatsApp etc.)",
+      "Buscam um fornecedor central para a estratégia de agentes",
+      "Enterprise / operações complexas com múltiplos stakeholders (TI + área + diretoria)"
+    ],
+    dorQueResolve: [
+      "\"A gente quer IA, mas cada área pede uma coisa\"",
+      "\"Sem time técnico, tudo vira travado\"",
+      "\"Já tentamos e virou piloto infinito\"",
+      "\"Temos ferramentas, mas ninguém entrega agente pronto\"",
+      "\"Falta governança, padrão, dono e manutenção\""
+    ],
+    oQueEntrega: {
+      intro: "O cliente compra agentes prontos em produção. O diferencial não é \"ter uma plataforma\" — é ter uma fábrica que entrega agente pronto com padronização.",
+      modulos: [
+        "Fluxo desenhado e documentado",
+        "Regras e decisões automatizadas",
+        "Integrações com sistemas internos (quando aplicável)",
+        "Canal de uso (WhatsApp, web, interno, etc.)",
+        "Governança e dono do fluxo",
+        "Evolução contínua conforme novos processos"
+      ]
+    },
+    comoViraResultado: [
+      "Diagnóstico e mapa de agentes (mapear processos, priorizar por impacto)",
+      "Desenho de escopo pelo comercial (entradas/saídas, regras, dados, canal)",
+      "Construção na plataforma no-code da Freedom (multiagentes se necessário)",
+      "Deploy + operação (agente rodando com governança e monitoramento)",
+      "Escala para múltiplas áreas (vendas, financeiro, dados, jurídico, RAG)"
+    ],
+    perguntasQueVendem: [
+      "\"Hoje, quantas áreas estão pedindo IA ao mesmo tempo?\"",
+      "\"O que custa mais caro: o tempo perdido, o risco ou a falta de padronização?\"",
+      "\"Vocês querem construir plataforma… ou querem agente pronto rodando?\"",
+      "\"Qual processo, se resolvesse em 30 dias, traria maior impacto?\"",
+      "\"Quem seria o dono interno desse agente? (pra não virar piloto infinito)\"",
+      "\"Hoje vocês já têm governança de automações/agentes ou cada área faz do seu jeito?\""
+    ],
+    impactoNaoTer: [
+      "A empresa vira refém de projetos isolados e \"iniciativas soltas\"",
+      "Custo explode com retrabalho e múltiplos fornecedores",
+      "Agentes não escalam por falta de padrão e ownership",
+      "Áreas criam automações paralelas → risco e bagunça"
+    ],
+    fitForte: [
+      "Agente pronto, não \"ferramenta pra você montar\"",
+      "Plataforma no-code própria + expertise em arquitetura de agentes",
+      "Fornecedor central para todas as áreas (escala por padrão)",
+      "Governança e ownership do fluxo (sem piloto infinito)",
+      "Multiagentes para processos de média e alta complexidade"
+    ],
+    redFlags: [
+      "\"Quero só testar\" sem escopo e sem dono",
+      "Sem patrocinador interno claro",
+      "Empresa muito pequena sem processos definidos"
+    ],
+    objecoes: [
+      {
+        objecao: "\"Parece muito amplo.\"",
+        resposta: "A gente não começa amplo. A gente começa com 1 agente de impacto e cria padrão pra escala."
+      },
+      {
+        objecao: "\"TI vai travar.\"",
+        resposta: "Por isso a abordagem é governança + checklist técnico + integração mínima no começo."
+      },
+      {
+        objecao: "\"Quero só testar.\"",
+        resposta: "Testar sem escopo vira ruído. A gente faz piloto com métrica e dono."
+      }
+    ],
+    proximoPasso: "\"[NOME], a Freedom é especialista em multiagentes. Em vez de vender plataforma pra você construir, a gente entrega agentes prontos em produção, com governança, canal e integração. E a ideia é virar o fornecedor central de agentes da empresa — começando por 1 caso de uso com impacto em 30 dias e escalando pra outras áreas.\""
   }
 };
 
@@ -294,7 +372,8 @@ const ProdutosPage = () => {
     { id: "vision", name: "Vision" },
     { id: "finance", name: "Finance Core" },
     { id: "legal", name: "Legal Hub" },
-    { id: "nalk", name: "NALK" }
+    { id: "nalk", name: "NALK" },
+    { id: "agents", name: "Freedom Agents" }
   ];
 
   const renderProduct = (product: ProductData) => {
