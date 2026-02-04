@@ -4,54 +4,55 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Calculator } from "lucide-react";
+import { Calculator, AlertCircle } from "lucide-react";
 
 const FunilInversoPage = () => {
   const [meta, setMeta] = useState("");
   const [ticketMedio, setTicketMedio] = useState("");
-  const [winRate, setWinRate] = useState("");
-  const [showRate, setShowRate] = useState("");
-  const [mqlRate, setMqlRate] = useState("");
+  const [txLeadMql, setTxLeadMql] = useState("");
+  const [txMqlReuniao, setTxMqlReuniao] = useState("");
+  const [txReuniaoGanho, setTxReuniaoGanho] = useState("");
+  const [erro, setErro] = useState("");
 
   const [resultado, setResultado] = useState<{
-    ganhos: number;
-    propostas: number;
-    reunioes: number;
-    agendadas: number;
-    mqls: number;
-    leads: number;
-    semana: {
-      mqls: number;
-      agendamentos: number;
-    };
+    vendasNecessarias: number;
+    reunioesNecessarias: number;
+    mqlsNecessarios: number;
+    leadsNecessarios: number;
   } | null>(null);
 
   const calcular = () => {
-    const metaNum = parseFloat(meta) || 0;
-    const ticketNum = parseFloat(ticketMedio) || 1;
-    const winRateNum = (parseFloat(winRate) || 30) / 100;
-    const showRateNum = (parseFloat(showRate) || 80) / 100;
-    const mqlRateNum = (parseFloat(mqlRate) || 20) / 100;
+    setErro("");
+    setResultado(null);
 
-    const ganhos = Math.ceil(metaNum / ticketNum);
-    const propostas = Math.ceil(ganhos / winRateNum);
-    const reunioes = propostas;
-    const agendadas = Math.ceil(reunioes / showRateNum);
-    const mqls = Math.ceil(agendadas / mqlRateNum);
-    const leads = Math.ceil(mqls / 0.1);
+    const metaNum = parseFloat(meta) || 0;
+    const ticketNum = parseFloat(ticketMedio) || 0;
+    const txLeadMqlNum = parseFloat(txLeadMql) || 0;
+    const txMqlReuniaoNum = parseFloat(txMqlReuniao) || 0;
+    const txReuniaoGanhoNum = parseFloat(txReuniaoGanho) || 0;
+
+    // Validação
+    if (ticketNum <= 0 || txLeadMqlNum <= 0 || txMqlReuniaoNum <= 0 || txReuniaoGanhoNum <= 0) {
+      setErro("Preencha Ticket e todas as taxas com valores > 0.");
+      return;
+    }
+
+    // Fórmulas
+    const vendasNecessarias = metaNum / ticketNum;
+    const reunioesNecessarias = Math.ceil(vendasNecessarias / (txReuniaoGanhoNum / 100));
+    const mqlsNecessarios = Math.ceil(reunioesNecessarias / (txMqlReuniaoNum / 100));
+    const leadsNecessarios = Math.ceil(mqlsNecessarios / (txLeadMqlNum / 100));
 
     setResultado({
-      ganhos,
-      propostas,
-      reunioes,
-      agendadas,
-      mqls,
-      leads,
-      semana: {
-        mqls: Math.ceil(mqls / 4),
-        agendamentos: Math.ceil(agendadas / 4)
-      }
+      vendasNecessarias,
+      reunioesNecessarias,
+      mqlsNecessarios,
+      leadsNecessarios
     });
+  };
+
+  const formatarMoeda = (valor: number) => {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   };
 
   return (
@@ -65,7 +66,7 @@ const FunilInversoPage = () => {
       <div className="space-y-4 max-w-4xl">
         <ContentBlock title="Método">
           <div className="flex flex-wrap items-center gap-2 text-sm">
-            {["Meta", "Ganhos", "Pipeline", "Reuniões", "MQL", "Leads"].map((step, index, arr) => (
+            {["Meta", "Vendas", "Reuniões", "MQLs", "Leads"].map((step, index, arr) => (
               <div key={step} className="flex items-center gap-2">
                 <div className="px-3 py-1.5 bg-muted/50 rounded-xl font-medium text-foreground border border-border">
                   {step}
@@ -103,36 +104,43 @@ const FunilInversoPage = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">Win rate (%)</label>
-                <Input
-                  type="number"
-                  placeholder="Ex: 30"
-                  value={winRate}
-                  onChange={(e) => setWinRate(e.target.value)}
-                  className="bg-card border-border focus-visible:ring-primary"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">Show rate (%)</label>
-                <Input
-                  type="number"
-                  placeholder="Ex: 80"
-                  value={showRate}
-                  onChange={(e) => setShowRate(e.target.value)}
-                  className="bg-card border-border focus-visible:ring-primary"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">MQL → Agendado (%)</label>
+                <label className="text-sm font-medium text-foreground mb-2 block">Lead → MQL (%)</label>
                 <Input
                   type="number"
                   placeholder="Ex: 20"
-                  value={mqlRate}
-                  onChange={(e) => setMqlRate(e.target.value)}
+                  value={txLeadMql}
+                  onChange={(e) => setTxLeadMql(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block">MQL → Reunião Realizada (%)</label>
+                <Input
+                  type="number"
+                  placeholder="Ex: 50"
+                  value={txMqlReuniao}
+                  onChange={(e) => setTxMqlReuniao(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block">Reunião Realizada → Ganho (%)</label>
+                <Input
+                  type="number"
+                  placeholder="Ex: 30"
+                  value={txReuniaoGanho}
+                  onChange={(e) => setTxReuniaoGanho(e.target.value)}
                   className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
             </div>
+
+            {erro && (
+              <div className="flex items-center gap-2 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <p className="text-sm font-medium">{erro}</p>
+              </div>
+            )}
 
             <Button onClick={calcular} className="w-full md:w-auto bg-primary hover:bg-primary-hover text-primary-foreground">
               <Calculator className="w-4 h-4 mr-2" />
@@ -142,37 +150,32 @@ const FunilInversoPage = () => {
             {resultado && (
               <div className="mt-6 p-6 bg-primary-weak/30 rounded-2xl border border-primary/20">
                 <h4 className="text-lg font-bold text-foreground mb-4">Resultado do Funil</h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.ganhos}</p>
-                    <p className="text-sm text-muted-foreground">Deals ganhos</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
+                    <p className="text-3xl font-bold text-foreground">{resultado.leadsNecessarios.toLocaleString("pt-BR")}</p>
+                    <p className="text-sm text-muted-foreground mt-1">Leads necessários</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.propostas}</p>
-                    <p className="text-sm text-muted-foreground">Propostas</p>
+                  <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
+                    <p className="text-3xl font-bold text-foreground">{resultado.mqlsNecessarios.toLocaleString("pt-BR")}</p>
+                    <p className="text-sm text-muted-foreground mt-1">MQLs necessários</p>
                   </div>
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.reunioes}</p>
-                    <p className="text-sm text-muted-foreground">Reuniões realizadas</p>
-                  </div>
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.agendadas}</p>
-                    <p className="text-sm text-muted-foreground">Reuniões agendadas</p>
-                  </div>
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.mqls}</p>
-                    <p className="text-sm text-muted-foreground">MQLs</p>
-                  </div>
-                  <div className="text-center p-4 bg-card rounded-xl border border-border">
-                    <p className="text-2xl font-bold text-foreground">{resultado.leads}</p>
-                    <p className="text-sm text-muted-foreground">Leads</p>
+                  <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
+                    <p className="text-3xl font-bold text-foreground">{resultado.reunioesNecessarias.toLocaleString("pt-BR")}</p>
+                    <p className="text-sm text-muted-foreground mt-1">Reuniões realizadas necessárias</p>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-                  <h5 className="font-semibold text-foreground mb-2">📅 Meta Semanal</h5>
-                  <p className="text-foreground">
-                    <strong>{resultado.semana.mqls} MQLs</strong> e <strong>{resultado.semana.agendamentos} agendamentos</strong> por semana
+                <div className="text-center p-3 bg-muted/50 rounded-xl border border-border">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Vendas necessárias:</span>{" "}
+                    {resultado.vendasNecessarias.toFixed(2).replace(".", ",")} vendas ({formatarMoeda(parseFloat(meta) || 0)} ÷ {formatarMoeda(parseFloat(ticketMedio) || 0)})
+                  </p>
+                </div>
+
+                <div className="mt-5 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
+                  <p className="text-foreground text-sm font-medium italic text-center">
+                    "Se você não tem esses volumes, você não bate a meta. O funil é matemática — agora você sabe onde atacar."
                   </p>
                 </div>
               </div>
@@ -186,8 +189,8 @@ const FunilInversoPage = () => {
               Divida a meta mensal por 4 semanas e acompanhe:
             </p>
             <ul className="space-y-2 text-muted-foreground">
-              <li>• Quantos MQLs gerar por semana?</li>
-              <li>• Quantos agendamentos fechar por semana?</li>
+              <li>• Quantos Leads gerar por semana?</li>
+              <li>• Quantos MQLs qualificar por semana?</li>
               <li>• Quantas reuniões realizar por semana?</li>
               <li>• Está no ritmo? Se não, o que precisa mudar?</li>
             </ul>
