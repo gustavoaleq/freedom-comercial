@@ -1,6 +1,7 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
+import { CalculadoraProbabilidade } from "@/components/calculadora/CalculadoraProbabilidade";
 
 const MetricasGestaoPage = () => {
   return (
@@ -11,7 +12,7 @@ const MetricasGestaoPage = () => {
         subtitle="Sem placar, vira opinião. Opinião não bate meta."
       />
 
-      <div className="space-y-4 max-w-4xl">
+      <div className="space-y-4 max-w-5xl">
         <ContentBlock title="Forecast (Lei)">
           <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20 space-y-2">
             <p className="text-foreground font-medium">
@@ -23,23 +24,8 @@ const MetricasGestaoPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="Régua de Probabilidade (Padrão Sugerido)">
-          <div className="space-y-2">
-            {[
-              { etapa: "Agendada", prob: "10–20%" },
-              { etapa: "Realizada", prob: "30–40%" },
-              { etapa: "Proposta", prob: "50–60%" },
-              { etapa: "Negociação ativa", prob: "70–80%" },
-              { etapa: "Contrato", prob: "85–95%" }
-            ].map((item) => (
-              <div key={item.etapa} className="flex items-center justify-between p-3 bg-muted/50 rounded-xl border border-border">
-                <span className="font-medium text-foreground">{item.etapa}</span>
-                <span className="px-3 py-1 bg-primary text-primary-foreground rounded-lg text-sm font-medium">
-                  {item.prob}
-                </span>
-              </div>
-            ))}
-          </div>
+        <ContentBlock title="Régua de Probabilidade" collapsible={false}>
+          <CalculadoraProbabilidade />
         </ContentBlock>
 
         <ContentBlock title="Conversões Oficiais">
