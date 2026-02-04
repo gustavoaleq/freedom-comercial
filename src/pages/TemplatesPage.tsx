@@ -29,8 +29,8 @@ const TemplatesPage = () => {
       for (const [key, value] of Object.entries(activeFilters)) {
         if (key === "tipo" && template.tipo !== value) return false;
         if (key === "canal" && !template.canal.includes(value as any)) return false;
-        if (key === "etapa" && template.etapa !== value) return false;
         if (key === "objetivo" && template.objetivo !== value) return false;
+        if (key === "contexto" && template.contexto !== value) return false;
       }
 
       return true;
@@ -60,6 +60,23 @@ const TemplatesPage = () => {
       case "SDR": return "bg-primary-weak text-foreground";
       case "BDR": return "bg-primary-weak text-foreground";
       case "Closer": return "bg-primary text-primary-foreground";
+      default: return "bg-muted text-muted-foreground";
+    }
+  };
+
+  const getContextColor = (contexto?: string) => {
+    if (!contexto) return "";
+    switch (contexto) {
+      case "Outbound": return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300";
+      case "Inbound": return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300";
+      case "Reativação": return "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300";
+      case "Pós-proposta": return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300";
+      case "No-show": return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
+      case "Vision": return "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300";
+      case "Finance": return "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300";
+      case "Legal": return "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300";
+      case "Nalk": return "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300";
+      case "Freedom Agents": return "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300";
       default: return "bg-muted text-muted-foreground";
     }
   };
@@ -144,9 +161,11 @@ const TemplatesPage = () => {
                     <span className={cn("px-2 py-0.5 text-xs font-medium rounded-lg", getTypeColor(template.tipo))}>
                       {template.tipo}
                     </span>
-                    <span className="badge-muted">
-                      {template.etapa}
-                    </span>
+                    {template.contexto && (
+                      <span className={cn("px-2 py-0.5 text-xs font-medium rounded-lg", getContextColor(template.contexto))}>
+                        {template.contexto}
+                      </span>
+                    )}
                     {template.canal.map((c) => (
                       <span key={c} className="px-2 py-0.5 text-xs bg-muted/50 text-muted-foreground rounded-lg">
                         {c}
