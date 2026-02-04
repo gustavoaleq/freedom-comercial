@@ -7,273 +7,405 @@ import { cn } from "@/lib/utils";
 
 type ProductTab = "vision" | "finance" | "legal" | "nalk";
 
-interface BaseProduct {
+interface ProductData {
   name: string;
-  icp: string;
-  dores: string[];
-  pitch: string;
-  perguntas: string[];
-  sucesso: string;
-  erros: string[];
+  oQueE: string;
+  paraQuemE: string[];
+  dorQueResolve: string[];
+  oQueEntrega: {
+    intro?: string;
+    modulos: string[];
+  };
+  comoViraResultado: string[];
+  perguntasQueVendem: string[];
+  impactoNaoTer: string[];
+  fitForte: string[];
+  redFlags: string[];
+  objecoes: { objecao: string; resposta: string }[];
   proximoPasso: string;
 }
 
-interface NalkProduct {
-  name: string;
-  subtitle: string;
-  description: string;
-  idealPara: string[];
-  sinaisFortes: string[];
-  naoEhFit: string[];
-  dores: string[];
-  pitch1Frase: string;
-  pitch30s: string;
-  pitch2min: string;
-  perguntasDiagnostico: string[];
-  perguntasDados: string[];
-  perguntasRotina: string[];
-  kpisFunil: string[];
-  kpisProdutividade: string[];
-  entregaveis: string[];
-  erros: string[];
-  proximosPasso: string[];
-}
+const products: Record<ProductTab, ProductData> = {
+  vision: {
+    name: "Vision",
+    oQueE: "Freedom Vision é visão computacional operacional: transforma vídeo em decisão e ação, em tempo real. Não é \"monitoramento\", é execução: a operação para de reagir e passa a prevenir perdas, organizar fluxo e padronizar loja/unidade.",
+    paraQuemE: [
+      "Varejo (principalmente alimentar), farmácias/drogarias, postos/conveniência",
+      "Centros de distribuição, indústrias, instituições de ensino",
+      "Ambientes com operação viva, múltiplos pontos de atenção e perdas \"silenciosas\""
+    ],
+    dorQueResolve: [
+      "Perdas acima da média (fraude/ruptura/erros operacionais)",
+      "Filas mal geridas e experiência ruim do cliente",
+      "Ruptura de gôndola recorrente / execução inconsistente",
+      "Monitoramento reativo (\"só vejo quando já deu ruim\")",
+      "Baixa visibilidade estruturada (tem vídeo, mas não tem dado)"
+    ],
+    oQueEntrega: {
+      intro: "Análise visual em tempo real + alertas operacionais. Dashboards em tempo real + trilhas de auditoria (o que aconteceu, onde e quando).",
+      modulos: [
+        "Segurança / prevenção de perdas",
+        "Filas / fluxo operacional",
+        "Segurança do trabalho",
+        "Produtividade / execução",
+        "Gôndolas / conformidade de exposição"
+      ]
+    },
+    comoViraResultado: [
+      "Redução de perdas e fraudes",
+      "Menos ruptura de estoque",
+      "Melhor gestão de filas (e aumento de conversão)",
+      "Dados estruturados para operação e diretoria",
+      "Decisão baseada em IA em vez de \"achismo do turno\""
+    ],
+    perguntasQueVendem: [
+      "\"Hoje vocês descobrem perda quando? No dia? Na semana? No fechamento?\"",
+      "\"Quanto custa 1% de perda a mais por mês na sua operação?\"",
+      "\"Fila é problema de horário, escala ou gargalo do processo? Como você mede?\"",
+      "\"Ruptura acontece por reposição, pedido, ou execução? Vocês têm dado por loja?\"",
+      "\"Se eu te der um alerta em tempo real… quem age e em quanto tempo?\"",
+      "\"O que você faria diferente se tivesse um painel com 'o que está acontecendo agora'?\""
+    ],
+    impactoNaoTer: [
+      "Você paga perda todo dia e chama de \"normal do varejo\"",
+      "Você treina time para apagar incêndio — e incêndio custa caro",
+      "Você tem câmera, mas não tem controle (vídeo não é dado)",
+      "Você perde dinheiro sem conseguir provar onde perdeu (e sem conseguir corrigir)"
+    ],
+    fitForte: [
+      "Muitas câmeras / muitas lojas / operação com padrão inconsistente",
+      "Dor de perda/filas/ruptura \"todo mundo sabe que existe\"",
+      "Alguém com dor e poder (operações, prevenção de perdas, diretoria)"
+    ],
+    redFlags: [
+      "\"Quero IA por curiosidade\" sem dor operacional real",
+      "Não tem responsável para agir quando o alerta aparece",
+      "Infraestrutura impossível / nenhuma abertura para ajustes técnicos"
+    ],
+    objecoes: [
+      {
+        objecao: "\"Já tenho câmeras.\"",
+        resposta: "Perfeito. Câmera sem inteligência é só gravação. A pergunta é: você quer vídeo ou quer decisão e prevenção?"
+      },
+      {
+        objecao: "\"Minha operação é diferente.\"",
+        resposta: "Ótimo. O Vision nasce de diagnóstico: o que é repetitivo vira regra. O diferente vira exceção com trilha e evidência."
+      }
+    ],
+    proximoPasso: "\"Vamos mapear 3 dores em 15 minutos (perda, fila, ruptura) e eu te devolvo um desenho de como isso vira alerta + rotina de ação.\""
+  },
+  finance: {
+    name: "Finance Core",
+    oQueE: "Freedom Finance Core é o cérebro financeiro autônomo: conecta nos sistemas (ERP/CRM/BI) e executa o ciclo financeiro de ponta a ponta com rastreabilidade e auditoria. Não é \"robôzinho\", é mão de obra digital 24/7.",
+    paraQuemE: [
+      "Empresas com alto volume de faturamento",
+      "Operação com recebíveis complexos, conciliações demoradas e retrabalho",
+      "CFO/financeiro que precisa de previsibilidade e controle (não só relatório)"
+    ],
+    dorQueResolve: [
+      "Conciliação lenta, manual e sujeita a erro",
+      "Duplicidade, erros fiscais, retrabalho e risco de fraude",
+      "Falta de previsibilidade real de caixa / DSO alto",
+      "Cobrança inconsistente (cada pessoa faz de um jeito)"
+    ],
+    oQueEntrega: {
+      intro: "Jornada completa: pré-faturamento → emissão → cobrança → recebimento → análise. Integrações nativas: ERP, bancos, adquirentes e canais de cobrança.",
+      modulos: [
+        "Pré-faturamento inteligente (valida premissas/cadastros/contratos antes de emitir)",
+        "Emissão de NF/Fatura (gatilhos automáticos por pedido/entrega/marcos)",
+        "Conciliação bancária inteligente (divergências, tarifas, chargeback)",
+        "Cobrança omnicanal (jornadas por perfil de cliente, lembretes e regras)",
+        "Visão do CFO (ageing, DSO, projeção de recebíveis, riscos)"
+      ]
+    },
+    comoViraResultado: [
+      "Automação de 70–90% do ciclo financeiro (menos custo e retrabalho)",
+      "Governança e compliance: padronização + trilha de auditoria",
+      "Previsibilidade em tempo real (o CFO deixa de pilotar no escuro)",
+      "Tempo médio de faturamento por ciclo reduzido",
+      "Taxa de refaturamento / erros de emissão reduzida",
+      "DSO por cliente/segmento otimizado",
+      "Divergências de conciliação e custos (tarifas/chargeback) controlados"
+    ],
+    perguntasQueVendem: [
+      "\"Quanto tempo seu time gasta por semana em conciliação e correção?\"",
+      "\"Qual a taxa de refaturamento / erro de emissão hoje?\"",
+      "\"Seu DSO está subindo por quê? Você sabe por cliente?\"",
+      "\"Quantos pagamentos você descobre que estavam errados depois que já saiu do caixa?\"",
+      "\"Se eu te desse previsibilidade real hoje, que decisão você tomaria amanhã?\""
+    ],
+    impactoNaoTer: [
+      "Você compra receita e perde no backoffice",
+      "Você perde caixa por erro, fraude, inconsistência e atraso — e chama de \"custo do financeiro\"",
+      "Você tem relatório, mas não tem controle operacional do ciclo"
+    ],
+    fitForte: [
+      "Volume alto de notas, recebíveis, múltiplos canais de cobrança",
+      "CFO/Controller patrocinando (dono do problema)",
+      "Dores com impacto direto em caixa e eficiência"
+    ],
+    redFlags: [
+      "\"Financeiro é pequeno, não dói\" (até você mostrar o custo invisível)",
+      "Sem acesso a dados/sistemas ou ninguém para liberar integração mínima"
+    ],
+    objecoes: [
+      {
+        objecao: "\"Meu ERP já faz isso.\"",
+        resposta: "ERP registra. A pergunta é: ele executa o processo com validação, prevenção de erro e trilha auditável, ou só vira 'lançamento' que alguém confere manualmente?"
+      },
+      {
+        objecao: "\"Tenho medo de mexer no financeiro.\"",
+        resposta: "A arquitetura é feita para ambiente crítico: rastreabilidade, validação e governança. Você ganha controle, não perde."
+      }
+    ],
+    proximoPasso: "\"Me dá 30 minutos com quem vive o ciclo (faturamento+cobrança+conciliação). Eu devolvo o mapa do processo + onde a IA assume e o ROI aparece.\""
+  },
+  legal: {
+    name: "Legal Hub",
+    oQueE: "Freedom Legal Hub é uma central autônoma de produção jurídica. Não é gerador de template: ele lê o processo, extrai provas e constrói peças robustas e combativas, mantendo o advogado no controle final.",
+    paraQuemE: [
+      "Jurídicos corporativos e escritórios com alto volume",
+      "Contencioso massificado / produção de peças repetitivas e críticas",
+      "Times que precisam de padrão técnico, escala e redução de risco"
+    ],
+    dorQueResolve: [
+      "Produção lenta, cara e inconsistente",
+      "Risco de erro/prazo perdido e contingência subindo",
+      "Advogado gastando tempo em PDF, não em estratégia",
+      "Baixa padronização: cada um escreve de um jeito"
+    ],
+    oQueEntrega: {
+      intro: "Extração de provas em larga escala (valores, datas, faturas, logs, fatos). Pipeline jurídico com validações (probatórias, normativas e jurídicas). Documento final com padrão técnico elevado, pronto para revisão e protocolo.",
+      modulos: [
+        "Peças processuais complexas (recursos, contrarrazões, manifestações)",
+        "Análise/elaboração de contratos (red flags, políticas, modelos)",
+        "Due diligence (classificação, sumários e riscos)",
+        "Gestão de prepostos (escala e instruções de audiência)",
+        "Resposta de ofícios + triagem LGPD",
+        "Gestão de contratos (esteira, SLA, alertas)"
+      ]
+    },
+    comoViraResultado: [
+      "Escala de produção com consistência (padrão ouro)",
+      "Menos risco operacional (prazos, LGPD, conformidade)",
+      "Mais produtividade: advogado volta para estratégia",
+      "Governança: visibilidade do pipeline jurídico"
+    ],
+    perguntasQueVendem: [
+      "\"Quantas peças por mês vocês produzem? Quantas são repetitivas?\"",
+      "\"Quantas horas por semana viram leitura de PDF e extração de prova?\"",
+      "\"Qual o custo de 1 erro de prazo? E o custo de uma peça fraca?\"",
+      "\"O padrão técnico é o mesmo entre advogados diferentes?\"",
+      "\"Se você pudesse dobrar produção sem dobrar equipe, o que mudaria?\""
+    ],
+    impactoNaoTer: [
+      "Você paga advogado para fazer trabalho de máquina",
+      "Você aceita inconsistência como normal — até virar contingência e prejuízo",
+      "Você perde escala e abre mão de padrão técnico (e isso custa processo)"
+    ],
+    fitForte: [
+      "Volume alto, repetição, risco real",
+      "Liderança do jurídico patrocinando"
+    ],
+    redFlags: [
+      "\"Quer só template\"",
+      "Não tem teses/padrões minimamente definidos",
+      "Dados/documentos inacessíveis"
+    ],
+    objecoes: [
+      {
+        objecao: "\"IA não entende meu caso.\"",
+        resposta: "Ela entende o que é prova, tese e padrão. E o advogado continua no controle final. O ganho é tirar o trabalho braçal e elevar o padrão."
+      },
+      {
+        objecao: "\"Tenho medo de qualidade.\"",
+        resposta: "A régua é evidência + validação. Pior que IA é manter peça fraca e inconsistente no volume."
+      }
+    ],
+    proximoPasso: "\"Me manda 3 exemplos reais de processos/peças. Eu te devolvo uma demonstração do 'antes e depois' em cima da sua realidade.\""
+  },
+  nalk: {
+    name: "NALK",
+    oQueE: "NALK é uma plataforma de Marketing & Sales Analytics / Revenue Analytics: centraliza dados de CRM + mídia + automações, cria dashboards e leitura executiva e permite tomar decisão baseada em dado (inclusive com perguntas para a IA sobre os dados).",
+    paraQuemE: [
+      "Empresas com investimento em mídia + CRM + funis comerciais",
+      "Operações que sofrem com \"cada um tem um número\"",
+      "Lideranças que precisam de: CAC real, ROI por canal, conversão por etapa, previsibilidade"
+    ],
+    dorQueResolve: [
+      "Dados espalhados em ferramentas e planilhas",
+      "Conflito marketing x vendas (\"lead ruim\" vs \"vendas não trabalha\")",
+      "Falta de clareza do que gera receita (ROI por canal)",
+      "Forecast fraco por falta de visibilidade real do funil"
+    ],
+    oQueEntrega: {
+      intro: "Dashboards interativos e personalizáveis (self BI). Integração com CRM + ferramentas de marketing + canais de mídia. Automação de dados e alertas. Insights gerados por IA (perguntas e respostas sobre performance e funil).",
+      modulos: [
+        "Visão de jornada do cliente: do clique à venda",
+        "Dashboards interativos e personalizáveis",
+        "Integração com CRM + ferramentas de marketing + canais de mídia",
+        "Automação de dados e alertas",
+        "Insights gerados por IA"
+      ]
+    },
+    comoViraResultado: [
+      "Reduz desperdício de mídia (você corta o que não vende)",
+      "Aumenta previsibilidade (funil com leitura consistente)",
+      "Acelera decisão (menos tempo montando relatório, mais tempo agindo)",
+      "Alinha marketing e vendas com um \"número da verdade\""
+    ],
+    perguntasQueVendem: [
+      "\"Hoje você sabe, com confiança, qual canal gera mais venda com menor custo?\"",
+      "\"Qual etapa do funil mais mata seu crescimento?\"",
+      "\"Seu time decide por dado ou por opinião?\"",
+      "\"Se eu te mostrasse 3 campanhas que geram lead mas não geram venda… você corta amanhã?\""
+    ],
+    impactoNaoTer: [
+      "Você queima verba em canal que parece bonito, mas não fecha",
+      "Você perde tempo discutindo e não executando (guerra interna)",
+      "Você não tem previsibilidade e vive de 'sensação'"
+    ],
+    fitForte: [
+      "Investimento contínuo em aquisição + uso real de CRM + necessidade de gestão"
+    ],
+    redFlags: [
+      "\"Não medimos nada\"",
+      "\"Não temos dono do número\"",
+      "\"Não temos acesso aos dados\""
+    ],
+    objecoes: [
+      {
+        objecao: "\"Meu CRM já tem relatório.\"",
+        resposta: "Relatório não é inteligência. A pergunta é: você enxerga ROI por canal, jornada completa e correlação com receita de verdade?"
+      },
+      {
+        objecao: "\"Vai dar trabalho integrar.\"",
+        resposta: "O trabalho já existe — só está escondido em planilha e retrabalho. A integração é o que compra o tempo de volta."
+      }
+    ],
+    proximoPasso: "\"Me diga quais ferramentas vocês usam (CRM, mídia, automação). Eu devolvo um mapa de integração + quais 5 métricas mudam o jogo na primeira semana.\""
+  }
+};
 
 const ProdutosPage = () => {
   const [activeTab, setActiveTab] = useState<ProductTab>("vision");
-
-  const baseProducts: Record<Exclude<ProductTab, "nalk">, BaseProduct> = {
-    vision: {
-      name: "Vision",
-      icp: "Varejo alimentar, farmácias, postos, CDs, indústrias, educação",
-      dores: [
-        "Perdas e fraudes não detectadas",
-        "Ruptura de estoque",
-        "Filas longas sem gestão",
-        "Operação reativa ao invés de proativa"
-      ],
-      pitch: "Transformamos câmera em dado e ação.",
-      perguntas: [
-        "Quantas câmeras vocês têm hoje?",
-        "Quais áreas mais críticas para monitorar?",
-        "As câmeras são RTSP?",
-        "Qual a infraestrutura local (servidor, GPU)?",
-        "Qual a qualidade da internet?",
-        "Quem faz manutenção das câmeras?"
-      ],
-      sucesso: "Redução de perdas, tempo de fila, ruptura de estoque",
-      erros: ["Vender como 'câmera inteligente' ao invés de resultado", "Não validar infra antes"],
-      proximoPasso: "Agendar validação técnica de câmeras + infra"
-    },
-    finance: {
-      name: "Finance Core",
-      icp: "Empresas com alto volume de faturamento e cobrança",
-      dores: [
-        "Refaturamento constante",
-        "Emissão lenta de notas",
-        "Conciliação manual demorada",
-        "Cobrança ineficiente",
-        "DSO alto (dias para receber)"
-      ],
-      pitch: "Receita vira caixa com governança e rastreabilidade.",
-      perguntas: [
-        "Onde trava mais: emissão, conciliação ou cobrança?",
-        "Quantos documentos vocês processam por mês?",
-        "Quais ERPs vocês usam?",
-        "Quais bancos e gateways de pagamento?",
-        "Qual o DSO atual vs. meta?"
-      ],
-      sucesso: "Redução de DSO, tempo de conciliação, erros de faturamento",
-      erros: ["Subestimar complexidade de integração com ERP", "Não mapear todos os bancos"],
-      proximoPasso: "Agendar call técnica com TI para entender integrações"
-    },
-    legal: {
-      name: "Legal Hub",
-      icp: "Escritórios e departamentos jurídicos com alto volume processual",
-      dores: [
-        "Volume alto de processos",
-        "Retrabalho em peças jurídicas",
-        "Dependência de advogado sênior",
-        "Inconsistência técnica entre peças"
-      ],
-      pitch: "Processo vira peça final pronta, padrão técnico e rastreável.",
-      perguntas: [
-        "Quantos processos vocês movimentam por mês?",
-        "Onde está o maior gargalo: prova, tese ou tempo?",
-        "De onde vêm os dados? PJe, PDF, pastas compartilhadas?",
-        "Qual o tipo de processo mais volumoso?",
-        "Quanto tempo leva pra produzir uma peça hoje?"
-      ],
-      sucesso: "Redução de tempo por peça, padronização, menos dependência de sênior",
-      erros: ["Prometer IA que 'pensa como advogado'", "Não entender taxonomia de processos"],
-      proximoPasso: "Agendar análise de amostra de processos"
-    }
-  };
-
-  const nalkProduct: NalkProduct = {
-    name: "Nalk",
-    subtitle: "Conecte suas fontes de dados (marketing, vendas e CS) em um único lugar, escolha indicadores e transforme dados em performance.",
-    description: "A Nalk se posiciona como plataforma de Revenue Analytics: unifica dados de receita e funil para gerar indicadores, visão única e insights acionáveis para decisões mais rápidas.",
-    idealPara: [
-      "Empresas com marketing + vendas rodando, mas com dados espalhados (CRM, mídia, automação, planilhas) e decisão \"no escuro\".",
-      "Times que precisam de indicadores consistentes e leitura de funil para atacar gargalos (conversão, CAC, produtividade, forecast)."
-    ],
-    sinaisFortes: [
-      "\"Não sabemos qual canal traz cliente bom\"",
-      "\"Perco tempo juntando dado em planilha\"",
-      "\"Gestão acontece tarde demais (descobre o problema quando já deu ruim)\"",
-      "\"Quero um ritual de gestão com números e alertas\""
-    ],
-    naoEhFit: [
-      "Operação sem volume e sem rotina de acompanhamento (cliente quer só 'dashboard bonito')",
-      "Empresa sem dono do dado (ninguém sustenta)"
-    ],
-    dores: [
-      "Dados fragmentados entre marketing, vendas e CS (sem visão única).",
-      "Gargalos invisíveis no funil (onde cai conversão, onde trava ciclo, onde perde qualidade).",
-      "Tempo desperdiçado em planilhas e análises manuais.",
-      "ROI/CAC sem clareza (corta errado, escala errado).",
-      "Falta de insights acionáveis para decisões rápidas."
-    ],
-    pitch1Frase: "Nalk unifica dados de marketing, vendas e CS e transforma isso em indicadores e insights para aumentar performance.",
-    pitch30s: "Hoje os dados estão espalhados e a gestão vira opinião. A Nalk conecta fontes, organiza indicadores e entrega uma visão clara do funil para você agir rápido nos gargalos.",
-    pitch2min: "O problema não é falta de dado, é falta de decisão com evidência. A Nalk centraliza as fontes, padroniza KPIs e acelera a leitura do funil para você cortar desperdício e melhorar conversão com ação objetiva.",
-    perguntasDiagnostico: [
-      "Onde você está tomando decisão \"no escuro\" hoje?",
-      "Qual etapa do funil mais dói (Lead→MQL, MQL→SQL, SQL→Ganho)?",
-      "Se nada mudar em 90 dias, o que piora: CAC, receita, produtividade, previsibilidade?"
-    ],
-    perguntasDados: [
-      "Quais fontes vocês têm hoje (CRM, mídia, automação, CS, planilhas)?",
-      "Vocês conseguem responder rápido: custo por SQL e por venda por canal?",
-      "Quem é o dono do dado e da meta?"
-    ],
-    perguntasRotina: [
-      "Hoje existe ritual semanal de números? Quem participa?",
-      "O que precisa virar alerta/monitoramento diário?"
-    ],
-    kpisFunil: [
-      "Conversões por etapa",
-      "CAC / ROI por canal",
-      "Receita atribuída por origem"
-    ],
-    kpisProdutividade: [
-      "Tempo de resposta / SLA",
-      "Performance por time / vendedor (quando aplicável)",
-      "Tendências e alertas (quebras de conversão e anomalias)"
-    ],
-    entregaveis: [
-      "Conectar fontes de dados de marketing, vendas e CS em um único lugar.",
-      "Seleção/organização de indicadores e painéis.",
-      "Insights acionáveis para guiar decisões de performance."
-    ],
-    erros: [
-      "Vender \"dashboard\" em vez de vender decisão + ação + ganho.",
-      "Não definir 1 gargalo prioritário → vira projeto infinito.",
-      "Não mapear dono do dado → ninguém sustenta uso.",
-      "Prometer resultado sem ter fontes minimamente acessíveis/consistentes."
-    ],
-    proximosPasso: [
-      "Diagnóstico rápido: definir gargalo + impacto + fontes de dados existentes.",
-      "Mapeamento de fontes: quais sistemas entram primeiro e quem aprova acesso.",
-      "Indicadores iniciais: escolher 5–8 KPIs para primeira versão.",
-      "Primeiro \"wow\": visão única do funil + 3 insights acionáveis."
-    ]
-  };
 
   const tabs: { id: ProductTab; name: string }[] = [
     { id: "vision", name: "Vision" },
     { id: "finance", name: "Finance Core" },
     { id: "legal", name: "Legal Hub" },
-    { id: "nalk", name: "Nalk" }
+    { id: "nalk", name: "NALK" }
   ];
 
-  const renderBaseProduct = (product: BaseProduct) => (
-    <div className="space-y-4 max-w-4xl">
-      <ContentBlock title="A) Quando vender (ICP)">
-        <p className="text-foreground">{product.icp}</p>
-      </ContentBlock>
-
-      <ContentBlock title="B) Dores típicas">
-        <ul className="space-y-2">
-          {product.dores.map((dor, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <span className="w-2 h-2 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
-              <span className="text-foreground">{dor}</span>
-            </li>
-          ))}
-        </ul>
-      </ContentBlock>
-
-      <ContentBlock title="C) Pitch de 1 frase">
-        <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-          <p className="text-lg font-semibold text-foreground italic">"{product.pitch}"</p>
-        </div>
-      </ContentBlock>
-
-      <ContentBlock title="D) Perguntas que definem fit">
-        <ul className="space-y-2">
-          {product.perguntas.map((pergunta, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <span className="w-6 h-6 rounded-lg bg-primary-weak text-foreground text-sm font-medium flex items-center justify-center flex-shrink-0">
-                {index + 1}
-              </span>
-              <span className="text-foreground">{pergunta}</span>
-            </li>
-          ))}
-        </ul>
-      </ContentBlock>
-
-      <ContentBlock title="E) O que medir como sucesso">
-        <p className="text-foreground font-medium">{product.sucesso}</p>
-      </ContentBlock>
-
-      <ContentBlock title="F) Erros comuns ao vender">
-        <ul className="space-y-2">
-          {product.erros.map((erro, index) => (
-            <li key={index} className="flex items-start gap-3 p-3 bg-muted/50 rounded-xl border border-border">
-              <span className="text-muted-foreground font-bold">✗</span>
-              <span className="text-foreground">{erro}</span>
-            </li>
-          ))}
-        </ul>
-      </ContentBlock>
-
-      <ContentBlock title="G) Próximo passo padrão">
-        <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-          <p className="text-foreground font-medium">{product.proximoPasso}</p>
-        </div>
-      </ContentBlock>
-    </div>
-  );
-
-  const renderNalkProduct = () => {
-    const perguntasTexto = [
-      "Diagnóstico (impacto e decisão)",
-      ...nalkProduct.perguntasDiagnostico,
-      "",
-      "Dados e fontes",
-      ...nalkProduct.perguntasDados,
-      "",
-      "Rotina",
-      ...nalkProduct.perguntasRotina
-    ].join("\n");
+  const renderProduct = (product: ProductData) => {
+    const perguntasTexto = product.perguntasQueVendem.join("\n");
 
     return (
       <div className="space-y-4 max-w-4xl">
-        {/* Header do produto */}
-        <div className="p-6 bg-card rounded-2xl border border-border">
-          <h2 className="text-2xl font-bold text-foreground mb-2">{nalkProduct.name}</h2>
-          <p className="text-lg text-foreground font-medium mb-3">{nalkProduct.subtitle}</p>
-          <p className="text-muted-foreground">{nalkProduct.description}</p>
-        </div>
+        {/* 1. O que é */}
+        <ContentBlock title="1) O que é">
+          <div className="p-5 bg-primary-weak/30 rounded-xl border border-primary/20">
+            <p className="text-foreground text-lg leading-relaxed">{product.oQueE}</p>
+          </div>
+        </ContentBlock>
 
-        <ContentBlock title="A) Quando vender (ICP / Fit)">
+        {/* 2. Para quem é */}
+        <ContentBlock title="2) Para quem é (ICP)">
+          <ul className="space-y-2">
+            {product.paraQuemE.map((item, index) => (
+              <li key={index} className="flex items-start gap-3 p-3 bg-card rounded-xl border border-border">
+                <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                <span className="text-foreground">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+
+        {/* 3. Dor que isso resolve */}
+        <ContentBlock title="3) Dor que isso resolve">
+          <ul className="space-y-2">
+            {product.dorQueResolve.map((dor, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-lg bg-destructive/10 text-destructive text-sm font-bold flex items-center justify-center flex-shrink-0">
+                  ✗
+                </span>
+                <span className="text-foreground">{dor}</span>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+
+        {/* 4. O que a Freedom entrega */}
+        <ContentBlock title="4) O que a Freedom entrega">
+          <div className="space-y-4">
+            {product.oQueEntrega.intro && (
+              <p className="text-foreground leading-relaxed">{product.oQueEntrega.intro}</p>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {product.oQueEntrega.modulos.map((modulo, index) => (
+                <div key={index} className="p-4 bg-card rounded-xl border border-border">
+                  <div className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-lg bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">
+                      {index + 1}
+                    </span>
+                    <span className="text-foreground text-sm">{modulo}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 5. Como isso vira resultado */}
+        <ContentBlock title="5) Como isso vira resultado">
+          <ul className="space-y-2">
+            {product.comoViraResultado.map((resultado, index) => (
+              <li key={index} className="flex items-start gap-3 p-3 bg-success-weak/50 rounded-xl border border-success/20">
+                <span className="text-success font-bold">✓</span>
+                <span className="text-foreground">{resultado}</span>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+
+        {/* 6. Perguntas que vendem */}
+        <ContentBlock title="6) Perguntas que vendem">
+          <div className="space-y-4">
+            <div className="flex justify-end">
+              <CopyButton text={perguntasTexto} />
+            </div>
+            <ul className="space-y-3">
+              {product.perguntasQueVendem.map((pergunta, index) => (
+                <li key={index} className="flex items-start gap-3 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
+                  <span className="w-6 h-6 rounded-lg bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">
+                    {index + 1}
+                  </span>
+                  <span className="text-foreground italic">{pergunta}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ContentBlock>
+
+        {/* 7. Impacto de não ter */}
+        <ContentBlock title="7) Impacto de não ter (o custo invisível)">
+          <ul className="space-y-2">
+            {product.impactoNaoTer.map((impacto, index) => (
+              <li key={index} className="flex items-start gap-3 p-4 bg-destructive/10 rounded-xl border border-destructive/20">
+                <span className="text-destructive font-bold text-lg">⚠</span>
+                <span className="text-foreground">{impacto}</span>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+
+        {/* 8. Sinais de fit / red flags */}
+        <ContentBlock title="8) Sinais de fit / red flags">
           <div className="space-y-6">
             <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Ideal para</h4>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">✅ Fit forte</h4>
               <ul className="space-y-2">
-                {nalkProduct.idealPara.map((item, index) => (
+                {product.fitForte.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 p-3 bg-success-weak/50 rounded-xl border border-success/20">
                     <span className="text-success font-bold">✓</span>
                     <span className="text-foreground">{item}</span>
@@ -283,23 +415,11 @@ const ProdutosPage = () => {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Sinais fortes de fit</h4>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">🚫 Red flags</h4>
               <ul className="space-y-2">
-                {nalkProduct.sinaisFortes.map((sinal, index) => (
-                  <li key={index} className="flex items-start gap-3 p-3 bg-primary-weak/50 rounded-xl border border-primary/20">
-                    <span className="text-primary font-bold">"</span>
-                    <span className="text-foreground italic">{sinal}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Não é fit (alerta)</h4>
-              <ul className="space-y-2">
-                {nalkProduct.naoEhFit.map((item, index) => (
+                {product.redFlags.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 p-3 bg-destructive/10 rounded-xl border border-destructive/20">
-                    <span className="text-destructive font-bold">⚠</span>
+                    <span className="text-destructive font-bold">✗</span>
                     <span className="text-foreground">{item}</span>
                   </li>
                 ))}
@@ -308,145 +428,30 @@ const ProdutosPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="B) Dores típicas que resolve">
-          <ul className="space-y-2">
-            {nalkProduct.dores.map((dor, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
-                <span className="text-foreground">{dor}</span>
-              </li>
-            ))}
-          </ul>
-        </ContentBlock>
-
-        <ContentBlock title="C) Pitch (3 níveis)">
+        {/* 9. Objeções comuns */}
+        <ContentBlock title="9) Objeções comuns + como responder">
           <div className="space-y-4">
-            <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Pitch 1 frase</p>
-              <p className="text-lg font-semibold text-foreground italic">"{nalkProduct.pitch1Frase}"</p>
-            </div>
-
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Pitch 30 segundos</p>
-              <p className="text-foreground">{nalkProduct.pitch30s}</p>
-            </div>
-
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Pitch 2 minutos (para decisor)</p>
-              <p className="text-foreground">{nalkProduct.pitch2min}</p>
-            </div>
-          </div>
-        </ContentBlock>
-
-        <ContentBlock title="D) Perguntas que definem fit">
-          <div className="space-y-6">
-            <div className="flex justify-end">
-              <CopyButton text={perguntasTexto} />
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Diagnóstico (impacto e decisão)</h4>
-              <ul className="space-y-2">
-                {nalkProduct.perguntasDiagnostico.map((pergunta, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-lg bg-primary-weak text-foreground text-sm font-medium flex items-center justify-center flex-shrink-0">
-                      {index + 1}
-                    </span>
-                    <span className="text-foreground">{pergunta}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Dados e fontes</h4>
-              <ul className="space-y-2">
-                {nalkProduct.perguntasDados.map((pergunta, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-lg bg-primary-weak text-foreground text-sm font-medium flex items-center justify-center flex-shrink-0">
-                      {index + 4}
-                    </span>
-                    <span className="text-foreground">{pergunta}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Rotina</h4>
-              <ul className="space-y-2">
-                {nalkProduct.perguntasRotina.map((pergunta, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-lg bg-primary-weak text-foreground text-sm font-medium flex items-center justify-center flex-shrink-0">
-                      {index + 7}
-                    </span>
-                    <span className="text-foreground">{pergunta}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </ContentBlock>
-
-        <ContentBlock title="E) O que medir como sucesso (KPIs de prova)">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <h4 className="text-sm font-semibold text-foreground mb-3">Funil e crescimento</h4>
-              <ul className="space-y-2">
-                {nalkProduct.kpisFunil.map((kpi, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success mt-2 flex-shrink-0" />
-                    <span className="text-foreground text-sm">{kpi}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <h4 className="text-sm font-semibold text-foreground mb-3">Produtividade e operação</h4>
-              <ul className="space-y-2">
-                {nalkProduct.kpisProdutividade.map((kpi, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success mt-2 flex-shrink-0" />
-                    <span className="text-foreground text-sm">{kpi}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </ContentBlock>
-
-        <ContentBlock title="F) O que a Nalk entrega (output)">
-          <ul className="space-y-2">
-            {nalkProduct.entregaveis.map((item, index) => (
-              <li key={index} className="flex items-start gap-3 p-3 bg-success-weak/50 rounded-xl border border-success/20">
-                <span className="text-success font-bold">→</span>
-                <span className="text-foreground">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </ContentBlock>
-
-        <ContentBlock title="G) Erros comuns ao vender (antídotos)">
-          <ul className="space-y-2">
-            {nalkProduct.erros.map((erro, index) => (
-              <li key={index} className="flex items-start gap-3 p-3 bg-muted/50 rounded-xl border border-border">
-                <span className="text-muted-foreground font-bold">✗</span>
-                <span className="text-foreground">{erro}</span>
-              </li>
-            ))}
-          </ul>
-        </ContentBlock>
-
-        <ContentBlock title="H) Próximo passo padrão (para avançar)">
-          <div className="space-y-3">
-            {nalkProduct.proximosPasso.map((passo, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-                <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">
-                  {index + 1}
-                </span>
-                <span className="text-foreground font-medium pt-1">{passo}</span>
+            {product.objecoes.map((obj, index) => (
+              <div key={index} className="p-4 bg-card rounded-xl border border-border space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-muted text-muted-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">
+                    💬
+                  </span>
+                  <p className="text-foreground font-semibold">{obj.objecao}</p>
+                </div>
+                <div className="flex items-start gap-3 pl-11">
+                  <span className="text-primary font-bold">→</span>
+                  <p className="text-foreground italic">{obj.resposta}</p>
+                </div>
               </div>
             ))}
+          </div>
+        </ContentBlock>
+
+        {/* 10. Próximo passo */}
+        <ContentBlock title="10) Próximo passo recomendado">
+          <div className="p-5 bg-primary-weak/50 rounded-xl border border-primary/20">
+            <p className="text-foreground text-lg font-medium italic">{product.proximoPasso}</p>
           </div>
         </ContentBlock>
       </div>
@@ -458,28 +463,31 @@ const ProdutosPage = () => {
       <PageHero
         emoji="🧩"
         title="Produtos"
-        subtitle="Produto é consequência do diagnóstico. Quem prescreve antes de perguntar, perde."
+        subtitle="Produto é consequência do diagnóstico. Quem não pergunta, perde."
       />
 
-      {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={cn(
-              "px-6 py-3 rounded-xl font-medium transition-all duration-200 border",
-              activeTab === tab.id
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-card text-foreground border-border hover:bg-primary-weak hover:border-primary/30"
-            )}
-          >
-            {tab.name}
-          </button>
-        ))}
-      </div>
+      <div className="space-y-6 max-w-5xl">
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-2">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={cn(
+                "px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200",
+                activeTab === tab.id
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "bg-card text-foreground border border-border hover:bg-muted/50"
+              )}
+            >
+              {tab.name}
+            </button>
+          ))}
+        </div>
 
-      {activeTab === "nalk" ? renderNalkProduct() : renderBaseProduct(baseProducts[activeTab])}
+        {/* Product content */}
+        {renderProduct(products[activeTab])}
+      </div>
     </AppLayout>
   );
 };
