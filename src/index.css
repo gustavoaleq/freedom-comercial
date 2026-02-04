@@ -22,6 +22,10 @@
     --primary-weak: 47 100% 90%; /* #FFF4CC - light yellow for backgrounds */
     --primary-hover: 45 92% 47%; /* #EAB308 */
 
+    /* Success: Light green for positive actions */
+    --success: 142 76% 36%; /* Green */
+    --success-weak: 142 76% 94%; /* Light green background */
+
     --secondary: 0 0% 100%;
     --secondary-foreground: 222 54% 7%;
 
@@ -75,6 +79,9 @@
     --primary-foreground: 222 54% 7%;
     --primary-weak: 47 50% 15%;
     --primary-hover: 45 92% 47%;
+
+    --success: 142 76% 46%;
+    --success-weak: 142 40% 18%;
 
     --secondary: 222 47% 11%;
     --secondary-foreground: 220 14% 96%;
