@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { format, addDays, addBusinessDays } from "date-fns";
+import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 type Etapa = "realizada" | "proposta" | "contrato" | "ganho";
@@ -30,8 +30,6 @@ interface EvidenceState {
   budgetAprovado: boolean;
   procurementEmAndamento: boolean;
   budgetCongelado: boolean;
-  eventoCliente: boolean;
-  dataEvento: Date | undefined;
   dataAssinatura: Date | undefined;
 }
 
@@ -42,12 +40,6 @@ const ETAPA_CONFIG = {
   ganho: { label: "Ganho", base: 100, piso: 100, teto: 100 },
 };
 
-const DEFAULT_DAYS = {
-  realizada: 75,
-  proposta: 45,
-  contrato: 14,
-  ganho: 0,
-};
 
 const initialEvidence: EvidenceState = {
   decisorParticipou: false,
@@ -64,8 +56,6 @@ const initialEvidence: EvidenceState = {
   budgetAprovado: false,
   procurementEmAndamento: false,
   budgetCongelado: false,
-  eventoCliente: false,
-  dataEvento: undefined,
   dataAssinatura: undefined,
 };
 
@@ -90,8 +80,6 @@ export function CalculadoraProbabilidade() {
         clampAplicado: false,
         regrasAplicadas: [] as string[],
         missing: [] as string[],
-        dataEsperada: new Date(),
-        justificativaData: "",
       };
     }
 
@@ -220,18 +208,6 @@ export function CalculadoraProbabilidade() {
     prob = Math.max(pisoFinal, Math.min(tetoFinal, prob));
     const clampAplicado = prob !== probAntes;
 
-    // Calcular data esperada
-    let dataEsperada: Date;
-    let justificativaData: string;
-
-    if (evidence.eventoCliente && evidence.dataEvento) {
-      dataEsperada = addBusinessDays(evidence.dataEvento, 5);
-      justificativaData = "Evento do cliente + 5 dias úteis";
-    } else {
-      dataEsperada = addDays(new Date(), DEFAULT_DAYS[etapa]);
-      justificativaData = `Regra anti-ficção: +${DEFAULT_DAYS[etapa]} dias da etapa atual`;
-    }
-
     return {
       probabilidade: prob,
       base: config.base,
@@ -241,8 +217,6 @@ export function CalculadoraProbabilidade() {
       clampAplicado,
       regrasAplicadas,
       missing: missing.filter((_, i, arr) => arr.indexOf(_) === i), // Remove duplicates
-      dataEsperada,
-      justificativaData,
     };
   }, [etapa, evidence]);
 
@@ -250,7 +224,6 @@ export function CalculadoraProbabilidade() {
     if (!etapa) return;
     
     const texto = `Probabilidade sugerida: ${calculation.probabilidade}%
-Data esperada: ${format(calculation.dataEsperada, "dd/MM/yyyy")}
 Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(${evidence.proximoPasso ? "S" : "N"}), champion(${evidence.championConfirmado ? "S" : "N"}), co-decisor(${evidence.coDecisorExiste ? evidence.coDecisorNome || "sem nome" : "N"}/${evidence.coDecisorDataMarcada ? "S" : "N"}), jurídico(${evidence.procurementEmAndamento ? "S" : "N"})`;
     
     await navigator.clipboard.writeText(texto);
@@ -465,31 +438,6 @@ Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(
                       </div>
                     )}
 
-                    {/* Data Esperada */}
-                    <div className="bg-white rounded-xl border border-border p-4 space-y-3">
-                      <Label className="text-sm font-semibold text-foreground block">
-                        Data Esperada de Fechamento
-                      </Label>
-                      
-                      <EvidenceRow
-                        label="Existe evento do cliente com data?"
-                        checked={evidence.eventoCliente}
-                        onChange={(v) => updateEvidence("eventoCliente", v)}
-                      />
-                      
-                      {evidence.eventoCliente && (
-                        <div className="ml-6 pl-4 border-l-2 border-primary/30">
-                          <Label className="text-sm text-muted-foreground mb-1 block">
-                            Data do evento
-                          </Label>
-                          <DatePickerField
-                            date={evidence.dataEvento}
-                            onSelect={(d) => updateEvidence("dataEvento", d)}
-                            placeholder="Selecione a data do evento"
-                          />
-                        </div>
-                      )}
-                    </div>
                   </>
                 )}
               </div>
@@ -562,14 +510,6 @@ Evidências: decisor(${evidence.decisorParticipou ? "S" : "N"}), próximo passo(
                         </div>
                       )}
 
-                      {/* Data Esperada */}
-                      <div className="border-t pt-3">
-                        <p className="text-xs font-semibold text-foreground mb-1">Data esperada:</p>
-                        <p className="text-lg font-bold text-foreground">
-                          {format(calculation.dataEsperada, "dd/MM/yyyy", { locale: ptBR })}
-                        </p>
-                        <p className="text-xs text-muted-foreground">{calculation.justificativaData}</p>
-                      </div>
 
                       {/* Botões */}
                       <div className="flex gap-2 pt-2">
