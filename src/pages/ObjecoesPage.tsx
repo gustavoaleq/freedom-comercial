@@ -101,7 +101,7 @@ const ObjecoesPage = () => {
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Impacto de não ter</p>
                     <p className="text-foreground">{item.impacto}</p>
                   </div>
-                  <div className="p-3 bg-primary-weak/50 rounded-xl border border-primary/20">
+                  <div className="p-3 rounded-xl border" style={{ backgroundColor: 'hsl(var(--success-weak))', borderColor: 'hsl(var(--success) / 0.2)' }}>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Próximo passo</p>
                     <p className="text-foreground">{item.proximoPasso}</p>
                   </div>
