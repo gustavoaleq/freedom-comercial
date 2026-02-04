@@ -448,12 +448,6 @@ const ProdutosPage = () => {
           </div>
         </ContentBlock>
 
-        {/* 10. Próximo passo */}
-        <ContentBlock title="10) Próximo passo recomendado">
-          <div className="p-5 bg-primary-weak/50 rounded-xl border border-primary/20">
-            <p className="text-foreground text-lg font-medium italic">{product.proximoPasso}</p>
-          </div>
-        </ContentBlock>
       </div>
     );
   };
