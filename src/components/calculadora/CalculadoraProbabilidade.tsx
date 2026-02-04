@@ -4,9 +4,9 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calculator, TrendingUp, AlertTriangle, Target, Lightbulb } from "lucide-react";
+import { Calculator, TrendingUp, AlertTriangle, Target, Lightbulb, Info } from "lucide-react";
 
-type Produto = "vision" | "finance" | "legal";
+type Produto = "vision" | "finance" | "legal" | "nalk";
 type Etapa = "realizada" | "proposta" | "contrato" | "ganho";
 
 interface EvidenceState {
@@ -36,6 +36,12 @@ interface EvidenceState {
   volumeLegalConfirmado: boolean;
   complianceAprovado: boolean;
   amostrasDefinidas: boolean;
+  // C) VIABILIDADE - Nalk
+  fontesMinimasNalk: boolean;
+  donoDadoNalk: boolean;
+  taxonomiaMinimaNalk: boolean;
+  gargaloPrioritarioNalk: boolean;
+  ritualGestaoNalk: boolean;
   // D) EXECUÇÃO
   responsavelNomeado: boolean;
   janelaKickoff: boolean;
@@ -73,6 +79,11 @@ const initialEvidence: EvidenceState = {
   volumeLegalConfirmado: false,
   complianceAprovado: false,
   amostrasDefinidas: false,
+  fontesMinimasNalk: false,
+  donoDadoNalk: false,
+  taxonomiaMinimaNalk: false,
+  gargaloPrioritarioNalk: false,
+  ritualGestaoNalk: false,
   responsavelNomeado: false,
   janelaKickoff: false,
   metricaSucesso: false,
@@ -93,10 +104,11 @@ const ETAPA_CONFIG = {
   ganho: { base: 100, min: 100, max: 100, label: "Ganho" },
 };
 
-const PRODUTO_LABELS = {
+const PRODUTO_LABELS: Record<Produto, string> = {
   vision: "Vision",
   finance: "Finance Core",
   legal: "Legal Hub",
+  nalk: "Nalk",
 };
 
 export function CalculadoraProbabilidade() {
@@ -158,6 +170,12 @@ export function CalculadoraProbabilidade() {
       if (evidence.volumeLegalConfirmado) viabilidade += 5;
       if (evidence.complianceAprovado) viabilidade += 3;
       if (evidence.amostrasDefinidas) viabilidade += 3;
+    } else if (produto === "nalk") {
+      if (evidence.fontesMinimasNalk) viabilidade += 8;
+      if (evidence.donoDadoNalk) viabilidade += 6;
+      if (evidence.taxonomiaMinimaNalk) viabilidade += 5;
+      if (evidence.gargaloPrioritarioNalk) viabilidade += 3;
+      if (evidence.ritualGestaoNalk) viabilidade += 3;
     }
 
     // D) EXECUÇÃO (máx +10)
@@ -264,6 +282,61 @@ export function CalculadoraProbabilidade() {
       }
     }
 
+    // Travas por produto - Nalk
+    if (produto === "nalk") {
+      // Trava N1 - Sem fontes mínimas
+      if (!evidence.fontesMinimasNalk) {
+        if (etapa === "proposta") {
+          tetoFinal = Math.min(tetoFinal, 45);
+          travasAplicadas.push("Sem fontes mínimas: teto 45%");
+        }
+        if (etapa === "contrato") {
+          tetoFinal = Math.min(tetoFinal, 75);
+          travasAplicadas.push("Sem fontes mínimas: teto 75%");
+        }
+        recomendacoes.push("Mapear fontes mínimas e aprovar acesso (CRM + 1 canal)");
+      }
+
+      // Trava N2 - Sem dono do dado
+      if (!evidence.donoDadoNalk) {
+        prob -= 10;
+        const tetos = { realizada: 10, proposta: 40, contrato: config.max };
+        const tetoDono = tetos[etapa as keyof typeof tetos];
+        if (tetoDono && tetoDono < tetoFinal) {
+          tetoFinal = tetoDono;
+          travasAplicadas.push(`Sem dono do dado: -10 e teto ${tetoDono}%`);
+        }
+        recomendacoes.push("Nomear dono do dado (Revenue/Marketing Ops/Sales Ops)");
+      }
+
+      // Trava N3 - Sem taxonomia mínima
+      if (!evidence.taxonomiaMinimaNalk && etapa === "proposta") {
+        tetoFinal = Math.min(tetoFinal, 50);
+        travasAplicadas.push("Sem taxonomia mínima: teto 50%");
+        recomendacoes.push("Definir estrutura mínima: origem, status, datas (entrada, contato, reunião, ganho/perda)");
+      }
+
+      // Trava N4 - Sem gargalo priorizado
+      if (!evidence.gargaloPrioritarioNalk && etapa === "proposta") {
+        tetoFinal = Math.min(tetoFinal, 55);
+        travasAplicadas.push("Sem gargalo priorizado: teto 55%");
+        recomendacoes.push("Escolher 1 gargalo prioritário para provar valor em 14 dias");
+      }
+
+      // Trava N5 - Sem ritual de gestão
+      if (!evidence.ritualGestaoNalk) {
+        if (etapa === "proposta") {
+          tetoFinal = Math.min(tetoFinal, 55);
+          travasAplicadas.push("Sem ritual de gestão: teto 55%");
+        }
+        if (etapa === "contrato") {
+          tetoFinal = Math.min(tetoFinal, 85);
+          travasAplicadas.push("Sem ritual de gestão: teto 85%");
+        }
+        recomendacoes.push("Definir ritual semanal (30 min) + responsável por ação em cima dos indicadores");
+      }
+    }
+
     // Trava: Sem responsável do cliente
     if (!evidence.responsavelNomeado) {
       if (etapa === "proposta") tetoFinal = Math.min(tetoFinal, 55);
@@ -297,14 +370,14 @@ export function CalculadoraProbabilidade() {
     // Aplicar clamp
     prob = Math.max(config.min, Math.min(config.max, prob));
 
-    // Recomendações adicionais
-    if (!evidence.pocVisionAgendado && produto === "vision") {
+    // Recomendações adicionais por produto
+    if (produto === "vision" && !evidence.pocVisionAgendado) {
       recomendacoes.push("Agendar PoC/teste técnico com data + responsável");
     }
-    if (!evidence.validacaoFinanceAgendada && produto === "finance") {
+    if (produto === "finance" && !evidence.validacaoFinanceAgendada) {
       recomendacoes.push("Agendar validação técnica com data + responsável");
     }
-    if (!evidence.amostrasDefinidas && produto === "legal") {
+    if (produto === "legal" && !evidence.amostrasDefinidas) {
       recomendacoes.push("Definir amostras para teste (10 casos) + data");
     }
     if (!evidence.janelaKickoff) {
@@ -380,6 +453,7 @@ export function CalculadoraProbabilidade() {
                   <SelectItem value="vision">Vision</SelectItem>
                   <SelectItem value="finance">Finance Core</SelectItem>
                   <SelectItem value="legal">Legal Hub</SelectItem>
+                  <SelectItem value="nalk">Nalk</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -480,6 +554,30 @@ export function CalculadoraProbabilidade() {
                     <EvidenceToggle id="volumeLegalConfirmado" label="Volume/mês confirmado e repetitivo?" points={5} checked={evidence.volumeLegalConfirmado} />
                     <EvidenceToggle id="complianceAprovado" label="Compliance/segurança aprovadas?" points={3} checked={evidence.complianceAprovado} />
                     <EvidenceToggle id="amostrasDefinidas" label="Amostras para teste definidas (10 casos) + data?" points={3} checked={evidence.amostrasDefinidas} />
+                  </div>
+                </div>
+              )}
+
+              {/* C) VIABILIDADE - Nalk */}
+              {produto === "nalk" && (
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                    C) Viabilidade Nalk (Tech Fit) — máx +25
+                  </h4>
+                  <div className="p-3 bg-primary-weak/50 rounded-lg border border-primary/20 mb-3">
+                    <div className="flex items-start gap-2">
+                      <Info className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                      <p className="text-sm text-foreground">
+                        Nalk depende menos de infraestrutura pesada e mais de: fontes acessíveis, dono do dado, taxonomia mínima e ritual de gestão. Sem isso, a compra não vira uso.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <EvidenceToggle id="fontesMinimasNalk" label="Fontes mínimas confirmadas (CRM + pelo menos 1 canal de aquisição) e acesso viável?" points={8} checked={evidence.fontesMinimasNalk} />
+                    <EvidenceToggle id="donoDadoNalk" label="Dono do dado nomeado (quem responde pelos números) e disponível?" points={6} checked={evidence.donoDadoNalk} />
+                    <EvidenceToggle id="taxonomiaMinimaNalk" label="Taxonomia/estrutura mínima existe (origem, status do lead/deal, datas principais)?" points={5} checked={evidence.taxonomiaMinimaNalk} />
+                    <EvidenceToggle id="gargaloPrioritarioNalk" label="Gargalo prioritário escolhido (1 problema claro) para provar valor rápido?" points={3} checked={evidence.gargaloPrioritarioNalk} />
+                    <EvidenceToggle id="ritualGestaoNalk" label="Ritual de gestão aceito (cadência semanal + responsável) para usar o painel?" points={3} checked={evidence.ritualGestaoNalk} />
                   </div>
                 </div>
               )}
@@ -622,4 +720,4 @@ export function CalculadoraProbabilidade() {
       )}
     </div>
   );
-};
+}
