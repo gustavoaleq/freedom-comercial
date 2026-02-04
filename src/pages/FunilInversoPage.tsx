@@ -12,6 +12,8 @@ const FunilInversoPage = () => {
   const [txLeadMql, setTxLeadMql] = useState("");
   const [txMqlReuniao, setTxMqlReuniao] = useState("");
   const [txReuniaoGanho, setTxReuniaoGanho] = useState("");
+  const [diasUteis, setDiasUteis] = useState("22");
+  const [semanasMes, setSemanasMes] = useState("4");
   const [erro, setErro] = useState("");
 
   const [resultado, setResultado] = useState<{
@@ -19,6 +21,8 @@ const FunilInversoPage = () => {
     reunioesNecessarias: number;
     mqlsNecessarios: number;
     leadsNecessarios: number;
+    reunioesDia: number;
+    reunioesSemana: number;
   } | null>(null);
 
   const calcular = () => {
@@ -30,10 +34,17 @@ const FunilInversoPage = () => {
     const txLeadMqlNum = parseFloat(txLeadMql) || 0;
     const txMqlReuniaoNum = parseFloat(txMqlReuniao) || 0;
     const txReuniaoGanhoNum = parseFloat(txReuniaoGanho) || 0;
+    const diasUteisNum = parseFloat(diasUteis) || 0;
+    const semanasMesNum = parseFloat(semanasMes) || 0;
 
     // Validação
     if (ticketNum <= 0 || txLeadMqlNum <= 0 || txMqlReuniaoNum <= 0 || txReuniaoGanhoNum <= 0) {
       setErro("Preencha Ticket e todas as taxas com valores > 0.");
+      return;
+    }
+
+    if (diasUteisNum <= 0 || semanasMesNum <= 0) {
+      setErro("Dias úteis e semanas devem ser maiores que 0.");
       return;
     }
 
@@ -43,11 +54,17 @@ const FunilInversoPage = () => {
     const mqlsNecessarios = Math.ceil(reunioesNecessarias / (txMqlReuniaoNum / 100));
     const leadsNecessarios = Math.ceil(mqlsNecessarios / (txLeadMqlNum / 100));
 
+    // Reuniões por dia e por semana
+    const reunioesDia = reunioesNecessarias / diasUteisNum;
+    const reunioesSemana = reunioesNecessarias / semanasMesNum;
+
     setResultado({
       vendasNecessarias,
       reunioesNecessarias,
       mqlsNecessarios,
-      leadsNecessarios
+      leadsNecessarios,
+      reunioesDia,
+      reunioesSemana
     });
   };
 
@@ -133,6 +150,26 @@ const FunilInversoPage = () => {
                   className="bg-card border-border focus-visible:ring-primary"
                 />
               </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block">Dias úteis no mês</label>
+                <Input
+                  type="number"
+                  placeholder="Ex: 22"
+                  value={diasUteis}
+                  onChange={(e) => setDiasUteis(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block">Semanas no mês</label>
+                <Input
+                  type="number"
+                  placeholder="Ex: 4"
+                  value={semanasMes}
+                  onChange={(e) => setSemanasMes(e.target.value)}
+                  className="bg-card border-border focus-visible:ring-primary"
+                />
+              </div>
             </div>
 
             {erro && (
@@ -163,6 +200,17 @@ const FunilInversoPage = () => {
                   <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
                     <p className="text-3xl font-bold text-foreground">{resultado.reunioesNecessarias.toLocaleString("pt-BR")}</p>
                     <p className="text-sm text-muted-foreground mt-1">Reuniões realizadas necessárias</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
+                    <p className="text-3xl font-bold text-foreground">{resultado.reunioesDia.toFixed(2).replace(".", ",")}</p>
+                    <p className="text-sm text-muted-foreground mt-1">Reuniões/dia (úteis)</p>
+                  </div>
+                  <div className="text-center p-6 bg-card rounded-xl border border-border shadow-sm">
+                    <p className="text-3xl font-bold text-foreground">{resultado.reunioesSemana.toFixed(2).replace(".", ",")}</p>
+                    <p className="text-sm text-muted-foreground mt-1">Reuniões/semana</p>
                   </div>
                 </div>
 
