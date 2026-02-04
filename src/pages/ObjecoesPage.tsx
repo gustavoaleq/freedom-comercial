@@ -273,17 +273,6 @@ const ObjecoesPage = () => {
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex flex-col items-start gap-2">
                       <h4 className="text-lg font-bold text-foreground text-left">"{item.objecao}"</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {item.tags.map((tag, tagIndex) => (
-                          <Badge 
-                            key={tagIndex} 
-                            variant="secondary"
-                            className="text-xs bg-muted text-muted-foreground"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
                     </div>
                     <div onClick={(e) => e.stopPropagation()} className="ml-4">
                       <CopyButton text={getCopyText(item)} />
