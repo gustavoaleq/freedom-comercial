@@ -18,7 +18,7 @@ const FollowUpPage = () => {
     { dia: "D1", canal: "E-mail", acao: "E-mail de abertura com 2 perguntas" },
     { dia: "D3", canal: "Ligação", acao: "Cold call com script direto" },
     { dia: "D5", canal: "WhatsApp", acao: "Mensagem curta com valor novo" },
-    { dia: "D7", canal: "E-mail", acao: "Encerramento elegante" }
+    { dia: "D7", canal: "WhatsApp", acao: "Encerramento elegante" }
   ];
 
   const templatesCanal = {
