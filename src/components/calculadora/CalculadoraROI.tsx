@@ -169,7 +169,7 @@ export function CalculadoraROI() {
                 </label>
                 <Input
                   type="number"
-                  placeholder="Ex: 12000"
+                  placeholder="Ex: 15000"
                   value={setupTotal}
                   onChange={(e) => setSetupTotal(e.target.value)}
                   className="bg-background border-border focus-visible:ring-primary"
@@ -226,7 +226,7 @@ export function CalculadoraROI() {
                 </label>
                 <Input
                   type="number"
-                  placeholder="Ex: 15"
+                  placeholder="Ex: 12"
                   value={contratoMeses}
                   onChange={(e) => handleContratoChange(e.target.value)}
                   className="bg-background border-border focus-visible:ring-primary"
