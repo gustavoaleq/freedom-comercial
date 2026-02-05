@@ -29,8 +29,13 @@ interface ResultadoROI {
   naoAtingePayback: boolean;
   naoAtingeRoiPositivo: boolean;
   horizonteMaxUsado: number;
+  // Totais separados
+  totalSetupHorizonte: number;
+  totalMrrHorizonte: number;
   fluxoMensal: {
     mes: number;
+    setupMes: number;
+    mrrMes: number;
     custoMes: number;
     beneficioMes: number;
     custoAcumulado: number;
@@ -119,33 +124,37 @@ export function CalculadoraROI() {
 
     for (let m = 1; m <= horizonteMax; m++) {
       const aposContrato = m > contratoMesesNum;
-      let custoMes = 0;
+      let setupMes = 0;
+      let mrrMes = 0;
       let beneficioMes = 0;
 
       if (!aposContrato) {
         // Dentro do contrato - regras normais
-        const custoSetupMes = m <= setupParcelasNum ? setupParcelaMensal : 0;
-        const custoMrrMes = m >= mrrInicioMesNum ? mrrNum : 0;
-        custoMes = custoSetupMes + custoMrrMes;
+        setupMes = m <= setupParcelasNum ? setupParcelaMensal : 0;
+        mrrMes = m >= mrrInicioMesNum ? mrrNum : 0;
         beneficioMes = beneficioMensal;
       } else {
         // Após o contrato - aplicar opção selecionada
         switch (posContratoOpcao) {
           case "encerrar":
-            custoMes = 0;
+            setupMes = 0;
+            mrrMes = 0;
             beneficioMes = 0;
             break;
           case "beneficio":
-            custoMes = 0;
+            setupMes = 0;
+            mrrMes = 0;
             beneficioMes = beneficioMensal;
             break;
           case "mrr-beneficio":
-            custoMes = mrrNum;
+            setupMes = 0;
+            mrrMes = mrrNum;
             beneficioMes = beneficioMensal;
             break;
         }
       }
 
+      const custoMes = setupMes + mrrMes;
       custoAcumulado += custoMes;
       beneficioAcumulado += beneficioMes;
 
@@ -158,6 +167,8 @@ export function CalculadoraROI() {
       if (m <= Math.max(horizonteNum, contratoMesesNum) + 12) {
         fluxoMensal.push({
           mes: m,
+          setupMes,
+          mrrMes,
           custoMes,
           beneficioMes,
           custoAcumulado,
@@ -196,14 +207,16 @@ export function CalculadoraROI() {
     }
 
     // Calcular resultados dentro do horizonte solicitado
-    let custoTotalHorizonte = 0;
+    let totalSetupHorizonte = 0;
+    let totalMrrHorizonte = 0;
     let beneficioTotalHorizonte = 0;
     for (let m = 1; m <= horizonteNum; m++) {
       const aposContrato = m > contratoMesesNum;
       if (!aposContrato) {
-        const custoSetupMes = m <= setupParcelasNum ? setupParcelaMensal : 0;
-        const custoMrrMes = m >= mrrInicioMesNum ? mrrNum : 0;
-        custoTotalHorizonte += custoSetupMes + custoMrrMes;
+        const setupMesCalc = m <= setupParcelasNum ? setupParcelaMensal : 0;
+        const mrrMesCalc = m >= mrrInicioMesNum ? mrrNum : 0;
+        totalSetupHorizonte += setupMesCalc;
+        totalMrrHorizonte += mrrMesCalc;
         beneficioTotalHorizonte += beneficioMensal;
       } else {
         switch (posContratoOpcao) {
@@ -213,12 +226,13 @@ export function CalculadoraROI() {
             beneficioTotalHorizonte += beneficioMensal;
             break;
           case "mrr-beneficio":
-            custoTotalHorizonte += mrrNum;
+            totalMrrHorizonte += mrrNum;
             beneficioTotalHorizonte += beneficioMensal;
             break;
         }
       }
     }
+    const custoTotalHorizonte = totalSetupHorizonte + totalMrrHorizonte;
 
     const ganhoLiquido = beneficioTotalHorizonte - custoTotalHorizonte;
 
@@ -248,6 +262,8 @@ export function CalculadoraROI() {
       naoAtingePayback: paybackMesProjetado === null,
       naoAtingeRoiPositivo: roiPositivoMesProjetado === null,
       horizonteMaxUsado: horizonteMax,
+      totalSetupHorizonte,
+      totalMrrHorizonte,
       fluxoMensal,
       paybackConservador,
     });
@@ -452,23 +468,37 @@ export function CalculadoraROI() {
               <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                 Resumo (horizonte de {roiHorizonteMeses || contratoMeses || 12} meses)
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="p-4 bg-card rounded-xl border border-border">
-                  <p className="text-sm text-muted-foreground">Custo total no horizonte</p>
-                  <p className="text-xl font-bold text-foreground">
-                    {formatarMoeda(resultado.custoTotalHorizonte)}
+                  <p className="text-sm text-muted-foreground">Total Setup no horizonte</p>
+                  <p className="text-lg font-bold text-foreground">
+                    {formatarMoeda(resultado.totalSetupHorizonte)}
                   </p>
                 </div>
                 <div className="p-4 bg-card rounded-xl border border-border">
+                  <p className="text-sm text-muted-foreground">Total MRR no horizonte</p>
+                  <p className="text-lg font-bold text-foreground">
+                    {formatarMoeda(resultado.totalMrrHorizonte)}
+                  </p>
+                </div>
+                <div className="p-4 bg-card rounded-xl border border-border">
+                  <p className="text-sm text-muted-foreground">Custo total no horizonte</p>
+                  <p className="text-lg font-bold text-foreground">
+                    {formatarMoeda(resultado.custoTotalHorizonte)}
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+                <div className="p-4 bg-card rounded-xl border border-border">
                   <p className="text-sm text-muted-foreground">Benefício total no horizonte</p>
-                  <p className="text-xl font-bold text-foreground">
+                  <p className="text-lg font-bold text-foreground">
                     {formatarMoeda(resultado.beneficioTotalHorizonte)}
                   </p>
                 </div>
                 <div className="p-4 bg-card rounded-xl border border-border">
                   <p className="text-sm text-muted-foreground">Ganho líquido</p>
                   <p
-                    className={`text-xl font-bold ${
+                    className={`text-lg font-bold ${
                       resultado.ganhoLiquido >= 0 ? "text-success" : "text-destructive"
                     }`}
                   >
@@ -478,7 +508,7 @@ export function CalculadoraROI() {
                 <div className="p-4 bg-card rounded-xl border border-border">
                   <p className="text-sm text-muted-foreground">ROI no horizonte</p>
                   <p
-                    className={`text-xl font-bold ${
+                    className={`text-lg font-bold ${
                       resultado.roiPercent !== null && resultado.roiPercent >= 0
                         ? "text-success"
                         : "text-destructive"
@@ -596,19 +626,25 @@ export function CalculadoraROI() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left py-2 px-3 text-muted-foreground font-medium">
+                        <th className="text-left py-2 px-2 text-muted-foreground font-medium">
                           Mês
                         </th>
-                        <th className="text-right py-2 px-3 text-muted-foreground font-medium">
-                          Custo Mês
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
+                          Setup
                         </th>
-                        <th className="text-right py-2 px-3 text-muted-foreground font-medium">
-                          Benefício Mês
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
+                          MRR
                         </th>
-                        <th className="text-right py-2 px-3 text-muted-foreground font-medium">
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
+                          Custo Total
+                        </th>
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
+                          Benefício
+                        </th>
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
                           Saldo Acum.
                         </th>
-                        <th className="text-right py-2 px-3 text-muted-foreground font-medium">
+                        <th className="text-right py-2 px-2 text-muted-foreground font-medium">
                           ROI Acum.
                         </th>
                       </tr>
@@ -621,27 +657,33 @@ export function CalculadoraROI() {
                             resultado.paybackMesProjetado === row.mes ? "bg-success/10" : ""
                           } ${row.aposContrato ? "opacity-70" : ""}`}
                         >
-                          <td className="py-2 px-3 text-foreground">
+                          <td className="py-2 px-2 text-foreground">
                             {row.mes}
                             {row.aposContrato && (
                               <span className="text-xs text-muted-foreground ml-1">*</span>
                             )}
                           </td>
-                          <td className="py-2 px-3 text-right text-foreground">
+                          <td className="py-2 px-2 text-right text-foreground">
+                            {formatarMoeda(row.setupMes)}
+                          </td>
+                          <td className="py-2 px-2 text-right text-foreground">
+                            {formatarMoeda(row.mrrMes)}
+                          </td>
+                          <td className="py-2 px-2 text-right text-foreground font-medium">
                             {formatarMoeda(row.custoMes)}
                           </td>
-                          <td className="py-2 px-3 text-right text-foreground">
+                          <td className="py-2 px-2 text-right text-foreground">
                             {formatarMoeda(row.beneficioMes)}
                           </td>
                           <td
-                            className={`py-2 px-3 text-right font-medium ${
+                            className={`py-2 px-2 text-right font-medium ${
                               row.saldo >= 0 ? "text-success" : "text-destructive"
                             }`}
                           >
                             {formatarMoeda(row.saldo)}
                           </td>
                           <td
-                            className={`py-2 px-3 text-right font-medium ${
+                            className={`py-2 px-2 text-right font-medium ${
                               row.roiAcumulado !== null && row.roiAcumulado >= 0
                                 ? "text-success"
                                 : "text-destructive"
