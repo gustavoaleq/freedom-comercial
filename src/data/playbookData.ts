@@ -98,14 +98,6 @@ export const playbookSections: PlaybookSection[] = [
     route: "/follow-up"
   },
   {
-    id: "funil-inverso",
-    title: "Funil Inverso",
-    subtitle: "Engenharia reversa de meta: meta → ganhos → pipeline → reuniões.",
-    icon: Filter,
-    iconColor: "purple",
-    route: "/funil-inverso"
-  },
-  {
     id: "motivos-perda",
     title: "Motivos de Perda",
     subtitle: "Taxonomia de perdido + aprendizado obrigatório.",

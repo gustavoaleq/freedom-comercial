@@ -14,7 +14,7 @@ import MetricasGestaoPage from "./pages/MetricasGestaoPage";
 import ChecklistsPage from "./pages/ChecklistsPage";
 import ObjecoesPage from "./pages/ObjecoesPage";
 import FollowUpPage from "./pages/FollowUpPage";
-import FunilInversoPage from "./pages/FunilInversoPage";
+// FunilInverso now embedded in MetricasGestaoPage
 import MotivosPerdaPage from "./pages/MotivosPerdaPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import TemplatesPage from "./pages/TemplatesPage";
@@ -38,7 +38,7 @@ const App = () => (
           <Route path="/checklists" element={<ChecklistsPage />} />
           <Route path="/objecoes" element={<ObjecoesPage />} />
           <Route path="/follow-up" element={<FollowUpPage />} />
-          <Route path="/funil-inverso" element={<FunilInversoPage />} />
+          {/* Funil Inverso agora está dentro de /metricas-gestao */}
           <Route path="/motivos-perda" element={<MotivosPerdaPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/templates" element={<TemplatesPage />} />

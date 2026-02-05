@@ -1,7 +1,10 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalculadoraProbabilidade } from "@/components/calculadora/CalculadoraProbabilidade";
+import { CalculadoraFunilInverso } from "@/components/calculadora/CalculadoraFunilInverso";
+import { CalculadoraROI } from "@/components/calculadora/CalculadoraROI";
 
 const MetricasGestaoPage = () => {
   return (
@@ -12,7 +15,7 @@ const MetricasGestaoPage = () => {
         subtitle="Sem placar, vira opinião. Opinião não bate meta."
       />
 
-      <div className="space-y-4 max-w-5xl">
+      <div className="space-y-6 max-w-5xl">
         <ContentBlock title="Forecast (Lei)">
           <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20 space-y-2">
             <p className="text-foreground font-medium">
@@ -24,8 +27,27 @@ const MetricasGestaoPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="🧮 Calculadora de Probabilidade" collapsible={false}>
-          <CalculadoraProbabilidade />
+        {/* Seção Calculadoras com Tabs */}
+        <ContentBlock title="🧮 Calculadoras" collapsible={false}>
+          <Tabs defaultValue="funil-inverso" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-6">
+              <TabsTrigger value="funil-inverso">Funil Inverso</TabsTrigger>
+              <TabsTrigger value="roi-payback">ROI & Payback</TabsTrigger>
+              <TabsTrigger value="probabilidade">Probabilidade</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="funil-inverso">
+              <CalculadoraFunilInverso />
+            </TabsContent>
+
+            <TabsContent value="roi-payback">
+              <CalculadoraROI />
+            </TabsContent>
+
+            <TabsContent value="probabilidade">
+              <CalculadoraProbabilidade />
+            </TabsContent>
+          </Tabs>
         </ContentBlock>
 
         <ContentBlock title="Conversões Oficiais">
