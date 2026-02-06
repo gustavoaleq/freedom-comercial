@@ -2,6 +2,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import crmVisaoGeralImg from "@/assets/crm-visao-geral.png";
 import { PageHero } from "@/components/ui/PageHero";
 import crmTarefasImg from "@/assets/crm-tarefas.png";
+import crmForecastImg from "@/assets/crm-forecast.png";
 import { CopyButton } from "@/components/ui/CopyButton";
 import {
   Accordion,
@@ -434,11 +435,9 @@ const CRMGovernancaPage = () => {
                   </p>
                 </div>
 
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Cards "Setup Pipeline" e "MRR Pipeline"</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"Isso é forecast (não é valor cheio, é valor ponderado)."</p>
+                {/* Print: Forecast */}
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img src={crmForecastImg} alt="Print do Forecast do mês — Setup Pipeline e NMRR Pipeline" className="w-full h-auto" />
                 </div>
               </div>
             </AccordionContent>
