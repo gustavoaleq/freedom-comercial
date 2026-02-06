@@ -236,9 +236,9 @@ const CRMGovernancaPage = () => {
                         Se não aconteceu:
                       </p>
                       <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-1">
-                        <li>Alterar a atividade "Reunião" para <strong>NO-SHOW</strong></li>
-                        <li>O card deve voltar para <strong>QUALIFICADO</strong></li>
-                        <li>A tarefa retorna para o SDR responsável</li>
+                        <li>Clicar no botão <strong>NO-SHOW</strong></li>
+                        <li>O card volta automaticamente para <strong>QUALIFICADO</strong></li>
+                        <li>A tarefa retorna para o <strong>SDR responsável</strong></li>
                       </ul>
                       <p className="text-foreground mt-2 font-medium">
                         Motivo: o SDR retoma, confirma, ajusta e reagenda.
