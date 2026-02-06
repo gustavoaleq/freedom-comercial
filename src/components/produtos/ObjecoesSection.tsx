@@ -61,7 +61,7 @@ export function ObjecoesSection({ objecoes }: ObjecoesSectionProps) {
   }, [objecoes, search, selectedTags]);
 
   return (
-    <ContentBlock title="9) Objeções comuns + como responder">
+    <div className="content-block">
       <div className="space-y-4">
         {/* Search */}
         <div className="relative">
@@ -185,6 +185,6 @@ export function ObjecoesSection({ objecoes }: ObjecoesSectionProps) {
           })}
         </div>
       </div>
-    </ContentBlock>
+    </div>
   );
 }
