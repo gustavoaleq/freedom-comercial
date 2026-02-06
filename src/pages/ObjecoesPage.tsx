@@ -274,7 +274,7 @@ const ObjecoesPage = () => {
         </ContentBlock>
 
         {/* Principais Objeções por Produto */}
-        <ContentBlock title="Principais Objeções por Produto" collapsible={false}>
+        <ContentBlock title="Principais Objeções por Produto">
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2 mb-2">
               {productTabs.map((tab) => (
@@ -296,7 +296,7 @@ const ObjecoesPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="Biblioteca de Objeções Gerais" collapsible={false}>
+        <ContentBlock title="Biblioteca de Objeções Gerais">
           {/* Search */}
           <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
