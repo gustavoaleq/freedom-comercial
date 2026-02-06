@@ -1,6 +1,7 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import crmVisaoGeralImg from "@/assets/crm-visao-geral.png";
 import { PageHero } from "@/components/ui/PageHero";
+import crmTarefasImg from "@/assets/crm-tarefas.png";
 import { CopyButton } from "@/components/ui/CopyButton";
 import {
   Accordion,
@@ -398,11 +399,9 @@ const CRMGovernancaPage = () => {
                   </div>
                 </div>
 
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Alertas de Tarefa (Gestão Visual)</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"Se está amarelo ou vermelho, você está fora da operação."</p>
+                {/* Print: Tarefas */}
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img src={crmTarefasImg} alt="Print da aba Tarefas no CRM — régua da operação" className="w-full h-auto" />
                 </div>
               </div>
             </AccordionContent>
