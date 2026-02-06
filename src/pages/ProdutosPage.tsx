@@ -28,54 +28,58 @@ interface ProductData {
 const products: Record<ProductTab, ProductData> = {
   vision: {
     name: "Vision",
-    oQueE: "Freedom Vision é visão computacional operacional: transforma vídeo em decisão e ação, em tempo real. Não é \"monitoramento\", é execução: a operação para de reagir e passa a prevenir perdas, organizar fluxo e padronizar loja/unidade.",
+    oQueE: "Nossa plataforma de IA se conecta às suas câmeras para enxergar, entender e, principalmente, agir sobre os eventos mais críticos da sua operação. Não somos uma ferramenta de vigilância passiva. Somos tecnologia de execução para prevenção de perdas, segurança e produtividade. O Vision não grava imagens. Ele transforma visão em decisão operacional.",
     paraQuemE: [
-      "Varejo (principalmente alimentar), farmácias/drogarias, postos/conveniência",
+      "Varejo (alimentar, farmácias, drogarias, postos, conveniência)",
       "Centros de distribuição, indústrias, instituições de ensino",
-      "Ambientes com operação viva, múltiplos pontos de atenção e perdas \"silenciosas\""
+      "Ambientes com operação viva, múltiplos pontos de atenção e perdas silenciosas",
+      "Empresas com câmeras instaladas que querem transformar vídeo em dado e ação"
     ],
     dorQueResolve: [
-      "Perdas acima da média (fraude/ruptura/erros operacionais)",
-      "Filas mal geridas e experiência ruim do cliente",
-      "Ruptura de gôndola recorrente / execução inconsistente",
-      "Monitoramento reativo (\"só vejo quando já deu ruim\")",
-      "Baixa visibilidade estruturada (tem vídeo, mas não tem dado)"
+      "Perdas invisíveis: furtos, fraudes operacionais e conluio entre colaboradores e clientes corroem a margem de lucro silenciosamente",
+      "Baixa produtividade: filas longas, ruptura de gôndola e falhas na execução de planogramas impactam experiência do cliente e vendas",
+      "Segurança reativa: monitoramento humano é limitado, caro e age apenas depois que o incidente crítico já ocorreu",
+      "Sem visibilidade estruturada: tem vídeo, mas não tem dado acionável"
     ],
     oQueEntrega: {
-      intro: "Análise visual em tempo real + alertas operacionais. Dashboards em tempo real + trilhas de auditoria (o que aconteceu, onde e quando).",
+      intro: "Agentes de IA analisam o fluxo de vídeo 24/7 para identificar padrões e anomalias. Detecção em tempo real + alertas contextualizados + dashboard centralizado com heatmaps de risco e trilhas de auditoria.",
       modulos: [
-        "Segurança / prevenção de perdas",
-        "Filas / fluxo operacional",
-        "Segurança do trabalho",
-        "Produtividade / execução",
-        "Gôndolas / conformidade de exposição"
+        "Segurança — Furtos em Loja: detecção de movimento de esconder produto, permanência prolongada em zonas de risco, troca de embalagem",
+        "Segurança — Fraudes Operacionais: monitoramento de caixa e conluio entre colaboradores e clientes",
+        "Segurança — Incidentes Críticos: aglomeração, correria, comportamento suspeito em tempo real",
+        "Segurança — Outros Controles: gestão de acesso a áreas restritas e auditoria de rotinas operacionais",
+        "Eficiência — Gestão de Filas: monitoramento em tempo real do tamanho das filas e do tempo de espera para otimizar alocação de pessoal",
+        "Eficiência — Gestão de Gôndolas: alertas automáticos de ruptura (prateleiras vazias) + auditoria de planograma (posição e precificação correta)"
       ]
     },
     comoViraResultado: [
-      "Redução de perdas e fraudes",
-      "Menos ruptura de estoque",
-      "Melhor gestão de filas (e aumento de conversão)",
-      "Dados estruturados para operação e diretoria",
-      "Decisão baseada em IA em vez de \"achismo do turno\""
+      "Redução da perda estimada com detecção e prevenção em tempo real",
+      "Menos ruptura de estoque com alertas automáticos de reposição",
+      "Melhor gestão de filas e aumento de conversão na loja",
+      "Dados estruturados para operação e diretoria (dashboard + heatmaps + resumos)",
+      "Agente conversacional integrado: pergunte sobre eventos, incidentes e indicadores diretamente ao Vision",
+      "Governança e segurança: implantação com validação de boas práticas da Grant Thornton"
     ],
     perguntasQueVendem: [
       "\"Hoje vocês descobrem perda quando? No dia? Na semana? No fechamento?\"",
       "\"Quanto custa 1% de perda a mais por mês na sua operação?\"",
-      "\"Fila é problema de horário, escala ou gargalo do processo? Como você mede?\"",
-      "\"Ruptura acontece por reposição, pedido, ou execução? Vocês têm dado por loja?\"",
-      "\"Se eu te der um alerta em tempo real… quem age e em quanto tempo?\"",
-      "\"O que você faria diferente se tivesse um painel com 'o que está acontecendo agora'?\""
+      "\"Suas câmeras servem para ver depois ou para agir na hora?\"",
+      "\"Fila é problema de horário, escala ou gargalo do processo? Como vocês medem?\"",
+      "\"Ruptura acontece por reposição, pedido ou execução? Vocês têm dado por loja?\"",
+      "\"Se eu te der um alerta em tempo real, quem age e em quanto tempo?\""
     ],
     impactoNaoTer: [
       "Você paga perda todo dia e chama de \"normal do varejo\"",
-      "Você treina time para apagar incêndio — e incêndio custa caro",
-      "Você tem câmera, mas não tem controle (vídeo não é dado)",
-      "Você perde dinheiro sem conseguir provar onde perdeu (e sem conseguir corrigir)"
+      "Monitoramento humano é limitado e caro — e age só depois que o incidente já ocorreu",
+      "Você tem câmera, mas não tem controle (vídeo não é dado, é gravação)",
+      "Você perde dinheiro sem conseguir provar onde perdeu e sem conseguir corrigir",
+      "Filas longas e ruptura de gôndola impactam vendas e experiência sem que ninguém veja em tempo real"
     ],
     fitForte: [
       "Muitas câmeras / muitas lojas / operação com padrão inconsistente",
-      "Dor de perda/filas/ruptura \"todo mundo sabe que existe\"",
-      "Alguém com dor e poder (operações, prevenção de perdas, diretoria)"
+      "Dor de perda, filas ou ruptura que \"todo mundo sabe que existe\"",
+      "Alguém com dor e poder: operações, prevenção de perdas, diretoria",
+      "Abertura para integração com câmeras existentes"
     ],
     redFlags: [
       "\"Quero IA por curiosidade\" sem dor operacional real",
@@ -85,14 +89,14 @@ const products: Record<ProductTab, ProductData> = {
     objecoes: [
       {
         objecao: "\"Já tenho câmeras.\"",
-        resposta: "Perfeito. Câmera sem inteligência é só gravação. A pergunta é: você quer vídeo ou quer decisão e prevenção?"
+        resposta: "Perfeito. Câmera sem inteligência é só gravação. A pergunta é: você quer vídeo ou quer decisão e prevenção em tempo real?"
       },
       {
         objecao: "\"Minha operação é diferente.\"",
         resposta: "Ótimo. O Vision nasce de diagnóstico: o que é repetitivo vira regra. O diferente vira exceção com trilha e evidência."
       }
     ],
-    proximoPasso: "\"Vamos mapear 3 dores em 15 minutos (perda, fila, ruptura) e eu te devolvo um desenho de como isso vira alerta + rotina de ação.\""
+    proximoPasso: "\"Agende uma demonstração e veja como podemos transformar a visão da sua operação em resultados. Vamos mapear suas 3 maiores dores (perda, fila, ruptura) e te devolver um desenho de como isso vira alerta + rotina de ação.\""
   },
   finance: {
     name: "Finance Core",
