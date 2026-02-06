@@ -461,48 +461,6 @@ const CRMGovernancaPage = () => {
             </AccordionContent>
           </AccordionItem>
 
-          {/* 8) Filtros e segmentações */}
-          <AccordionItem value="filtros" className="bg-card border border-border rounded-xl px-4">
-            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline">
-              <div className="flex items-center gap-3">
-                <Filter className="w-5 h-5 text-primary" />
-                Filtros e segmentações (Freedom vs Nalk / inbound vs outbound)
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground">
-              <div className="space-y-4">
-                <div className="p-4 bg-muted/30 rounded-xl border border-border">
-                  <p className="font-semibold text-foreground mb-2">Filtros disponíveis</p>
-                  <p className="text-muted-foreground mb-3">Filtrar por:</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {["Etapa do funil", "Vendedores", "Origem", "Inbound vs Outbound"].map((filter) => (
-                      <div key={filter} className="flex items-center gap-2 text-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
-                        {filter}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-                  <p className="font-semibold text-foreground mb-2">Filtro por produto</p>
-                  <p className="text-muted-foreground">
-                    <strong>Freedom</strong> e <strong>Nalk</strong>
-                  </p>
-                  <p className="text-muted-foreground mt-1">
-                    A estrutura da esteira é a mesma — muda o produto.
-                  </p>
-                </div>
-
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Área de filtros (etapas / vendedores / origens)</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"Filtro é para gestão. Use para enxergar gargalo."</p>
-                </div>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
 
           {/* 9) Regras de governança */}
           <AccordionItem value="governanca" className="bg-card border border-border rounded-xl px-4">
