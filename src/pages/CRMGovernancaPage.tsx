@@ -132,7 +132,7 @@ const CRMGovernancaPage = () => {
                       <p className="font-semibold text-foreground">4. Prioridade por Lead Score</p>
                       <p className="text-muted-foreground mt-1">
                         SDR deve atender primeiro <strong>Lead Score mais alto</strong>.<br/>
-                        Lead Score ≥ 50 = MQL.<br/>
+                        Lead Score ≥ 40 = MQL.<br/>
                         Ou seja: <strong>MQL entra na fila de prioridade</strong>.
                       </p>
                     </div>
@@ -145,7 +145,7 @@ const CRMGovernancaPage = () => {
                       <ul className="mt-2 space-y-1">
                         <li className="flex items-center gap-2 text-foreground">
                           <CheckCircle2 className="w-4 h-4 text-success" />
-                          MQL validado (score ≥ 50)
+                          MQL validado (score ≥ 40)
                         </li>
                         <li className="flex items-center gap-2 text-foreground">
                           <CheckCircle2 className="w-4 h-4 text-success" />
@@ -167,25 +167,13 @@ const CRMGovernancaPage = () => {
                       <p className="font-semibold text-foreground">6. Reunião Agendada</p>
                       <p className="text-muted-foreground mt-1">
                         Quando o SDR consegue data e hora, move para REUNIÃO AGENDADA.<br/>
-                        Deve conter: <strong>nome do closer responsável</strong> e tarefa de confirmação (se aplicável).
+                        Deve conter: <strong>informações sobre o lead e horário e dia da reunião</strong>.
                       </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Placeholders para prints */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                    <div className="text-4xl mb-2">🖼️</div>
-                    <p className="text-sm text-muted-foreground font-medium">Print: Pipeline SDR/BDR</p>
-                    <p className="text-xs text-muted-foreground mt-1 italic">"Lead → Contato Inicial → Qualificado → Reunião Agendada"</p>
-                  </div>
-                  <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                    <div className="text-4xl mb-2">🖼️</div>
-                    <p className="text-sm text-muted-foreground font-medium">Print: Botão "Iniciar Qualificação"</p>
-                    <p className="text-xs text-muted-foreground mt-1 italic">"Clique para mover Lead → Contato Inicial."</p>
-                  </div>
-                </div>
               </div>
             </AccordionContent>
           </AccordionItem>
