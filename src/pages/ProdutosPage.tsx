@@ -4,6 +4,15 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { cn } from "@/lib/utils";
+import { ObjecoesSection } from "@/components/produtos/ObjecoesSection";
+import {
+  objecoesVision,
+  objecoesFinance,
+  objecoesLegal,
+  objecoesNalk,
+  objecoesAgents,
+  objecoesLetramento,
+} from "@/data/objecoesExpandidas";
 
 type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents" | "letramento";
 
@@ -688,119 +697,7 @@ const ProdutosPage = () => {
         </ContentBlock>
 
         {/* 9. Objeções comuns — expandidas */}
-        <ContentBlock title="9) Objeções comuns + como responder">
-          <div className="space-y-4">
-            {[
-              {
-                objecao: "\"Meu time já usa ChatGPT, não precisa.\"",
-                resposta: "Usar e usar bem são coisas diferentes. A pergunta é: existe padrão, boas práticas e governança? Ou cada um faz do jeito que quer — inclusive colando dado sensível?",
-                perguntaDestrava: "Se eu entrevistar 5 pessoas do time, vou ouvir 5 versões de como usam IA?",
-                impactoNaoTer: "Sem padrão, cada um usa IA do jeito que quer — e o risco cresce invisível.",
-                proximoPasso: "Agendar diagnóstico de maturidade do time."
-              },
-              {
-                objecao: "\"Isso é treinamento… a gente precisa de entrega, não aula.\"",
-                resposta: "Exato — por isso não é palestra. É imersão prática com exercícios, demonstrações e aplicação real. O resultado é gente pronta pra aplicar IA no dia seguinte.",
-                perguntaDestrava: "O time hoje aplica IA no trabalho ou só conversa sobre IA?",
-                impactoNaoTer: "Sem fluência prática, IA vira curiosidade e nunca vira resultado.",
-                proximoPasso: "Apresentar formato e entregáveis do workshop."
-              },
-              {
-                objecao: "\"Não tenho tempo pra tirar o time 2 dias.\"",
-                resposta: "Quanto tempo por semana o time perde tentando IA sem método? Dois dias resolvem o que meses de tentativa e erro não vão resolver.",
-                perguntaDestrava: "Quanto tempo por semana o time perde \"tentando\" IA sem resultado?",
-                impactoNaoTer: "O custo do improviso distribuído é maior que 2 dias de investimento concentrado.",
-                proximoPasso: "Mostrar agenda e formato para encaixar na rotina."
-              },
-              {
-                objecao: "\"Tenho medo de vazar informação.\"",
-                resposta: "Esse é exatamente o ponto. Sem letramento, o risco já existe — só que invisível. O workshop ensina boas práticas de privacidade e segurança.",
-                perguntaDestrava: "Hoje alguém no time já colou dado sensível num prompt sem querer?",
-                impactoNaoTer: "O vazamento já pode estar acontecendo — você só não sabe.",
-                proximoPasso: "Agendar conversa com compliance/TI para alinhar escopo."
-              },
-              {
-                objecao: "\"TI/Compliance vai travar isso.\"",
-                resposta: "Pelo contrário: compliance é um dos pilares do workshop. O conteúdo inclui governança, limites e boas práticas — é o que TI quer que o time saiba.",
-                perguntaDestrava: "TI prefere que o time use IA sem regras ou com um playbook de boas práticas?",
-                impactoNaoTer: "Sem letramento, TI vai travar IA pra sempre — e a empresa perde competitividade.",
-                proximoPasso: "Incluir TI na conversa e mostrar o pilar de governança."
-              },
-              {
-                objecao: "\"Não sei se IA serve pro meu setor.\"",
-                resposta: "Toda empresa que tem processo repetitivo, decisão com dado e comunicação interna tem espaço pra IA. O workshop mostra onde começar com segurança.",
-                perguntaDestrava: "Vocês têm algum processo repetitivo que consome tempo do time toda semana?",
-                impactoNaoTer: "A dúvida impede a ação — e a inação custa mais que o aprendizado.",
-                proximoPasso: "Fazer diagnóstico rápido de processos para identificar quick wins."
-              },
-              {
-                objecao: "\"Isso é básico demais.\"",
-                resposta: "Se o time inteiro já usa IA com padrão, governança e resultado mensurável, ok. Se não, o básico ainda não está resolvido.",
-                perguntaDestrava: "Vocês já têm um playbook de boas práticas de IA documentado?",
-                impactoNaoTer: "Pular o básico é o motivo #1 de projetos de IA que falham.",
-                proximoPasso: "Mostrar diagnóstico de maturidade e identificar gaps reais."
-              },
-              {
-                objecao: "\"Isso é avançado demais pro meu time.\"",
-                resposta: "O conteúdo é corporativo e acessível. A didática foi construída pra quem não é técnico. Ninguém precisa saber programar.",
-                perguntaDestrava: "O time sabe usar e-mail? Então sabe aprender IA aplicada.",
-                impactoNaoTer: "Esperar o time \"estar pronto\" é garantir que nunca vão começar.",
-                proximoPasso: "Compartilhar ementa e perfil dos participantes de workshops anteriores."
-              },
-              {
-                objecao: "\"Prefiro um curso online mais barato.\"",
-                resposta: "Curso online é conteúdo genérico. Workshop presencial é imersão com aplicação real na sua realidade, com diagnóstico e plano de ação.",
-                perguntaDestrava: "Quantos cursos online o time já fez que realmente mudaram a rotina?",
-                impactoNaoTer: "O barato sai caro — conteúdo genérico não gera mudança de comportamento.",
-                proximoPasso: "Comparar entregáveis: diagnóstico, workbook, certificados, relatório vs. vídeo-aulas genéricas."
-              },
-              {
-                objecao: "\"Qual o ROI de um workshop?\"",
-                resposta: "Quanto custa o retrabalho, o risco e a ineficiência de IA sem método? O ROI está no que você deixa de perder a partir do dia seguinte.",
-                perguntaDestrava: "Qual o custo semanal de tentativa e erro com IA hoje?",
-                impactoNaoTer: "Sem base, cada tentativa de escalar IA custa mais tempo e mais dinheiro.",
-                proximoPasso: "Mapear 3 processos com potencial de IA e calcular economia estimada."
-              }
-            ].map((obj, index) => (
-              <div key={index} className="p-4 bg-card rounded-xl border border-border space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-muted text-muted-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">💬</span>
-                  <p className="text-foreground font-semibold">{obj.objecao}</p>
-                </div>
-                <div className="pl-11 space-y-2">
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary font-bold">→</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Resposta</p>
-                      <p className="text-foreground">{obj.resposta}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary font-bold">?</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Pergunta que destrava</p>
-                      <p className="text-foreground italic">{obj.perguntaDestrava}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-destructive font-bold">⚠</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Impacto de não ter</p>
-                      <p className="text-foreground">{obj.impactoNaoTer}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-success font-bold">▶</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Próximo passo</p>
-                      <p className="text-foreground">{obj.proximoPasso}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ContentBlock>
+        <ObjecoesSection objecoes={objecoesLetramento} />
 
         {/* Bloco final: Como vender em 20 segundos */}
         <ContentBlock title="🎯 Como vender Letramento IA em 20 segundos" collapsible={false}>
@@ -815,6 +712,15 @@ const ProdutosPage = () => {
         </ContentBlock>
       </div>
     );
+  };
+
+  const expandedObjecoesMap: Record<ProductTab, import("@/components/produtos/ObjecoesSection").ExpandedObjection[]> = {
+    vision: objecoesVision,
+    finance: objecoesFinance,
+    legal: objecoesLegal,
+    nalk: objecoesNalk,
+    agents: objecoesAgents,
+    letramento: objecoesLetramento,
   };
 
   const renderProduct = (product: ProductData) => {
@@ -949,24 +855,7 @@ const ProdutosPage = () => {
         </ContentBlock>
 
         {/* 9. Objeções comuns */}
-        <ContentBlock title="9) Objeções comuns + como responder">
-          <div className="space-y-4">
-            {product.objecoes.map((obj, index) => (
-              <div key={index} className="p-4 bg-card rounded-xl border border-border space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-muted text-muted-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">
-                    💬
-                  </span>
-                  <p className="text-foreground font-semibold">{obj.objecao}</p>
-                </div>
-                <div className="flex items-start gap-3 pl-11">
-                  <span className="text-primary font-bold">→</span>
-                  <p className="text-foreground italic">{obj.resposta}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ContentBlock>
+        <ObjecoesSection objecoes={expandedObjecoesMap[activeTab] || []} />
 
       </div>
     );
