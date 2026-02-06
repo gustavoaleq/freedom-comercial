@@ -258,7 +258,7 @@ const CRMGovernancaPage = () => {
                         ))}
                       </div>
                       <p className="text-muted-foreground mt-3 text-sm">
-                        📌 Probabilidade deve ser definida usando a <strong>Calculadora de Probabilidade</strong> do Playbook (Métricas & Gestão).
+                        📌 Probabilidade calculada automaticamente através da análise da call.
                       </p>
                     </div>
 
