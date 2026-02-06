@@ -430,7 +430,7 @@ const CRMGovernancaPage = () => {
             <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline">
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-primary" />
-                Criar novo lead (padrão mínimo de cadastro)
+                Criar novo lead — padrão mínimo de cadastro
               </div>
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground">
@@ -457,12 +457,6 @@ const CRMGovernancaPage = () => {
                   </div>
                 </div>
 
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Botão "+ Novo Lead"</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"Cadastro mínimo bem feito = follow-up possível."</p>
-                </div>
               </div>
             </AccordionContent>
           </AccordionItem>
