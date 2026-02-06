@@ -3,6 +3,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { CalculadoraQualificacaoInbound } from "@/components/qualificacao/CalculadoraQualificacaoInbound";
+import { DestinosLeadContatoInicial } from "@/components/qualificacao/DestinosLeadContatoInicial";
 import { ArrowRight } from "lucide-react";
 
 const ICPQualificacaoPage = () => {
@@ -182,28 +183,9 @@ const ICPQualificacaoPage = () => {
           </p>
         </ContentBlock>
 
-        {/* 5) Qualificação real pelo SDR */}
-        <ContentBlock title="Qualificação real pelo SDR (Etapa Contato Inicial)">
-          <div className="bg-card border border-border rounded-xl p-5">
-            <h4 className="font-semibold text-foreground mb-4 text-sm">O que o SDR faz em Contato Inicial</h4>
-            <ol className="space-y-2">
-              {[
-                "Entrar em contato com o lead",
-                "Validar se as infos do formulário são reais",
-                "Confirmar ou corrigir dados",
-                "Explorar dor, prioridade e contexto",
-                "Avaliar intenção e maturidade",
-                "Definir se existe próximo passo claro",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-foreground">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
-                    {i + 1}
-                  </span>
-                  {step}
-                </li>
-              ))}
-            </ol>
-          </div>
+        {/* 5) Destinos do lead em Contato Inicial */}
+        <ContentBlock title="Destinos do lead em CONTATO INICIAL (após tentativas e conversa)">
+          <DestinosLeadContatoInicial />
         </ContentBlock>
 
         {/* 6) Calculadora */}
