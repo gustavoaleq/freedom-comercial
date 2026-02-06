@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { Input } from "@/components/ui/input";
-import { Search, ChevronDown } from "lucide-react";
+import { Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -12,6 +12,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ObjecoesSection } from "@/components/produtos/ObjecoesSection";
+import { cn } from "@/lib/utils";
+import {
+  objecoesVision,
+  objecoesFinance,
+  objecoesLegal,
+  objecoesNalk,
+  objecoesAgents,
+  objecoesLetramento,
+} from "@/data/objecoesExpandidas";
 
 interface Objecao {
   objecao: string;
@@ -22,8 +32,29 @@ interface Objecao {
   proximoPasso: string;
 }
 
+type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents" | "letramento";
+
+const productTabs: { id: ProductTab; name: string }[] = [
+  { id: "vision", name: "Vision" },
+  { id: "finance", name: "Finance Core" },
+  { id: "legal", name: "Legal Hub" },
+  { id: "nalk", name: "NALK" },
+  { id: "agents", name: "Freedom Agents" },
+  { id: "letramento", name: "Letramento IA" },
+];
+
+const productObjecoesMap = {
+  vision: objecoesVision,
+  finance: objecoesFinance,
+  legal: objecoesLegal,
+  nalk: objecoesNalk,
+  agents: objecoesAgents,
+  letramento: objecoesLetramento,
+};
+
 const ObjecoesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeProductTab, setActiveProductTab] = useState<ProductTab>("vision");
 
   const objecoes: Objecao[] = [
     {
@@ -82,7 +113,6 @@ const ObjecoesPage = () => {
       impacto: "Barato que não funciona sai caro. Já passaram por isso antes?",
       proximoPasso: "Fazer comparativo técnico lado a lado"
     },
-    // 15 novas objeções
     {
       objecao: "Não tenho budget agora",
       tags: ["Closer", "Finance", "Prioridade/Timing"],
@@ -240,6 +270,29 @@ const ObjecoesPage = () => {
                 {index < arr.length - 1 && <span className="text-muted-foreground">→</span>}
               </div>
             ))}
+          </div>
+        </ContentBlock>
+
+        {/* Principais Objeções por Produto */}
+        <ContentBlock title="Principais Objeções por Produto" collapsible={false}>
+          <div className="space-y-4">
+            <div className="flex flex-wrap gap-2 mb-2">
+              {productTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveProductTab(tab.id)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
+                    activeProductTab === tab.id
+                      ? "bg-primary text-primary-foreground shadow-md"
+                      : "bg-card text-foreground border border-border hover:bg-muted/50"
+                  )}
+                >
+                  {tab.name}
+                </button>
+              ))}
+            </div>
+            <ObjecoesSection objecoes={productObjecoesMap[activeProductTab]} />
           </div>
         </ContentBlock>
 

@@ -4,15 +4,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { cn } from "@/lib/utils";
-import { ObjecoesSection } from "@/components/produtos/ObjecoesSection";
-import {
-  objecoesVision,
-  objecoesFinance,
-  objecoesLegal,
-  objecoesNalk,
-  objecoesAgents,
-  objecoesLetramento,
-} from "@/data/objecoesExpandidas";
 
 type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents" | "letramento";
 
@@ -696,9 +687,6 @@ const ProdutosPage = () => {
           </div>
         </ContentBlock>
 
-        {/* 9. Objeções comuns — expandidas */}
-        <ObjecoesSection objecoes={objecoesLetramento} />
-
         {/* Bloco final: Como vender em 20 segundos */}
         <ContentBlock title="🎯 Como vender Letramento IA em 20 segundos" collapsible={false}>
           <div className="p-5 bg-primary-weak/50 rounded-xl border border-primary/30">
@@ -714,14 +702,6 @@ const ProdutosPage = () => {
     );
   };
 
-  const expandedObjecoesMap: Record<ProductTab, import("@/components/produtos/ObjecoesSection").ExpandedObjection[]> = {
-    vision: objecoesVision,
-    finance: objecoesFinance,
-    legal: objecoesLegal,
-    nalk: objecoesNalk,
-    agents: objecoesAgents,
-    letramento: objecoesLetramento,
-  };
 
   const renderProduct = (product: ProductData) => {
     const perguntasTexto = product.perguntasQueVendem.join("\n");
@@ -853,9 +833,6 @@ const ProdutosPage = () => {
             </div>
           </div>
         </ContentBlock>
-
-        {/* 9. Objeções comuns */}
-        <ObjecoesSection objecoes={expandedObjecoesMap[activeTab] || []} />
 
       </div>
     );
