@@ -23,21 +23,6 @@ const ICPQualificacaoPage = () => {
       />
 
       <div className="space-y-4 max-w-4xl">
-        <ContentBlock title="MQL (Lei)">
-          <div className="p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
-            <p className="text-lg font-semibold text-foreground">
-              Faturamento &gt; R$ 20M <span className="text-muted-foreground mx-2">e</span> &gt; 100 funcionários
-            </p>
-          </div>
-        </ContentBlock>
-
-        <ContentBlock title="SQL (Lei Prática)">
-          <div className="p-4 bg-muted/50 rounded-xl border border-border">
-            <p className="text-foreground font-medium">
-              MQL + <strong>dor clara</strong> + <strong>viabilidade</strong> + <strong>sponsor</strong> + <strong>próximo passo</strong>
-            </p>
-          </div>
-        </ContentBlock>
 
         <ContentBlock 
           title="Checklist de Qualificação" 
