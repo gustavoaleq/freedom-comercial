@@ -281,12 +281,6 @@ const CRMGovernancaPage = () => {
                   </div>
                 </div>
 
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Colunas Reunião Realizada / Negociação-Proposta / Contrato</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"Closer move o card conforme fatos — não conforme esperança."</p>
-                </div>
               </div>
             </AccordionContent>
           </AccordionItem>
