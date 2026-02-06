@@ -89,7 +89,7 @@ const MotivosPerdaPage = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-bold text-primary">3.</span>
-                <span>Nota de 2 linhas explicando o contexto</span>
+                <span>Nota de 2 linhas explicando o contexto (se necessário)</span>
               </li>
             </ol>
           </div>
