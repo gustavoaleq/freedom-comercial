@@ -50,15 +50,58 @@ const MetricasGestaoPage = () => {
           </Tabs>
         </ContentBlock>
 
-        <ContentBlock title="Conversões Oficiais">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <p className="text-sm text-muted-foreground mb-1">Closer</p>
-              <p className="font-semibold text-foreground">Realizada → Ganho</p>
+        <ContentBlock title="Métricas Avaliadas">
+          <div className="space-y-6">
+            {/* SDR */}
+            <div>
+              <p className="font-semibold text-foreground mb-3">SDR</p>
+              <div className="space-y-2">
+                {[
+                  { de: "Lead", para: "Contato Inicial", metrica: "Tempo de uma etapa para outra" },
+                  { de: "Contato Inicial", para: "Qualificado", metrica: "Taxa de MQL para SQL" },
+                  { de: "Qualificado", para: "Reunião Agendada", metrica: "Taxa de SQL para agendamento" },
+                  { de: "Reunião Agendada", para: "Reunião Realizada", metrica: "Taxa de no-show" },
+                  { de: "MQL", para: "Reunião Realizada Validada", metrica: "Taxa de conversão do SDR" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl border border-border text-sm">
+                    <span className="font-medium text-foreground whitespace-nowrap">{item.de} → {item.para}</span>
+                    <span className="text-muted-foreground">— {item.metrica}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="p-4 bg-card rounded-xl border border-border">
-              <p className="text-sm text-muted-foreground mb-1">SDR/BDR</p>
-              <p className="font-semibold text-foreground">MQL → Realizada</p>
+
+            {/* CLOSER */}
+            <div>
+              <p className="font-semibold text-foreground mb-3">Closer</p>
+              <div className="space-y-2">
+                {[
+                  { de: "Reunião Realizada Válida", para: "Negociação/Proposta", metrica: "Taxa de evolução" },
+                  { de: "Negociação/Proposta", para: "Contrato", metrica: "Taxa de evolução" },
+                  { de: "Contrato", para: "Ganho", metrica: "Receita" },
+                  { de: "Reunião Realizada Válida", para: "Ganho", metrica: "Taxa de conversão do Closer" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl border border-border text-sm">
+                    <span className="font-medium text-foreground whitespace-nowrap">{item.de} → {item.para}</span>
+                    <span className="text-muted-foreground">— {item.metrica}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* PERDIDO */}
+            <div>
+              <p className="font-semibold text-foreground mb-3">Perdido</p>
+              <div className="space-y-2">
+                <div className="p-3 bg-muted/50 rounded-xl border border-border text-sm">
+                  <span className="font-medium text-foreground">Lead + Contato Inicial + Qualificado + Reunião Agendada</span>
+                  <span className="text-muted-foreground"> — Motivo de perdido SDR</span>
+                </div>
+                <div className="p-3 bg-muted/50 rounded-xl border border-border text-sm">
+                  <span className="font-medium text-foreground">Reunião Realizada + Negociação/Proposta + Contrato</span>
+                  <span className="text-muted-foreground"> — Motivo de perdido Closer</span>
+                </div>
+              </div>
             </div>
           </div>
         </ContentBlock>
