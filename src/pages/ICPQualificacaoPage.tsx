@@ -228,7 +228,6 @@ const ICPQualificacaoPage = () => {
               <ArrowRight className="w-5 h-5 text-primary flex-shrink-0" />
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: "Desqualificado", color: "bg-red-500/10 text-red-600 border-red-500/20" },
                   { label: "Perdido", color: "bg-orange-500/10 text-orange-600 border-orange-500/20" },
                   { label: "MQL", color: "bg-primary/10 text-primary border-primary/20" },
                   { label: "SQL", color: "bg-green-500/10 text-green-600 border-green-500/20" },
