@@ -100,69 +100,72 @@ const products: Record<ProductTab, ProductData> = {
   },
   finance: {
     name: "Finance Core",
-    oQueE: "Freedom Finance Core é o cérebro financeiro autônomo: conecta nos sistemas (ERP/CRM/BI) e executa o ciclo financeiro de ponta a ponta com rastreabilidade e auditoria. Não é \"robôzinho\", é mão de obra digital 24/7.",
+    oQueE: "O Freedom Finance Core é um sistema autônomo que se conecta aos seus sistemas (ERP, CRM, BI) para executar o ciclo financeiro de ponta a ponta. Ele substitui o trabalho manual por uma mão de obra digital que opera 24/7 com padronização, controle e uma trilha de auditoria completa.",
     paraQuemE: [
-      "Empresas com alto volume de faturamento",
-      "Operação com recebíveis complexos, conciliações demoradas e retrabalho",
-      "CFO/financeiro que precisa de previsibilidade e controle (não só relatório)"
+      "Empresas com alto volume de faturamento e operações financeiras complexas",
+      "Operações com recebíveis complexos, conciliações demoradas e retrabalho",
+      "CFO/Controller que precisa de previsibilidade, controle e governança (não só relatório)",
+      "Empresas com processos de pagamento de fretes, fornecedores e múltiplos documentos fiscais"
     ],
     dorQueResolve: [
-      "Conciliação lenta, manual e sujeita a erro",
-      "Duplicidade, erros fiscais, retrabalho e risco de fraude",
-      "Falta de previsibilidade real de caixa / DSO alto",
-      "Cobrança inconsistente (cada pessoa faz de um jeito)"
+      "Pagamentos fraudulentos ou em duplicidade (boletos falsos, erros manuais) descobertos só depois que o dinheiro já saiu do caixa",
+      "Processo de validar e pagar fretes extremamente manual e complexo, exigindo cruzamento de múltiplos documentos (NF-e, CT-e, comprovante de entrega)",
+      "Gestão de caixa reativa: decisões de captação e postergação tomadas sob pressão, quando o problema de liquidez já está acontecendo",
+      "Conciliação lenta, manual e sujeita a erro — duplicidade, erros fiscais e risco de fraude"
     ],
     oQueEntrega: {
-      intro: "Jornada completa: pré-faturamento → emissão → cobrança → recebimento → análise. Integrações nativas: ERP, bancos, adquirentes e canais de cobrança.",
+      intro: "Agentes autônomos que executam o processo completo (NF → validação → pagamento → conciliação), não apenas tarefas isoladas. Arquitetura própria para ambientes críticos com segurança, escala e trilha de auditoria. Método de implantação com diagnóstico, desenho do processo e acompanhamento de resultados mensuráveis.",
       modulos: [
-        "Pré-faturamento inteligente (valida premissas/cadastros/contratos antes de emitir)",
-        "Emissão de NF/Fatura (gatilhos automáticos por pedido/entrega/marcos)",
-        "Conciliação bancária inteligente (divergências, tarifas, chargeback)",
-        "Cobrança omnicanal (jornadas por perfil de cliente, lembretes e regras)",
-        "Visão do CFO (ageing, DSO, projeção de recebíveis, riscos)"
+        "Bloqueio ativo de pagamentos fraudulentos: validação cruzada em tempo real (CNPJ na Receita Federal + base histórica + sinais de adulteração)",
+        "Automação do processo de pagamento de fretes: match triplo CT-e + NF-e + comprovante de entrega antes de liberar pagamento",
+        "Gestão preditiva do fluxo de caixa: projeção de gaps de liquidez com antecedência a partir de contas a pagar, a receber e histórico",
+        "Conciliação bancária inteligente: 98% das transações reconciliadas automaticamente",
+        "Validação de NF-e com ERP (SAP e outros) em tempo real"
       ]
     },
     comoViraResultado: [
-      "Automação de 70–90% do ciclo financeiro (menos custo e retrabalho)",
-      "Governança e compliance: padronização + trilha de auditoria",
-      "Previsibilidade em tempo real (o CFO deixa de pilotar no escuro)",
-      "Tempo médio de faturamento por ciclo reduzido",
-      "Taxa de refaturamento / erros de emissão reduzida",
-      "DSO por cliente/segmento otimizado",
-      "Divergências de conciliação e custos (tarifas/chargeback) controlados"
+      "Automação de 70 a 90% do ciclo financeiro, reduzindo drasticamente custos operacionais e retrabalho",
+      "Processos padronizados e auditáveis 24/7, eliminando erros fiscais, duplicidades e risco de fraudes",
+      "Previsibilidade em tempo real: todos os indicadores financeiros e fluxo de caixa em dashboard único para decisões estratégicas",
+      "Eliminação de perdas financeiras por fraude e erro — segurança automatizada acima do nível humano",
+      "Redução de até 90% do trabalho manual no processo de fretes, pagando apenas por serviços comprovadamente realizados",
+      "Tomada de decisão financeira proativa: antecipar necessidades de caixa e negociar melhores taxas antes da crise de liquidez"
     ],
     perguntasQueVendem: [
       "\"Quanto tempo seu time gasta por semana em conciliação e correção?\"",
-      "\"Qual a taxa de refaturamento / erro de emissão hoje?\"",
-      "\"Seu DSO está subindo por quê? Você sabe por cliente?\"",
-      "\"Quantos pagamentos você descobre que estavam errados depois que já saiu do caixa?\"",
-      "\"Se eu te desse previsibilidade real hoje, que decisão você tomaria amanhã?\""
+      "\"Quantos pagamentos vocês descobrem que estavam errados depois que já saíram do caixa?\"",
+      "\"Seu processo de fretes é manual? Quantos documentos precisam cruzar antes de pagar?\"",
+      "\"A gestão de caixa de vocês é reativa ou preditiva? Vocês antecipam gaps de liquidez?\"",
+      "\"Se eu te desse previsibilidade real do fluxo de caixa hoje, que decisão você tomaria amanhã?\""
     ],
     impactoNaoTer: [
-      "Você compra receita e perde no backoffice",
-      "Você perde caixa por erro, fraude, inconsistência e atraso — e chama de \"custo do financeiro\"",
-      "Você tem relatório, mas não tem controle operacional do ciclo"
+      "Você perde caixa por fraude, erro e duplicidade — e chama de \"custo do financeiro\"",
+      "Decisões de captação e pagamento são tomadas sob pressão, quando o problema já está acontecendo",
+      "Verificação humana não alcança o nível de segurança que a automação entrega",
+      "Você paga fretes por serviços não comprovados e descobre tarde demais",
+      "Sua equipe financeira gasta tempo em trabalho repetitivo em vez de decisão estratégica"
     ],
     fitForte: [
-      "Volume alto de notas, recebíveis, múltiplos canais de cobrança",
+      "Volume alto de notas, recebíveis, múltiplos fornecedores e documentos fiscais",
       "CFO/Controller patrocinando (dono do problema)",
-      "Dores com impacto direto em caixa e eficiência"
+      "Processos de pagamento complexos (fretes, fornecedores, conciliação)",
+      "Dores com impacto direto em caixa, eficiência e risco de fraude"
     ],
     redFlags: [
-      "\"Financeiro é pequeno, não dói\" (até você mostrar o custo invisível)",
+      "\"Financeiro é pequeno, não dói\" (até mostrar o custo invisível)",
       "Sem acesso a dados/sistemas ou ninguém para liberar integração mínima"
     ],
     objecoes: [
       {
         objecao: "\"Meu ERP já faz isso.\"",
-        resposta: "ERP registra. A pergunta é: ele executa o processo com validação, prevenção de erro e trilha auditável, ou só vira 'lançamento' que alguém confere manualmente?"
+        resposta: "ERP registra. A pergunta é: ele executa o processo com validação cruzada em tempo real, prevenção de fraude e trilha auditável, ou só vira lançamento que alguém confere manualmente?"
       },
       {
         objecao: "\"Tenho medo de mexer no financeiro.\"",
-        resposta: "A arquitetura é feita para ambiente crítico: rastreabilidade, validação e governança. Você ganha controle, não perde."
+        resposta: "A arquitetura é feita para ambiente crítico: rastreabilidade, validação e governança desde o primeiro dia. Você ganha controle, não perde."
       }
     ],
-    proximoPasso: "\"Me dá 30 minutos com quem vive o ciclo (faturamento+cobrança+conciliação). Eu devolvo o mapa do processo + onde a IA assume e o ROI aparece.\""
+    proximoPasso: "\"Libere sua equipe financeira do trabalho repetitivo. Me dá 30 minutos com quem vive o ciclo (faturamento + pagamentos + conciliação) e eu devolvo o mapa do processo + onde a IA assume e o ROI aparece.\""
   },
   legal: {
     name: "Legal Hub",
