@@ -1,4 +1,5 @@
 import { AppLayout } from "@/components/layout/AppLayout";
+import crmVisaoGeralImg from "@/assets/crm-visao-geral.png";
 import { PageHero } from "@/components/ui/PageHero";
 import { CopyButton } from "@/components/ui/CopyButton";
 import {
@@ -56,11 +57,9 @@ const CRMGovernancaPage = () => {
                   </p>
                 </div>
 
-                {/* Placeholder para print */}
-                <div className="p-6 bg-muted/30 rounded-xl border-2 border-dashed border-border text-center">
-                  <div className="text-4xl mb-2">🖼️</div>
-                  <p className="text-sm text-muted-foreground font-medium">Print: Sidebar com ícone "Comercial" em destaque</p>
-                  <p className="text-xs text-muted-foreground mt-1 italic">"A equipe vive aqui: Comercial."</p>
+                {/* Print: Visão geral do CRM */}
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img src={crmVisaoGeralImg} alt="Visão geral do CRM — Sidebar com ícone Comercial em destaque" className="w-full h-auto" />
                 </div>
               </div>
             </AccordionContent>
