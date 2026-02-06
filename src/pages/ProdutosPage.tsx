@@ -5,7 +5,7 @@ import { ContentBlock } from "@/components/ui/ContentBlock";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { cn } from "@/lib/utils";
 
-type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents";
+type ProductTab = "vision" | "finance" | "legal" | "nalk" | "agents" | "letramento";
 
 interface ProductData {
   name: string;
@@ -362,6 +362,123 @@ const products: Record<ProductTab, ProductData> = {
       }
     ],
     proximoPasso: "\"[NOME], a Freedom é especialista em multiagentes. Em vez de vender plataforma pra você construir, a gente entrega agentes prontos em produção, com governança, canal e integração. E a ideia é virar o fornecedor central de agentes da empresa — começando por 1 caso de uso com impacto em 30 dias e escalando pra outras áreas.\""
+  },
+  letramento: {
+    name: "Letramento IA",
+    oQueE: "Letramento IA é um workshop corporativo presencial premium para gerar fluência corporativa em Inteligência Artificial e elevar a maturidade digital do time.",
+    paraQuemE: [
+      "Liderança (C-levels)",
+      "Operações",
+      "Marketing",
+      "Vendas",
+      "Atendimento",
+      "RH",
+      "Administrativo",
+      "Inovação & Estratégia",
+      "Qualquer empresa que deseje profissionalizar o uso de IA e criar base cultural para adoção com governança"
+    ],
+    dorQueResolve: [
+      "Falta de conhecimento técnico e conceitual — time \"usa IA\", mas não entende",
+      "Uso superficial ou inseguro de IA — risco por falta de boas práticas",
+      "Dificuldade de identificar onde aplicar IA de forma produtiva",
+      "Medo ou resistência à tecnologia — barreira cultural",
+      "Incerteza sobre boas práticas, limites e riscos (privacidade, ética, segurança)"
+    ],
+    oQueEntrega: {
+      intro: "",
+      modulos: [
+        "Presencial — 16 horas",
+        "Imersivo e prático",
+        "Conteúdo corporativo e acessível",
+        "Demonstrações ao vivo",
+        "Exercícios guiados",
+        "Material completo incluso",
+        "Entrega imediata de conhecimento aplicável"
+      ]
+    },
+    comoViraResultado: [
+      "Equipe mais preparada",
+      "Uso seguro e eficiente de IA",
+      "Menos dúvidas, mais clareza",
+      "Mais produtividade no dia a dia",
+      "Cultura digital fortalecida"
+    ],
+    perguntasQueVendem: [
+      "\"Hoje sua equipe usa IA de forma padronizada… ou cada um 'do seu jeito'?\"",
+      "\"Qual o custo do retrabalho quando alguém usa IA errado e entrega algo inconsistente?\"",
+      "\"Quem aqui tem autonomia pra dizer o que pode e o que não pode fazer com IA?\"",
+      "\"Se eu pedir 'mostra o playbook de boas práticas de IA da empresa'… existe?\"",
+      "\"O que acontece se um colaborador colar dado sensível num prompt amanhã?\"",
+      "\"Quanto tempo por semana o time perde 'tentando' IA sem método?\"",
+      "\"Qual área teria maior ROI imediato com IA: atendimento, marketing, vendas, RH ou operações?\"",
+      "\"Qual seu nível de maturidade: curiosidade, adoção informal ou uso profissional?\"",
+      "\"O que te impediria de escalar IA: cultura, risco, falta de padrão ou falta de casos?\"",
+      "\"Se eu entrevistar 5 pessoas do time, vou ouvir 5 versões diferentes do que é IA?\"",
+      "\"Você quer que IA vire 'moda interna' ou competência operacional?\"",
+      "\"Qual decisão hoje é tomada no 'achismo' que poderia ser apoiada por IA com segurança?\""
+    ],
+    impactoNaoTer: [
+      "Você paga o custo do improviso — IA sem método vira ruído, não resultado.",
+      "Você cria risco invisível — sem boas práticas, o erro é questão de tempo.",
+      "Você perde produtividade — o time \"brinca de IA\" em vez de aplicar com foco.",
+      "Você perde vantagem competitiva — empresas preparadas aceleram mais rápido."
+    ],
+    fitForte: [
+      "Liderança quer profissionalizar IA (não só \"testar\")",
+      "Time grande/multiáreas e necessidade de padronizar uso",
+      "Existe urgência por produtividade e clareza de aplicação",
+      "Preocupação real com segurança, privacidade e compliance",
+      "Empresa quer criar base cultural para depois escalar automações/agentes"
+    ],
+    redFlags: [
+      "\"Quero só uma palestra motivacional\" — sem intenção de aplicação",
+      "\"Não posso mexer em nada / não quero regras\" — sem abertura pra boas práticas",
+      "\"IA é só curiosidade\" — sem dor e sem dono interno",
+      "Espera \"milagre\" sem mudar rotina e processo"
+    ],
+    objecoes: [
+      {
+        objecao: "\"Meu time já usa ChatGPT, não precisa.\"",
+        resposta: "Usar e usar bem são coisas diferentes. A pergunta é: existe padrão, boas práticas e governança? Ou cada um faz do jeito que quer — inclusive colando dado sensível?"
+      },
+      {
+        objecao: "\"Isso é treinamento… a gente precisa de entrega, não aula.\"",
+        resposta: "Exato — por isso não é palestra. É imersão prática com exercícios, demonstrações e aplicação real. O resultado é gente pronta pra aplicar IA no dia seguinte."
+      },
+      {
+        objecao: "\"Não tenho tempo pra tirar o time 2 dias.\"",
+        resposta: "Quanto tempo por semana o time perde tentando IA sem método? Dois dias resolvem o que meses de tentativa e erro não vão resolver."
+      },
+      {
+        objecao: "\"Tenho medo de vazar informação.\"",
+        resposta: "Esse é exatamente o ponto. Sem letramento, o risco já existe — só que invisível. O workshop ensina boas práticas de privacidade e segurança."
+      },
+      {
+        objecao: "\"TI/Compliance vai travar isso.\"",
+        resposta: "Pelo contrário: compliance é um dos pilares do workshop. O conteúdo inclui governança, limites e boas práticas — é o que TI quer que o time saiba."
+      },
+      {
+        objecao: "\"Não sei se IA serve pro meu setor.\"",
+        resposta: "Toda empresa que tem processo repetitivo, decisão com dado e comunicação interna tem espaço pra IA. O workshop mostra onde começar com segurança."
+      },
+      {
+        objecao: "\"Isso é básico demais.\"",
+        resposta: "Se o time inteiro já usa IA com padrão, governança e resultado mensurável, ok. Se não, o básico ainda não está resolvido."
+      },
+      {
+        objecao: "\"Isso é avançado demais pro meu time.\"",
+        resposta: "O conteúdo é corporativo e acessível. A didática foi construída pra quem não é técnico. Ninguém precisa saber programar."
+      },
+      {
+        objecao: "\"Prefiro um curso online mais barato.\"",
+        resposta: "Curso online é conteúdo genérico. Workshop presencial é imersão com aplicação real na sua realidade, com diagnóstico e plano de ação."
+      },
+      {
+        objecao: "\"Qual o ROI de um workshop?\"",
+        resposta: "Quanto custa o retrabalho, o risco e a ineficiência de IA sem método? O ROI está no que você deixa de perder a partir do dia seguinte."
+      }
+    ],
+    proximoPasso: ""
   }
 };
 
@@ -373,8 +490,332 @@ const ProdutosPage = () => {
     { id: "finance", name: "Finance Core" },
     { id: "legal", name: "Legal Hub" },
     { id: "nalk", name: "NALK" },
-    { id: "agents", name: "Freedom Agents" }
+    { id: "agents", name: "Freedom Agents" },
+    { id: "letramento", name: "Letramento IA" }
   ];
+
+  const renderLetramentoProduct = () => {
+    const product = products.letramento;
+    const perguntasTexto = product.perguntasQueVendem.join("\n");
+    const impactoTexto = "Sem fluência e padrão, IA vira tentativa e erro. E tentativa e erro em empresa custa caro.";
+    const pitchTexto = "Letramento IA é a fluência corporativa que transforma IA em uso produtivo e seguro. Em 16 horas presenciais, a gente eleva maturidade, cria padrão, reduz risco e entrega um plano inicial com diagnóstico, material completo e diretrizes de próximos passos. Antes de escalar automações e agentes, você precisa preparar pessoas.";
+
+    return (
+      <div className="space-y-4 max-w-4xl">
+        {/* 1. O que é */}
+        <ContentBlock title="1) O que é">
+          <div className="space-y-4">
+            <div className="p-5 bg-primary-weak/30 rounded-xl border border-primary/20">
+              <p className="text-foreground text-lg leading-relaxed">{product.oQueE}</p>
+            </div>
+            <div className="p-4 bg-primary/10 rounded-xl border border-primary/30">
+              <p className="text-foreground font-semibold italic">"O desafio agora não é tecnologia — é preparar pessoas. IA já está redefinindo como empresas operam, decidem e crescem."</p>
+            </div>
+            <ul className="space-y-2 text-foreground">
+              <li className="flex items-start gap-3"><span className="text-primary font-bold">→</span>Não é "palestra". É imersão prática para transformar IA em uso produtivo e seguro no dia a dia.</li>
+              <li className="flex items-start gap-3"><span className="text-primary font-bold">→</span>Entrega conhecimento aplicável imediato, com demonstrações e exercícios guiados.</li>
+              <li className="flex items-start gap-3"><span className="text-primary font-bold">→</span>Serve como primeiro passo para empresas que querem profissionalizar o uso de IA antes de escalar automações/agentes.</li>
+            </ul>
+          </div>
+        </ContentBlock>
+
+        {/* 2. Para quem é */}
+        <ContentBlock title="2) Para quem é (ICP)">
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {product.paraQuemE.slice(0, 8).map((item, index) => (
+                <div key={index} className="p-3 bg-card rounded-xl border border-border text-center">
+                  <span className="text-foreground text-sm font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 bg-primary-weak/30 rounded-xl border border-primary/20">
+              <p className="text-foreground text-sm italic">{product.paraQuemE[8]}</p>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 3. Dor que isso resolve */}
+        <ContentBlock title="3) Dor que isso resolve">
+          <div className="space-y-4">
+            <ul className="space-y-2">
+              {product.dorQueResolve.map((dor, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-lg bg-destructive/10 text-destructive text-sm font-bold flex items-center justify-center flex-shrink-0">✗</span>
+                  <span className="text-foreground">{dor}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="p-4 bg-primary/10 rounded-xl border border-primary/30">
+              <p className="text-foreground font-semibold italic">"Pra competir num mercado acelerado, é essencial elevar a maturidade digital das equipes."</p>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 4. O que a Freedom entrega */}
+        <ContentBlock title="4) O que a Freedom entrega">
+          <div className="space-y-6">
+            {/* Formato do Workshop */}
+            <div>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">📋 Formato do Workshop</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {product.oQueEntrega.modulos.map((modulo, index) => (
+                  <div key={index} className="p-4 bg-card rounded-xl border border-border">
+                    <div className="flex items-start gap-3">
+                      <span className="w-6 h-6 rounded-lg bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">{index + 1}</span>
+                      <span className="text-foreground text-sm">{modulo}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quem conduz */}
+            <div>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">👤 Quem conduz</h4>
+              <div className="p-5 bg-card rounded-xl border border-border">
+                <p className="text-foreground font-semibold text-lg mb-2">André Cardia</p>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Especialista em Ciência de Dados e Inteligência Artificial</li>
+                  <li>• Instrutor corporativo</li>
+                  <li>• Certificações internacionais</li>
+                  <li>• Responsável técnico da Freedom Academy</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Entregáveis */}
+            <div>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">📦 O que a empresa recebe</h4>
+              <div className="space-y-3">
+                {[
+                  "Diagnóstico de maturidade em IA (com radar/nota de maturidade)",
+                  "Workbook impresso",
+                  "Certificados individuais",
+                  "Material completo do conteúdo",
+                  "Relatório pós-workshop com diretrizes iniciais e próximos passos"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start gap-4 p-4 bg-primary-weak/30 rounded-xl border border-primary/20">
+                    <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">{index + 1}</span>
+                    <span className="text-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 5. Como isso vira resultado */}
+        <ContentBlock title="5) Como isso vira resultado">
+          <div className="space-y-4">
+            <ul className="space-y-2">
+              {product.comoViraResultado.map((resultado, index) => (
+                <li key={index} className="flex items-start gap-3 p-3 bg-success-weak/50 rounded-xl border border-success/20">
+                  <span className="text-success font-bold">✓</span>
+                  <span className="text-foreground">{resultado}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="p-4 bg-primary/10 rounded-xl border border-primary/30">
+              <p className="text-foreground font-semibold italic">"IA explicada por quem constrói IA — com foco em resultado real."</p>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 6. Perguntas que vendem */}
+        <ContentBlock title="6) Perguntas que vendem">
+          <div className="space-y-4">
+            <div className="flex justify-end">
+              <CopyButton text={perguntasTexto} />
+            </div>
+            <ul className="space-y-3">
+              {product.perguntasQueVendem.map((pergunta, index) => (
+                <li key={index} className="flex items-start gap-3 p-4 bg-primary-weak/50 rounded-xl border border-primary/20">
+                  <span className="w-6 h-6 rounded-lg bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">{index + 1}</span>
+                  <span className="text-foreground italic">{pergunta}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ContentBlock>
+
+        {/* 7. Impacto de não ter */}
+        <ContentBlock title="7) Impacto de não ter (o custo invisível)">
+          <div className="space-y-4">
+            <ul className="space-y-2">
+              {product.impactoNaoTer.map((impacto, index) => (
+                <li key={index} className="flex items-start gap-3 p-4 bg-destructive/10 rounded-xl border border-destructive/20">
+                  <span className="text-destructive font-bold text-lg">⚠</span>
+                  <span className="text-foreground">{impacto}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="p-4 bg-destructive/10 rounded-xl border border-destructive/20">
+              <div className="flex items-center justify-between">
+                <p className="text-foreground font-semibold italic">"{impactoTexto}"</p>
+                <CopyButton text={impactoTexto} />
+              </div>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 8. Sinais de fit / red flags */}
+        <ContentBlock title="8) Sinais de fit / red flags">
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">✅ Fit forte</h4>
+              <ul className="space-y-2">
+                {product.fitForte.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 p-3 bg-success-weak/50 rounded-xl border border-success/20">
+                    <span className="text-success font-bold">✓</span>
+                    <span className="text-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">🚫 Red flags</h4>
+              <ul className="space-y-2">
+                {product.redFlags.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 p-3 bg-destructive/10 rounded-xl border border-destructive/20">
+                    <span className="text-destructive font-bold">✗</span>
+                    <span className="text-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </ContentBlock>
+
+        {/* 9. Objeções comuns — expandidas */}
+        <ContentBlock title="9) Objeções comuns + como responder">
+          <div className="space-y-4">
+            {[
+              {
+                objecao: "\"Meu time já usa ChatGPT, não precisa.\"",
+                resposta: "Usar e usar bem são coisas diferentes. A pergunta é: existe padrão, boas práticas e governança? Ou cada um faz do jeito que quer — inclusive colando dado sensível?",
+                perguntaDestrava: "Se eu entrevistar 5 pessoas do time, vou ouvir 5 versões de como usam IA?",
+                impactoNaoTer: "Sem padrão, cada um usa IA do jeito que quer — e o risco cresce invisível.",
+                proximoPasso: "Agendar diagnóstico de maturidade do time."
+              },
+              {
+                objecao: "\"Isso é treinamento… a gente precisa de entrega, não aula.\"",
+                resposta: "Exato — por isso não é palestra. É imersão prática com exercícios, demonstrações e aplicação real. O resultado é gente pronta pra aplicar IA no dia seguinte.",
+                perguntaDestrava: "O time hoje aplica IA no trabalho ou só conversa sobre IA?",
+                impactoNaoTer: "Sem fluência prática, IA vira curiosidade e nunca vira resultado.",
+                proximoPasso: "Apresentar formato e entregáveis do workshop."
+              },
+              {
+                objecao: "\"Não tenho tempo pra tirar o time 2 dias.\"",
+                resposta: "Quanto tempo por semana o time perde tentando IA sem método? Dois dias resolvem o que meses de tentativa e erro não vão resolver.",
+                perguntaDestrava: "Quanto tempo por semana o time perde \"tentando\" IA sem resultado?",
+                impactoNaoTer: "O custo do improviso distribuído é maior que 2 dias de investimento concentrado.",
+                proximoPasso: "Mostrar agenda e formato para encaixar na rotina."
+              },
+              {
+                objecao: "\"Tenho medo de vazar informação.\"",
+                resposta: "Esse é exatamente o ponto. Sem letramento, o risco já existe — só que invisível. O workshop ensina boas práticas de privacidade e segurança.",
+                perguntaDestrava: "Hoje alguém no time já colou dado sensível num prompt sem querer?",
+                impactoNaoTer: "O vazamento já pode estar acontecendo — você só não sabe.",
+                proximoPasso: "Agendar conversa com compliance/TI para alinhar escopo."
+              },
+              {
+                objecao: "\"TI/Compliance vai travar isso.\"",
+                resposta: "Pelo contrário: compliance é um dos pilares do workshop. O conteúdo inclui governança, limites e boas práticas — é o que TI quer que o time saiba.",
+                perguntaDestrava: "TI prefere que o time use IA sem regras ou com um playbook de boas práticas?",
+                impactoNaoTer: "Sem letramento, TI vai travar IA pra sempre — e a empresa perde competitividade.",
+                proximoPasso: "Incluir TI na conversa e mostrar o pilar de governança."
+              },
+              {
+                objecao: "\"Não sei se IA serve pro meu setor.\"",
+                resposta: "Toda empresa que tem processo repetitivo, decisão com dado e comunicação interna tem espaço pra IA. O workshop mostra onde começar com segurança.",
+                perguntaDestrava: "Vocês têm algum processo repetitivo que consome tempo do time toda semana?",
+                impactoNaoTer: "A dúvida impede a ação — e a inação custa mais que o aprendizado.",
+                proximoPasso: "Fazer diagnóstico rápido de processos para identificar quick wins."
+              },
+              {
+                objecao: "\"Isso é básico demais.\"",
+                resposta: "Se o time inteiro já usa IA com padrão, governança e resultado mensurável, ok. Se não, o básico ainda não está resolvido.",
+                perguntaDestrava: "Vocês já têm um playbook de boas práticas de IA documentado?",
+                impactoNaoTer: "Pular o básico é o motivo #1 de projetos de IA que falham.",
+                proximoPasso: "Mostrar diagnóstico de maturidade e identificar gaps reais."
+              },
+              {
+                objecao: "\"Isso é avançado demais pro meu time.\"",
+                resposta: "O conteúdo é corporativo e acessível. A didática foi construída pra quem não é técnico. Ninguém precisa saber programar.",
+                perguntaDestrava: "O time sabe usar e-mail? Então sabe aprender IA aplicada.",
+                impactoNaoTer: "Esperar o time \"estar pronto\" é garantir que nunca vão começar.",
+                proximoPasso: "Compartilhar ementa e perfil dos participantes de workshops anteriores."
+              },
+              {
+                objecao: "\"Prefiro um curso online mais barato.\"",
+                resposta: "Curso online é conteúdo genérico. Workshop presencial é imersão com aplicação real na sua realidade, com diagnóstico e plano de ação.",
+                perguntaDestrava: "Quantos cursos online o time já fez que realmente mudaram a rotina?",
+                impactoNaoTer: "O barato sai caro — conteúdo genérico não gera mudança de comportamento.",
+                proximoPasso: "Comparar entregáveis: diagnóstico, workbook, certificados, relatório vs. vídeo-aulas genéricas."
+              },
+              {
+                objecao: "\"Qual o ROI de um workshop?\"",
+                resposta: "Quanto custa o retrabalho, o risco e a ineficiência de IA sem método? O ROI está no que você deixa de perder a partir do dia seguinte.",
+                perguntaDestrava: "Qual o custo semanal de tentativa e erro com IA hoje?",
+                impactoNaoTer: "Sem base, cada tentativa de escalar IA custa mais tempo e mais dinheiro.",
+                proximoPasso: "Mapear 3 processos com potencial de IA e calcular economia estimada."
+              }
+            ].map((obj, index) => (
+              <div key={index} className="p-4 bg-card rounded-xl border border-border space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-muted text-muted-foreground text-sm font-bold flex items-center justify-center flex-shrink-0">💬</span>
+                  <p className="text-foreground font-semibold">{obj.objecao}</p>
+                </div>
+                <div className="pl-11 space-y-2">
+                  <div className="flex items-start gap-3">
+                    <span className="text-primary font-bold">→</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Resposta</p>
+                      <p className="text-foreground">{obj.resposta}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-primary font-bold">?</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Pergunta que destrava</p>
+                      <p className="text-foreground italic">{obj.perguntaDestrava}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-destructive font-bold">⚠</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Impacto de não ter</p>
+                      <p className="text-foreground">{obj.impactoNaoTer}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-success font-bold">▶</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Próximo passo</p>
+                      <p className="text-foreground">{obj.proximoPasso}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ContentBlock>
+
+        {/* Bloco final: Como vender em 20 segundos */}
+        <ContentBlock title="🎯 Como vender Letramento IA em 20 segundos" collapsible={false}>
+          <div className="p-5 bg-primary-weak/50 rounded-xl border border-primary/30">
+            <p className="text-foreground leading-relaxed mb-4">
+              "{pitchTexto}"
+            </p>
+            <div className="flex justify-end">
+              <CopyButton text={pitchTexto} />
+            </div>
+          </div>
+        </ContentBlock>
+      </div>
+    );
+  };
 
   const renderProduct = (product: ProductData) => {
     const perguntasTexto = product.perguntasQueVendem.join("\n");
@@ -559,7 +1000,7 @@ const ProdutosPage = () => {
         </div>
 
         {/* Product content */}
-        {renderProduct(products[activeTab])}
+        {activeTab === "letramento" ? renderLetramentoProduct() : renderProduct(products[activeTab])}
       </div>
     </AppLayout>
   );
