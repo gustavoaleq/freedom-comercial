@@ -169,67 +169,72 @@ const products: Record<ProductTab, ProductData> = {
   },
   legal: {
     name: "Legal Hub",
-    oQueE: "Freedom Legal Hub é uma central autônoma de produção jurídica. Não é gerador de template: ele lê o processo, extrai provas e constrói peças robustas e combativas, mantendo o advogado no controle final.",
+    oQueE: "O Freedom Legal Hub é um sistema autônomo que atua como uma central de produção, automatizando a criação de peças jurídicas complexas do início ao fim. Não somos um gerador de templates. Somos tecnologia de execução que constrói peças combativas, com padrão técnico elevado e prontas para protocolo. Ele replica a capacidade analítica de um advogado para ler o processo, extrair provas e construir a melhor tese de defesa, liberando sua equipe para o trabalho estratégico.",
     paraQuemE: [
-      "Jurídicos corporativos e escritórios com alto volume",
-      "Contencioso massificado / produção de peças repetitivas e críticas",
-      "Times que precisam de padrão técnico, escala e redução de risco"
+      "Jurídicos corporativos e escritórios de grande porte com alto volume de contencioso",
+      "Contencioso massificado: milhares de recursos de apelação, contrarrazões e peças repetitivas",
+      "Times que precisam de padrão técnico elevado, escala e redução de risco e contingência"
     ],
     dorQueResolve: [
-      "Produção lenta, cara e inconsistente",
-      "Risco de erro/prazo perdido e contingência subindo",
-      "Advogado gastando tempo em PDF, não em estratégia",
-      "Baixa padronização: cada um escreve de um jeito"
+      "Volume e custo elevado: volume gigantesco de recursos judiciais repetitivos consome horas de advogados em tarefas manuais, inflando custos operacionais",
+      "Risco e inconsistência: produção manual em escala gera peças com qualidade variável, quebras de padrão técnico e alto risco de erros, aumentando a contingência",
+      "Baixa produtividade: advogados gastam a maior parte do tempo lendo PDFs e extraindo fatos, em vez de focar na estratégia jurídica que agrega valor",
+      "Advogados diferentes usam teses diferentes e precedentes desatualizados para casos semelhantes, enfraquecendo a posição jurídica do cliente"
     ],
     oQueEntrega: {
-      intro: "Extração de provas em larga escala (valores, datas, faturas, logs, fatos). Pipeline jurídico com validações (probatórias, normativas e jurídicas). Documento final com padrão técnico elevado, pronto para revisão e protocolo.",
+      intro: "Os 3 pilares da entrega: 1) Extração completa de provas — o agente lê centenas de páginas de processo e extrai automaticamente todas as provas cruciais (valores, datas, faturas, logs, fatos). 2) Pipeline jurídico com validações — esteira de validações probatórias, normativas e jurídicas, selecionando automaticamente as melhores teses, precedentes e súmulas. 3) Peça final forte e pronta para protocolo — documento combativo com padrão técnico elevado, pronto para revisão final e protocolo.",
       modulos: [
-        "Peças processuais complexas (recursos, contrarrazões, manifestações)",
-        "Análise/elaboração de contratos (red flags, políticas, modelos)",
-        "Due diligence (classificação, sumários e riscos)",
+        "Peças processuais complexas: contrarrazões, recursos, manifestações — únicas e baseadas em evidências do caso",
+        "Extração e validação de provas em larga escala: base de dados estruturada vinculando cada fato ao documento de origem",
+        "Padrão técnico e jurisprudência atualizada: configurado com as melhores teses e constantemente atualizado com precedentes (súmulas, IRDRs)",
+        "Análise e elaboração de contratos (red flags, políticas, modelos)",
         "Gestão de prepostos (escala e instruções de audiência)",
-        "Resposta de ofícios + triagem LGPD",
-        "Gestão de contratos (esteira, SLA, alertas)"
+        "Resposta de ofícios + triagem LGPD"
       ]
     },
     comoViraResultado: [
-      "Escala de produção com consistência (padrão ouro)",
-      "Menos risco operacional (prazos, LGPD, conformidade)",
-      "Mais produtividade: advogado volta para estratégia",
-      "Governança: visibilidade do pipeline jurídico"
+      "Produção de milhares de peças únicas, robustas e baseadas em evidências por mês — elevando a qualidade da defesa em toda a carteira",
+      "Advogados liberados da extração manual de dados, focando na estratégia jurídica que agrega valor",
+      "\"Padrão ouro\" de qualidade: consistência, rigor técnico e uso dos melhores argumentos jurídicos possíveis em todas as peças",
+      "Nenhuma prova crítica esquecida: base estruturada com cada fato vinculado ao documento de origem",
+      "Governança: visibilidade completa do pipeline jurídico (peças em produção, contratos em análise, ofícios pendentes, audiências)"
     ],
     perguntasQueVendem: [
       "\"Quantas peças por mês vocês produzem? Quantas são repetitivas?\"",
       "\"Quantas horas por semana viram leitura de PDF e extração de prova?\"",
-      "\"Qual o custo de 1 erro de prazo? E o custo de uma peça fraca?\"",
-      "\"O padrão técnico é o mesmo entre advogados diferentes?\"",
-      "\"Se você pudesse dobrar produção sem dobrar equipe, o que mudaria?\""
+      "\"Qual o custo de 1 erro de prazo? E o custo de uma peça fraca que aumenta contingência?\"",
+      "\"O padrão técnico é o mesmo entre advogados diferentes? Vocês usam as mesmas teses e precedentes?\"",
+      "\"Se você pudesse dobrar produção sem dobrar equipe, o que mudaria na sua operação?\""
     ],
     impactoNaoTer: [
-      "Você paga advogado para fazer trabalho de máquina",
-      "Você aceita inconsistência como normal — até virar contingência e prejuízo",
-      "Você perde escala e abre mão de padrão técnico (e isso custa processo)"
+      "Você paga advogado para fazer trabalho de máquina — ler PDF e extrair dados manualmente",
+      "Produção manual em escala gera peças com qualidade variável e quebras de padrão, aumentando contingência",
+      "Advogados diferentes usam teses e precedentes desatualizados, enfraquecendo a defesa do cliente",
+      "Provas críticas são esquecidas por erro humano em processos de centenas de páginas",
+      "Você perde escala e abre mão de padrão técnico — e isso custa processo"
     ],
     fitForte: [
-      "Volume alto, repetição, risco real",
-      "Liderança do jurídico patrocinando"
+      "Volume alto de contencioso repetitivo com risco real",
+      "Liderança do jurídico patrocinando a mudança",
+      "Necessidade de escala sem perder padrão técnico",
+      "Carteira com milhares de processos similares (bancos, seguradoras, telecoms)"
     ],
     redFlags: [
-      "\"Quer só template\"",
+      "\"Quer só template\" — sem necessidade de escala ou padrão",
       "Não tem teses/padrões minimamente definidos",
-      "Dados/documentos inacessíveis"
+      "Dados/documentos inacessíveis para extração"
     ],
     objecoes: [
       {
         objecao: "\"IA não entende meu caso.\"",
-        resposta: "Ela entende o que é prova, tese e padrão. E o advogado continua no controle final. O ganho é tirar o trabalho braçal e elevar o padrão."
+        resposta: "Ela replica a capacidade analítica de ler o processo, extrair provas e construir a melhor tese. O advogado continua no controle final. O ganho é tirar o trabalho braçal e elevar o padrão."
       },
       {
         objecao: "\"Tenho medo de qualidade.\"",
-        resposta: "A régua é evidência + validação. Pior que IA é manter peça fraca e inconsistente no volume."
+        resposta: "A plataforma é configurada com as melhores teses do escritório e atualizada com precedentes recentes. O resultado é um padrão ouro — consistente e combativo em todas as peças."
       }
     ],
-    proximoPasso: "\"Me manda 3 exemplos reais de processos/peças. Eu te devolvo uma demonstração do 'antes e depois' em cima da sua realidade.\""
+    proximoPasso: "\"Eleve a escala e a qualidade da sua produção jurídica. Me manda 3 exemplos reais de processos/peças e eu te devolvo uma demonstração do 'antes e depois' em cima da sua realidade.\""
   },
   nalk: {
     name: "NALK",
