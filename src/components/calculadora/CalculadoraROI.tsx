@@ -179,16 +179,16 @@ export function CalculadoraROI() {
         });
       }
 
-      // Detectar payback (primeiro mês onde benefício >= custo)
-      if (paybackMesProjetado === null && saldo >= 0) {
+      // Detectar payback (primeiro mês onde benefício acumulado supera custo acumulado)
+      if (paybackMesProjetado === null && saldo > 0) {
         paybackMesProjetado = m;
         if (!aposContrato) {
           paybackMesContrato = m;
         }
       }
 
-      // Detectar ROI positivo (primeiro mês onde ROI >= 0%)
-      if (roiPositivoMesProjetado === null && roiAcumulado !== null && roiAcumulado >= 0) {
+      // Detectar ROI positivo (primeiro mês onde ROI > 0%)
+      if (roiPositivoMesProjetado === null && roiAcumulado !== null && roiAcumulado > 0) {
         roiPositivoMesProjetado = m;
         if (!aposContrato) {
           roiPositivoMesContrato = m;
