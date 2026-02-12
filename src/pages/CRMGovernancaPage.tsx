@@ -132,7 +132,7 @@ const CRMGovernancaPage = () => {
                       <p className="font-semibold text-foreground">4. Prioridade por Lead Score</p>
                       <p className="text-muted-foreground mt-1">
                         SDR deve atender primeiro <strong>Lead Score mais alto</strong>.<br/>
-                        Lead Score ≥ 40 = MQL.<br/>
+                        Lead Score ≥ 55 = MQL.<br/>
                         Ou seja: <strong>MQL entra na fila de prioridade</strong>.
                       </p>
                     </div>
