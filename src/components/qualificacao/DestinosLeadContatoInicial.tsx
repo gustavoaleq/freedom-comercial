@@ -249,7 +249,7 @@ function DestinoAccordion({ card }: { card: DestinoCard }) {
           {/* Highlight for MQL */}
           {card.id === "mql" && (
             <p className="text-xs text-muted-foreground italic">
-              Mesmo com Lead Score ≥ 40, o lead permanece MQL quando os critérios acima se aplicam.
+              Mesmo com Lead Score ≥ 55, o lead permanece MQL quando os critérios acima se aplicam.
             </p>
           )}
         </div>
@@ -291,7 +291,7 @@ export function DestinosLeadContatoInicial() {
           </li>
         </ul>
         <p className="text-xs text-muted-foreground mt-3 italic">
-          Lead Score ≥ 40 = indício de MQL, mas a classificação final depende da conversa.
+          Lead Score ≥ 55 = indício de MQL, mas a classificação final depende da conversa.
         </p>
       </div>
     </div>
