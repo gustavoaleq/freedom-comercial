@@ -301,7 +301,7 @@ const CRMGovernancaPage = () => {
                     Agendamento automático via Typebot acontece <strong>somente para MQL e SQL</strong>:
                   </p>
                   <div className="mt-2 p-3 bg-primary-weak/50 rounded-lg border border-primary/20">
-                    <p className="text-foreground font-medium">Lead Score ≥ 60</p>
+                    <p className="text-foreground font-medium">Lead Score ≥ 70</p>
                   </div>
                 </div>
 
