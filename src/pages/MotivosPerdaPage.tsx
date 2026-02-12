@@ -49,9 +49,9 @@ const MotivosPerdaPage = () => {
           </div>
         </ContentBlock>
 
-        <ContentBlock title="Motivos de Perda — Etapas Closer NALK">
+        <ContentBlock title="Motivos de Perda — Etapas SDR NALK">
           <p className="text-muted-foreground mb-4">
-            Selecione o motivo ao marcar um negócio como perdido nas etapas de Closer NALK.
+            Selecione o motivo ao marcar um negócio como perdido nas etapas de SDR NALK.
           </p>
           <div className="space-y-2">
             {motivosCloserNalk.map((motivo, index) => (
