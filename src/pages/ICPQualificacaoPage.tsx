@@ -97,12 +97,12 @@ const ICPQualificacaoPage = () => {
             <h4 className="font-bold text-foreground">Regra automática (somente na etapa LEAD)</h4>
             <div className="grid gap-2 sm:grid-cols-2">
               <div className="p-3 bg-card rounded-lg border border-border">
-                <span className="text-sm font-mono text-foreground">Lead Score &lt; 40</span>
+                <span className="text-sm font-mono text-foreground">Lead Score &lt; 55</span>
                 <span className="mx-2 text-muted-foreground">→</span>
                 <span className="font-semibold text-foreground">Classificação: LEAD</span>
               </div>
               <div className="p-3 bg-card rounded-lg border border-border">
-                <span className="text-sm font-mono text-foreground">Lead Score ≥ 40</span>
+                <span className="text-sm font-mono text-foreground">Lead Score ≥ 55</span>
                 <span className="mx-2 text-muted-foreground">→</span>
                 <span className="font-semibold text-foreground">Classificação: MQL</span>
               </div>
