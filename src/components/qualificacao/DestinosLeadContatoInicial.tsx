@@ -112,12 +112,14 @@ const destinos: DestinoCard[] = [
 ];
 
 const motivosPerdido = [
-  "Não responde / não retorna contato",
-  "Número ou e-mail inválido",
-  "Não é decisor nem influenciador",
-  "Projeto congelado",
-  "Empresa fora do ICP",
-  "Prioridade inexistente no momento",
+  "Não é prioridade agora",
+  "Empresa já cadastrada",
+  "Nunca Interagiu",
+  "Parou de Interagir",
+  "Dados Incorretos",
+  "Busca ERP",
+  "BPO",
+  "Achou caro",
 ];
 
 const exemplosProximoPasso = [
