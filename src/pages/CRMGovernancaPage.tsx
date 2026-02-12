@@ -145,7 +145,7 @@ const CRMGovernancaPage = () => {
                       <ul className="mt-2 space-y-1">
                         <li className="flex items-center gap-2 text-foreground">
                           <CheckCircle2 className="w-4 h-4 text-success" />
-                          MQL validado (score ≥ 40)
+                          MQL validado (score ≥ 55)
                         </li>
                         <li className="flex items-center gap-2 text-foreground">
                           <CheckCircle2 className="w-4 h-4 text-success" />
