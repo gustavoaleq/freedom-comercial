@@ -14,6 +14,18 @@ const MotivosPerdaPage = () => {
     "Achou caro"
   ];
 
+  const motivosCloserNalk = [
+    "Não é prioridade agora",
+    "Empresa já cadastrada",
+    "Nunca Interagiu",
+    "Parou de Interagir",
+    "Dados Incorretos",
+    "Não tem empresa",
+    "Volume de leads abaixo de 100/mês",
+    "Não tem CRM",
+    "CRM sem integração"
+  ];
+
   return (
     <AppLayout>
       <PageHero
@@ -23,12 +35,26 @@ const MotivosPerdaPage = () => {
       />
 
       <div className="space-y-4 max-w-4xl">
-        <ContentBlock title="Motivos de Perda — Etapas SDR">
+        <ContentBlock title="Motivos de Perda — Etapas SDR FREEDOM">
           <p className="text-muted-foreground mb-4">
             Selecione o motivo ao marcar um negócio como perdido nas etapas de SDR.
           </p>
           <div className="space-y-2">
             {motivosSDR.map((motivo, index) => (
+              <div key={index} className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg">
+                <span className="w-6 h-6 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
+                <span className="text-foreground font-medium">{motivo}</span>
+              </div>
+            ))}
+          </div>
+        </ContentBlock>
+
+        <ContentBlock title="Motivos de Perda — Etapas Closer NALK">
+          <p className="text-muted-foreground mb-4">
+            Selecione o motivo ao marcar um negócio como perdido nas etapas de Closer NALK.
+          </p>
+          <div className="space-y-2">
+            {motivosCloserNalk.map((motivo, index) => (
               <div key={index} className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg">
                 <span className="w-6 h-6 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
                 <span className="text-foreground font-medium">{motivo}</span>
