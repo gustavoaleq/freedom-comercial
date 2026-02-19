@@ -18,6 +18,7 @@ import FollowUpPage from "./pages/FollowUpPage";
 import MotivosPerdaPage from "./pages/MotivosPerdaPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import TemplatesPage from "./pages/TemplatesPage";
+import PrintPage from "./pages/PrintPage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/motivos-perda" element={<MotivosPerdaPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/templates" element={<TemplatesPage />} />
+          <Route path="/print" element={<PrintPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

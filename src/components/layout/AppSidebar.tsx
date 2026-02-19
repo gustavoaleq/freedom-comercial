@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
+import { Home, Wrench, ChevronLeft, ChevronRight, Printer } from "lucide-react";
 import { playbookSections } from "@/data/playbookData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -107,6 +107,23 @@ export function AppSidebar() {
           )}
           <Wrench className="w-5 h-5 flex-shrink-0" />
           {!collapsed && <span className="text-sm font-medium">Templates Comerciais</span>}
+        </Link>
+
+        {/* Versão para Impressão */}
+        <Link
+          to="/print"
+          className={cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative",
+            isActive("/print")
+              ? "bg-primary-weak text-foreground"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          )}
+        >
+          {isActive("/print") && (
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r-full" />
+          )}
+          <Printer className="w-5 h-5 flex-shrink-0" />
+          {!collapsed && <span className="text-sm font-medium">Versão para Impressão</span>}
         </Link>
       </nav>
 
