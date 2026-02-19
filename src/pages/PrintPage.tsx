@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Printer, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { templates } from "@/data/playbookData";
 import {
   objecoesVision,
   objecoesFinance,
@@ -806,11 +807,115 @@ const PrintPage = () => {
           <PrintList items={["Domínio completo do playbook", "Pipeline ativo e saudável", "CRM impecável (0 cards sem tarefa)", "Capacidade de conduzir reunião sozinho", "Mínimo 50% da meta atingida"]} />
         </PrintSection>
 
+
+        {/* ── 12. TEMPLATES COMERCIAIS ── */}
+        <PrintSection emoji="🧰" title="12. Templates Comerciais">
+          <div className="border-l-4 border-foreground pl-4 mb-5">
+            <p className="font-bold">Copie, adapte, use. Todo template deve ter valor novo — sem follow-up vazio.</p>
+          </div>
+
+
+          {/* Todos os templates agrupados por intenção/contexto, sem duplicação */}
+          {(() => {
+            const grupos: { label: string; ids: string[] }[] = [
+              { label: "Outbound — Aberturas (SDR)", ids: templates.filter(t => t.intencao === "abertura-outbound").map(t => t.id) },
+              { label: "LinkedIn", ids: templates.filter(t => t.canal.includes("LinkedIn") && t.intencao !== "abertura-outbound").map(t => t.id) },
+              { label: "Confirmação, Lembrete & Reagendamento", ids: templates.filter(t => ["confirmacao-reuniao","lembrete-1h","reagendamento"].includes(t.intencao)).map(t => t.id) },
+              { label: "No-show", ids: templates.filter(t => t.intencao === "no-show").map(t => t.id) },
+              { label: "Discovery — Perguntas de Closer", ids: templates.filter(t => t.tipo === "Closer" && ["diagnostico","roi-impacto","qualificacao","mapeamento-stakeholders"].includes(t.intencao) && (t.canal.includes("Presencial") || t.canal.includes("Ligação"))).map(t => t.id) },
+              { label: "Pós-reunião", ids: templates.filter(t => t.intencao === "pos-reuniao").map(t => t.id) },
+              { label: "Pós-proposta", ids: templates.filter(t => t.intencao === "pos-proposta").map(t => t.id) },
+              { label: "Objeções — Templates Prontos", ids: templates.filter(t => ["objecao-preco","objecao-tempo","objecao-budget","objecao-concorrente","objecao-pensar","objecao-ti-juridico"].includes(t.intencao)).map(t => t.id) },
+              { label: "Jurídico / Procurement", ids: templates.filter(t => t.intencao === "juridico-procurement").map(t => t.id) },
+              { label: "Reativação", ids: templates.filter(t => t.intencao === "reativacao").map(t => t.id) },
+              { label: "Encerramento Elegante", ids: templates.filter(t => t.intencao === "encerramento").map(t => t.id) },
+              { label: "Produto: Vision", ids: templates.filter(t => t.contexto === "Vision").map(t => t.id) },
+              { label: "Produto: Finance Core", ids: templates.filter(t => t.contexto === "Finance").map(t => t.id) },
+              { label: "Produto: Legal Hub", ids: templates.filter(t => t.contexto === "Legal").map(t => t.id) },
+              { label: "Produto: Nalk", ids: templates.filter(t => t.contexto === "Nalk").map(t => t.id) },
+              { label: "Produto: Freedom Agents", ids: templates.filter(t => t.contexto === "Freedom Agents").map(t => t.id) },
+              { label: "Perguntas Poderosas", ids: templates.filter(t => t.intencao === "pergunta-poderosa").map(t => t.id) },
+            ];
+
+            const seen = new Set<string>();
+            const result: JSX.Element[] = [];
+
+            for (const grupo of grupos) {
+              const uniqIds = grupo.ids.filter(id => !seen.has(id));
+              uniqIds.forEach(id => seen.add(id));
+              if (uniqIds.length === 0) continue;
+
+              const items = uniqIds.map(id => templates.find(t => t.id === id)!).filter(Boolean);
+
+              result.push(
+                <div key={grupo.label} className="mb-8">
+                  <h4 className="font-bold text-sm border-b-2 border-foreground pb-1 mb-3 uppercase tracking-wide">{grupo.label}</h4>
+                  <div className="space-y-3">
+                    {items.map(t => (
+                      <div key={t.id} className="border border-border rounded p-3 text-sm">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <p className="font-bold">{t.nome}</p>
+                          <div className="flex gap-1 flex-shrink-0 flex-wrap justify-end">
+                            <span className="px-1.5 py-0.5 text-xs bg-foreground text-background rounded font-medium">{t.tipo}</span>
+                            {t.canal.map(c => (
+                              <span key={c} className="px-1.5 py-0.5 text-xs border border-border rounded">{c}</span>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground mb-2"><strong className="text-foreground">Quando usar:</strong> {t.quandoUsar}</p>
+                        <p className="text-xs text-muted-foreground mb-2"><strong className="text-foreground">Pergunta-chave:</strong> {t.perguntaChave}</p>
+                        <div className="bg-muted/40 border border-border rounded p-2 font-mono text-xs mt-2">
+                          <pre className="whitespace-pre-wrap">{t.template}</pre>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2"><strong className="text-foreground">Próximo passo:</strong> {t.proximoPasso}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            // Templates que ainda não apareceram em nenhum grupo
+            const remaining = templates.filter(t => !seen.has(t.id));
+            if (remaining.length > 0) {
+              result.push(
+                <div key="outros" className="mb-8">
+                  <h4 className="font-bold text-sm border-b-2 border-foreground pb-1 mb-3 uppercase tracking-wide">Outros Templates</h4>
+                  <div className="space-y-3">
+                    {remaining.map(t => (
+                      <div key={t.id} className="border border-border rounded p-3 text-sm">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <p className="font-bold">{t.nome}</p>
+                          <div className="flex gap-1 flex-shrink-0 flex-wrap justify-end">
+                            <span className="px-1.5 py-0.5 text-xs bg-foreground text-background rounded font-medium">{t.tipo}</span>
+                            {t.canal.map(c => (
+                              <span key={c} className="px-1.5 py-0.5 text-xs border border-border rounded">{c}</span>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground mb-2"><strong className="text-foreground">Quando usar:</strong> {t.quandoUsar}</p>
+                        <p className="text-xs text-muted-foreground mb-2"><strong className="text-foreground">Pergunta-chave:</strong> {t.perguntaChave}</p>
+                        <div className="bg-muted/40 border border-border rounded p-2 font-mono text-xs mt-2">
+                          <pre className="whitespace-pre-wrap">{t.template}</pre>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2"><strong className="text-foreground">Próximo passo:</strong> {t.proximoPasso}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return result;
+          })()}
+        </PrintSection>
+
         {/* Rodapé */}
         <div className="mt-16 pt-6 border-t-2 border-foreground text-center text-sm text-muted-foreground print:mt-8">
           <p className="font-semibold">Freedom AI — Playbook Comercial Confidencial</p>
           <p>Uso interno. Não compartilhar externamente.</p>
         </div>
+
       </div>
 
       <style>{`
